@@ -35,7 +35,7 @@
 
         @media(max-width:900px){
             .container{
-                grid-template-columns: 3fr 1fr;
+                grid-template-columns: 3fr 0fr;
             }
         }
 
