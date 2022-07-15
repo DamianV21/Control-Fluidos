@@ -27,6 +27,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/perfil', function () {
+    return view('profile.show');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
