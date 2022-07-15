@@ -1,0 +1,20 @@
+#columnas {
+    column-count: 2;
+    column-gap: 130px;
+
+}
+
+.green {
+    background: green;
+    color: white;
+}
+
+.red {
+    background: red;
+    color: white;
+}
+
+.yellow {
+    background: yellow;
+
+}

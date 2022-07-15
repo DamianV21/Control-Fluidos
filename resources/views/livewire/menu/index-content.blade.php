@@ -12,7 +12,6 @@
                         class="badge text-white" style="background-color: #5e80b7">{{ $plantas->count() }}</span></h5>
                 <select style="width: 340px; height: 150px;" wire:model="planta" multiple
                     aria-label="multiple select example" class="form-select1">
-                    <option selected></option>
                     @foreach ($plantas as $planta)
                         <option value="{{ $planta->id }}">{{ $planta->nombre }}</option>
                     @endforeach
@@ -25,9 +24,8 @@
                 <select style="width: 340px; height: 150px;" wire:model="area" multiple
                     aria-label="multiple select example" class="form-select">
                     @if ($areas->count() == 0)
-                        <option style="text-align: center">No se encontraron registros </option>
+
                     @endif
-                    <option selected></option>
                     @foreach ($areas as $area)
                         <option value="{{ $area->id }}">{{ $area->nombre }}</option>
                     @endforeach
@@ -40,9 +38,8 @@
                 <select style="width: 340px; height: 150px;" wire:model="linea" multiple
                     aria-label="multiple select example" class="form-select">
                     @if ($lineas->count() == 0)
-                        <option style="text-align: center">No se encontraron registros </option>
+
                     @endif
-                    <option selected></option>
                     @foreach ($lineas as $linea)
                         <option value="{{ $linea->id }}">{{ $linea->nombre }}</option>
                     @endforeach
@@ -63,7 +60,9 @@
                     </center>
                 @else
                     <center>
+                        <br>
                         <h1><strong>Áreas</strong></h1>
+                        <br>
                     </center>
                     <div class="row">
                         @foreach ($areas as $area)
@@ -105,7 +104,7 @@
                  <center>
                     <br>
                     <h1><strong>Máquinas</strong></h1>
-
+                    <br>
                 </center>
 
                 @endif
@@ -622,7 +621,7 @@
                         <div class="form-group row">
                             <label for="man_observaciones" class="col-3">Observaciones</label>
                             <div class="col-9">
-                                <textarea id="man_observaciones" wire:model="man_observaciones" cols="40" rows="4"></textarea>
+                                <textarea placeholder="Escribe una observacion" style="heigh:auto;" id="man_observaciones" wire:model="man_observaciones" ></textarea>
                                 @error('man_observaciones')
                                     <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
                                 @enderror

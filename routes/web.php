@@ -33,6 +33,17 @@ Route::get('/perfil', function () {
 Route::get('/menu', function () {
     return view('vistas.menu');
 });
+
+
+
+Route::get('/reportes', function () {
+    return view('vistas.reportes');
+});
+
+
+Route::get('report/pdf/{maquina}/{f1}/{f2}', [ExportController::class, 'reportPDF']);
+
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
