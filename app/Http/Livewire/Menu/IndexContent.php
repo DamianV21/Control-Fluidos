@@ -170,8 +170,12 @@ class IndexContent extends Component
 
         $aceite->save();
 
-        session()->flash('message3',"Registro Aceite agregado correctamente");
 
+
+        $this->dispatchBrowserEvent('add_aceite', [
+            'title'         =>      'Aceite',
+            'title_sub'         =>   'Registro agregado correctamente',
+        ]);
 
 
         $this->aceite_maquina = '';
@@ -199,8 +203,11 @@ class IndexContent extends Component
 
         $grasa->save();
 
-        session()->flash('message4',"Registro Grasa agregado correctamente");
 
+        $this->dispatchBrowserEvent('add_grasa', [
+            'title'         =>      'Grasas',
+            'title_sub'         =>   'Registro agregado correctamente',
+        ]);
 
         $this->grasa_litros_rec = "";
 
@@ -229,7 +236,11 @@ class IndexContent extends Component
 
         $mantenimiento->save();
 
-        session()->flash('message5',"Registro Mantenimiento agregado correctamente");
+
+        $this->dispatchBrowserEvent('add_man', [
+            'title'         =>      'Mantenimiento',
+            'title_sub'         =>   'Registro agregado correctamente',
+        ]);
 
         $this->man_maquina = '';
         $this->man_usuario = '';
@@ -279,8 +290,11 @@ class IndexContent extends Component
 
         $refrigerante->save();
 
-        session()->flash('message2',"Registro Refrigerante agregado correctamente");
 
+        $this->dispatchBrowserEvent('add_ref', [
+            'title'         =>      'Refrigerante',
+            'title_sub'         =>   'Registro agregado correctamente',
+        ]);
 
         $this->refrigerante_maquina = '';
         $this->refrigerante_usuario = '';

@@ -1,3 +1,7 @@
+
+
+
+
 <div>
 
     <div class="row">
@@ -54,6 +58,7 @@
 
                 @if ($areas->count() == 0)
                     <center>
+                        <br>
                         <h1><strong>No se encontraron áreas registradas</strong></h1>
                     </center>
                 @else
@@ -63,7 +68,7 @@
                     <div class="row">
                         @foreach ($areas as $area)
                             <div class="col-md-4">
-                                <div class="card" style="width: 14rem;">
+                                <div class="card" >
                                     <br>
                                     <center><img style="width: 150px;" class="card-img-top"
                                             src="{{ asset('img/area_default.png') }}"></center>
@@ -87,33 +92,22 @@
             </div>
         @else
             <div class="col-md-8">
-                <center>
-                    <h1><strong>Máquinas</strong></h1>
-                </center>
-                <br>
 
-
-                @if (session()->has('message2'))
-                    <div class="alert alert-success text-center">{{ session('message2') }}</div>
-                @endif
-
-                @if (session()->has('message3'))
-                    <div class="alert alert-success text-center">{{ session('message3') }}</div>
-                @endif
-
-                @if (session()->has('message4'))
-                    <div class="alert alert-success text-center">{{ session('message4') }}</div>
-                @endif
-
-                @if (session()->has('message5'))
-                    <div class="alert alert-success text-center">{{ session('message5') }}</div>
-                @endif
 
                 @if ($maquinas->count() == 0 || $lineas->count() == 0)
                     <center>
-                        <img style="width: 500px" style="" src="{{ asset('img/select_linea.png') }}">
+                        <br>
+                        <h1><strong>Elige una línea</strong></h1>
 
                     </center>
+
+                 @else
+                 <center>
+                    <br>
+                    <h1><strong>Máquinas</strong></h1>
+
+                </center>
+
                 @endif
 
                 @if ($lineas->count() == 0)
@@ -123,9 +117,10 @@
                 @endif
 
                 <div class="row">
+
                     @foreach ($maquinas as $maquina)
                         <div class="col-md-4 ">
-                            <div class="card" style="width: 15rem;">
+                            <div class="card" >
                                 <br>
                                 <center><img class="card-img-top" style="width: 130px"
                                         src="{{ asset('img/machine_default.png') }}"></center>
@@ -675,6 +670,39 @@
     });
 
     window.addEventListener('add_agua', function(e) {
+        Swal.fire(
+            e.detail.title,
+            e.detail.title_sub,
+            'success'
+        )
+    });
+
+    window.addEventListener('add_ref', function(e) {
+        Swal.fire(
+            e.detail.title,
+            e.detail.title_sub,
+            'success'
+        )
+    });
+
+    window.addEventListener('add_aceite', function(e) {
+        Swal.fire(
+            e.detail.title,
+            e.detail.title_sub,
+            'success'
+        )
+    });
+
+    window.addEventListener('add_grasa', function(e) {
+        Swal.fire(
+            e.detail.title,
+            e.detail.title_sub,
+            'success'
+        )
+    });
+
+
+    window.addEventListener('add_man', function(e) {
         Swal.fire(
             e.detail.title,
             e.detail.title_sub,
