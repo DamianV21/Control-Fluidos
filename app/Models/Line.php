@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Line extends Model
 {
     use HasFactory;
+    public function areas(){
+        return $this->belongsTo(Area::class,'area_id');
+    }
+    public function empresas(){
+        return $this->belongsTo(Company::class,'empresa_id');
+    }
+    public function plantas(){
+        return $this->belongsTo(Plant::class,'planta_id');
+    }
 }

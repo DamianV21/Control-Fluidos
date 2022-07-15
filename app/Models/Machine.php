@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Machine extends Model
 {
     use HasFactory;
+    public function plantas(){
+        return $this->belongsTo(Plant::class,'planta_id');
+    }
 }

@@ -30,7 +30,9 @@ Route::middleware([
 Route::get('/perfil', function () {
     return view('profile.show');
 });
-
+Route::get('/menu', function () {
+    return view('vistas.menu');
+});
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
