@@ -1,7 +1,7 @@
 <div>
     <br>
     <!-- Formulario-Consulta -->
-    <div class="card">
+    <div class="card card-outline card-primary">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-3">
@@ -59,10 +59,15 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-3">
-                    <button wire:click="Consulta()" class="btn  btn-block text-white "
+                    <button wire:click="Consulta()" class="btn  btn-block text-white {{ count($data) > 1 ? 'disabled' : '' }}"
                         style="background-color: #5e80b7;"> <i class="fa fa-search"></i>
                         Consultar
                     </button>
+
+
+                    <a class="btn btn-block text-white {{ count($data) < 1 ? 'disabled' : '' }}"
+                        href="reportes" style="background-color: rgb(55, 61, 66)">
+                        <i class="far fa-calendar-plus"></i> Nueva consulta </a>
                 </div>
             </div>
         </div>
@@ -194,8 +199,6 @@
             </div>
         @endif
     </div>
-
-
     <br>
 
     <br>
@@ -346,9 +349,7 @@
         'Bueno' => 'green',
         'bueno' => 'green',
     ];
-
     ?>
-
     <br>
 
     <!-- Tabla comentarios -->
@@ -424,24 +425,27 @@
                     <strong>Estado del soluble</strong>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-4">
+
+
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm">
                     <figure class="highcharts-figure">
                         <div id="grafica_espuma"></div>
                     </figure>
-                </div>
-                <div class="col-4">
+                  </div>
+                  <div class="col-sm">
                     <figure class="highcharts-figure">
                         <div id="grafica_olor"></div>
                     </figure>
-                </div>
-
-                <div class="col-4">
+                  </div>
+                  <div class="col-sm">
                     <figure class="highcharts-figure">
                         <div id="grafica_entram"></div>
                     </figure>
+                  </div>
                 </div>
-            </div>
+              </div>
         @endif
     </div>
     <br>
@@ -454,14 +458,11 @@
 
 <link rel="stylesheet" href="{{ asset('css/reportes.css') }}" />
 
-
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-
 
 
 <script>

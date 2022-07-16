@@ -18,3 +18,11 @@
     background: yellow;
 
 }
+
+@media(max-width:900px){
+    #columnas {
+        column-count: 1;
+        column-gap: 100px;
+
+    }
+}
