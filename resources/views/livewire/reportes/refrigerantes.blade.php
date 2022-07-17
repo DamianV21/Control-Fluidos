@@ -1,9 +1,11 @@
 <div>
-    <br>
 
     <!-- Formulario-Consulta -->
     <div class="card card-outline card-primary">
         <div class="card-header">
+            <h3 class=" text-bold"> <label style="color: #5e80b7"><i class="fas fa-chart-line"></i></label> Reportes</h3>
+        </div>
+        <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
                     <h6><strong>Elige una planta</strong></h6>
@@ -60,19 +62,24 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-3">
-                    <button wire:click="Consulta()" class="btn  btn-block text-white {{ count($data) > 1 ? 'disabled' : '' }}"
+                    <button wire:click="Consulta()"
+                        class="btn  btn-block text-white {{ count($data) > 1 ? 'disabled' : '' }}"
                         style="background-color: #5e80b7;"> <i class="fa fa-search"></i>
                         Consultar
                     </button>
 
-                    <a class="btn btn-block text-white {{ count($data) < 1 ? 'disabled' : '' }}"
-                        href="/reportes" style="background-color: #383838">
+                    <a class="btn btn-block text-white {{ count($data) < 1 ? 'disabled' : '' }}" href="/reportes"
+                        style="background-color: #383838">
                         <i class="fas fa-paper-plane"></i> Nuevo reporte
                     </a>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
 
 
     <!-- Graficas -->
