@@ -1,7 +1,8 @@
 <div>
     <br>
+
     <!-- Formulario-Consulta -->
-    <div class="card">
+    <div class="card card-outline card-primary">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-3">
@@ -59,10 +60,15 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-3">
-                    <button wire:click="Consulta()" class="btn  btn-block text-white "
+                    <button wire:click="Consulta()" class="btn  btn-block text-white {{ count($data) > 1 ? 'disabled' : '' }}"
                         style="background-color: #5e80b7;"> <i class="fa fa-search"></i>
                         Consultar
                     </button>
+
+                    <a class="btn btn-block text-white {{ count($data) < 1 ? 'disabled' : '' }}"
+                        href="/reportes" style="background-color: #383838">
+                        <i class="fas fa-paper-plane"></i> Nuevo reporte
+                    </a>
                 </div>
             </div>
         </div>
@@ -110,7 +116,8 @@
             <center>
 
                 <img style="width: 300px" style="" src="{{ asset('img/sin_info.png') }}" alt="">
-                <span class="font-sans text-lg font-bold text-slate-500" >Realiza una consulta para generar el reporte</span>
+                <span class="font-sans text-lg font-bold text-slate-500">Realiza una consulta para generar el
+                    reporte</span>
             </center>
         @else
             <div class="card ">
@@ -359,34 +366,42 @@
                     <strong>Observaciones</strong>
                 </div>
             </div>
-            <div  class="card ">
-                <div  style="text-align: center" class="card-body ">
+            <div class="card ">
+                <div style="text-align: center" class="card-body ">
 
-                    <div  id="columnas" class="table-responsive">
+                    <div id="columnas" class="table-responsive">
                         @foreach ($data as $da)
-
-                            <table  class="table table-bordered table-sm" style="border: 2px solid rgb(119, 119, 119);">
+                            <table class="table table-bordered table-sm"
+                                style="border: 2px solid rgb(119, 119, 119);">
                                 <tbody>
-                                    <tr >
+                                    <tr>
                                         <td style="border: 2px solid rgb(119, 119, 119);"><strong>Dia:</strong>
                                             {{ \Carbon\Carbon::parse($da->created_at)->format('d') }}
                                         </td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" colspan="6" rowspan="2">{{ $da->comentarios }}</td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);" colspan="6"
+                                            rowspan="2">{{ $da->comentarios }}</td>
                                     </tr>
                                     <tr>
-                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>Mes:</strong>{{ \Carbon\Carbon::parse($da->created_at)->format('m') }}
+                                        <td style="border: 2px solid rgb(119, 119, 119);">
+                                            <strong>Mes:</strong>{{ \Carbon\Carbon::parse($da->created_at)->format('m') }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" rowspan="2"><strong>Año:</strong>
-                                            {{ \Carbon\Carbon::parse($da->created_at)->format('Y') }}</td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);" rowspan="2">
+                                            <strong>Año:</strong>
+                                            {{ \Carbon\Carbon::parse($da->created_at)->format('Y') }}
+                                        </td>
                                         <td style="border: 2px solid rgb(119, 119, 119);"><strong>Espuma</strong></td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);"  class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">
+                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">
                                             {{ $da->exceso_espuma }}</td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>Mal olor</strong></td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_aroma[$da->aroma]; ?>">{{ $da->aroma }}</td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>A.Entramp.</strong></td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_espuma_aceite[$da->aceites_entrampados]; ?>">{{ $da->aceites_entrampados }}</td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>Mal olor</strong>
+                                        </td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_aroma[$da->aroma]; ?>">
+                                            {{ $da->aroma }}</td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>A.Entramp.</strong>
+                                        </td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_espuma_aceite[$da->aceites_entrampados]; ?>">
+                                            {{ $da->aceites_entrampados }}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="6"><strong>Técnico:</strong> {{ $da->usuarios->name }}</td>
@@ -419,24 +434,23 @@
 
             <div class="container">
                 <div class="row">
-                  <div class="col-sm">
-                    <figure class="highcharts-figure">
-                        <div id="grafica_espuma"></div>
-                    </figure>
-                  </div>
-                  <div class="col-sm">
-                    <figure class="highcharts-figure">
-                        <div id="grafica_olor"></div>
-                    </figure>
-                  </div>
-                  <div class="col-sm">
-                    <figure class="highcharts-figure">
-                        <div id="grafica_entram"></div>
-                    </figure>
-                  </div>
+                    <div class="col-sm">
+                        <figure class="highcharts-figure">
+                            <div id="grafica_espuma"></div>
+                        </figure>
+                    </div>
+                    <div class="col-sm">
+                        <figure class="highcharts-figure">
+                            <div id="grafica_olor"></div>
+                        </figure>
+                    </div>
+                    <div class="col-sm">
+                        <figure class="highcharts-figure">
+                            <div id="grafica_entram"></div>
+                        </figure>
+                    </div>
                 </div>
-              </div>
-
+            </div>
         @endif
     </div>
     <br>
@@ -614,7 +628,7 @@
                 ['Malo', <?= $olor_malo ?>],
                 ['', 0],
                 ['Regular', <?= $olor_regular ?>],
-                ['Bueno',<?= $olor_bueno ?>],
+                ['Bueno', <?= $olor_bueno ?>],
             ]
         }]
     });
@@ -665,6 +679,4 @@
             ]
         }]
     });
-
-
 </script>
