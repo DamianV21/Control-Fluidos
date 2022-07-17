@@ -333,12 +333,17 @@
     $arr_espuma_aceite = [
         'Si' => 'red',
         'No' => 'green',
+        'si' => 'red',
+        'no' => 'green',
     ];
 
     $arr_aroma = [
         'Regular' => 'yellow',
         'Malo' => 'red',
         'Bueno' => 'green',
+        'regular' => 'yellow',
+        'malo' => 'red',
+        'bueno' => 'green',
     ];
 
     ?>
@@ -380,7 +385,7 @@
                                             {{ $da->exceso_espuma }}</td>
                                         <td style="border: 2px solid rgb(119, 119, 119);"><strong>Mal olor</strong></td>
                                         <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_aroma[$da->aroma]; ?>">{{ $da->aroma }}</td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>A.Entrampado</strong></td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>A.Entramp.</strong></td>
                                         <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_espuma_aceite[$da->aceites_entrampados]; ?>">{{ $da->aceites_entrampados }}</td>
                                     </tr>
                                     <tr>
