@@ -359,13 +359,13 @@
                     <strong>Observaciones</strong>
                 </div>
             </div>
-            <div class="card ">
-                <div style="text-align: center" class="card-body ">
+            <div  class="card ">
+                <div  style="text-align: center" class="card-body ">
 
-                    <div id="columnas" class="table-responsive">
+                    <div  id="columnas" class="table-responsive">
                         @foreach ($data as $da)
 
-                            <table   class="table table-bordered table-condensed table-sm" style="border: 2px solid rgb(119, 119, 119);">
+                            <table  class="table table-bordered table-sm" style="border: 2px solid rgb(119, 119, 119);">
                                 <tbody>
                                     <tr >
                                         <td style="border: 2px solid rgb(119, 119, 119);"><strong>Dia:</strong>
@@ -416,24 +416,27 @@
                     <strong>Estado del soluble</strong>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-4">
+
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm">
                     <figure class="highcharts-figure">
                         <div id="grafica_espuma"></div>
                     </figure>
-                </div>
-                <div class="col-4">
+                  </div>
+                  <div class="col-sm">
                     <figure class="highcharts-figure">
                         <div id="grafica_olor"></div>
                     </figure>
-                </div>
-
-                <div class="col-4">
+                  </div>
+                  <div class="col-sm">
                     <figure class="highcharts-figure">
                         <div id="grafica_entram"></div>
                     </figure>
+                  </div>
                 </div>
-            </div>
+              </div>
+
         @endif
     </div>
     <br>
