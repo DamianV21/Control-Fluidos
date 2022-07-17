@@ -1,7 +1,7 @@
 <div>
     <br>
     <!-- Formulario-Consulta -->
-    <div class="card card-outline card-primary">
+    <div class="card">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-3">
@@ -59,15 +59,10 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-3">
-                    <button wire:click="Consulta()" class="btn  btn-block text-white {{ count($data) > 1 ? 'disabled' : '' }}"
+                    <button wire:click="Consulta()" class="btn  btn-block text-white "
                         style="background-color: #5e80b7;"> <i class="fa fa-search"></i>
                         Consultar
                     </button>
-
-
-                    <a class="btn btn-block text-white {{ count($data) < 1 ? 'disabled' : '' }}"
-                        href="reportes" style="background-color: rgb(55, 61, 66)">
-                        <i class="far fa-calendar-plus"></i> Nueva consulta </a>
                 </div>
             </div>
         </div>
@@ -115,8 +110,7 @@
             <center>
 
                 <img style="width: 300px" style="" src="{{ asset('img/sin_info.png') }}" alt="">
-                <span class="font-sans text-lg font-bold text-slate-500">Realiza una consulta para generar el
-                    reporte</span>
+                <span class="font-sans text-lg font-bold text-slate-500" >Realiza una consulta para generar el reporte</span>
             </center>
         @else
             <div class="card ">
@@ -199,6 +193,8 @@
             </div>
         @endif
     </div>
+
+
     <br>
 
     <br>
@@ -336,20 +332,17 @@
     <?php
     $arr_espuma_aceite = [
         'Si' => 'red',
-        'si' => 'red',
         'No' => 'green',
-        'no' => 'green',
     ];
 
     $arr_aroma = [
         'Regular' => 'yellow',
-        'regular' => 'yellow',
         'Malo' => 'red',
-        'malo' => 'red',
         'Bueno' => 'green',
-        'bueno' => 'green',
     ];
+
     ?>
+
     <br>
 
     <!-- Tabla comentarios -->
@@ -366,36 +359,29 @@
 
                     <div id="columnas" class="table-responsive">
                         @foreach ($data as $da)
-                            <table class="table table-bordered table-condensed table-sm"
-                                style="border: 2px solid rgb(119, 119, 119);">
+
+                            <table   class="table table-bordered table-condensed table-sm" style="border: 2px solid rgb(119, 119, 119);">
                                 <tbody>
-                                    <tr>
+                                    <tr >
                                         <td style="border: 2px solid rgb(119, 119, 119);"><strong>Dia:</strong>
                                             {{ \Carbon\Carbon::parse($da->created_at)->format('d') }}
                                         </td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" colspan="6"
-                                            rowspan="2">{{ $da->comentarios }}</td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);" colspan="6" rowspan="2">{{ $da->comentarios }}</td>
                                     </tr>
                                     <tr>
-                                        <td style="border: 2px solid rgb(119, 119, 119);">
-                                            <strong>Mes:</strong>{{ \Carbon\Carbon::parse($da->created_at)->format('m') }}
+                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>Mes:</strong>{{ \Carbon\Carbon::parse($da->created_at)->format('m') }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" rowspan="2">
-                                            <strong>Año:</strong>
+                                        <td style="border: 2px solid rgb(119, 119, 119);" rowspan="2"><strong>Año:</strong>
                                             {{ \Carbon\Carbon::parse($da->created_at)->format('Y') }}</td>
                                         <td style="border: 2px solid rgb(119, 119, 119);"><strong>Espuma</strong></td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">
+                                        <td style="border: 2px solid rgb(119, 119, 119);"  class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">
                                             {{ $da->exceso_espuma }}</td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>Mal olor</strong>
-                                        </td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_aroma[$da->aroma]; ?>">
-                                            {{ $da->aroma }}</td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>A.Entrampado</strong>
-                                        </td>
-                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_espuma_aceite[$da->aceites_entrampados]; ?>">
-                                            {{ $da->aceites_entrampados }}</td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>Mal olor</strong></td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_aroma[$da->aroma]; ?>">{{ $da->aroma }}</td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);"><strong>A.Entrampado</strong></td>
+                                        <td style="border: 2px solid rgb(119, 119, 119);" class="<?php echo $arr_espuma_aceite[$da->aceites_entrampados]; ?>">{{ $da->aceites_entrampados }}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="6"><strong>Técnico:</strong> {{ $da->usuarios->name }}</td>
@@ -425,27 +411,24 @@
                     <strong>Estado del soluble</strong>
                 </div>
             </div>
-
-
-            <div class="container">
-                <div class="row">
-                  <div class="col-sm">
+            <div class="row">
+                <div class="col-4">
                     <figure class="highcharts-figure">
                         <div id="grafica_espuma"></div>
                     </figure>
-                  </div>
-                  <div class="col-sm">
+                </div>
+                <div class="col-4">
                     <figure class="highcharts-figure">
                         <div id="grafica_olor"></div>
                     </figure>
-                  </div>
-                  <div class="col-sm">
+                </div>
+
+                <div class="col-4">
                     <figure class="highcharts-figure">
                         <div id="grafica_entram"></div>
                     </figure>
-                  </div>
                 </div>
-              </div>
+            </div>
         @endif
     </div>
     <br>
@@ -456,13 +439,17 @@
 
 
 
-<link rel="stylesheet" href="{{ asset('css/reportes.css') }}" />
+
+<link rel="stylesheet" href="{{ asset('css/tablas.css') }}" />
+
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
 
 
 <script>
@@ -619,7 +606,7 @@
                 ['Malo', <?= $olor_malo ?>],
                 ['', 0],
                 ['Regular', <?= $olor_regular ?>],
-                ['Bueno', <?= $olor_bueno ?>],
+                ['Bueno',<?= $olor_bueno ?>],
             ]
         }]
     });
@@ -670,4 +657,6 @@
             ]
         }]
     });
+
+
 </script>
