@@ -440,7 +440,7 @@
 
 
 
-<link rel="stylesheet" href="{{ asset('css/tablas.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/reportes.css') }}" />
 
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
