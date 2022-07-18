@@ -34,12 +34,26 @@ Route::get('/menu', function () {
     return view('vistas.menu');
 });
 
+Route::get('/plantas', function () {
+    return view('vistas.plantas');
+});
+
+Route::get('/areas', function () {
+    return view('vistas.areas');
+});
+
+Route::get('/lineas', function () {
+    return view('vistas.lineas');
+});
+
+Route::get('/maquinas', function () {
+    return view('vistas.maquinas');
+});
 
 
 Route::get('/reportes', function () {
     return view('vistas.reportes');
 });
-
 
 Route::get('report/pdf/{maquina}/{f1}/{f2}', [ExportController::class, 'reportPDF']);
 
