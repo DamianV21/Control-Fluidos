@@ -3,6 +3,7 @@
 @section('content')
     <br>
     <br>
+    <br>
      <center><img width="230px" src="{{ asset('img/logo7.png') }}" alt="CF"></center>
     <div class="login-container">
 
