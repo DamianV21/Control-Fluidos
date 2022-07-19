@@ -14,7 +14,7 @@
     @endif
     <style>
         body {
-            background-image:url('{{ asset("img/fondo.png")  }}');
+            background-image:url('{{ asset("img/bg1.jpg")  }}');
             background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }};
         }
         body.login .login-sidebar {
@@ -50,9 +50,9 @@
                     <div class="logo-title-container">
                         <?php $admin_logo_img = Voyager::setting('admin.icon_image', ''); ?>
                         @if($admin_logo_img == '')
-                            <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ voyager_asset('images/logo-icon-light.png') }}" alt="Logo Icon">
+                            <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ asset('img/favicon.png') }}" alt="Logo Icon">
                         @else
-                            <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ Voyager::image($admin_logo_img) }}" alt="Logo Icon">
+                            <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ asset('img/favicon.png') }}" alt="Logo Icon">
                         @endif
                         <div class="copy animated fadeIn">
                             <h1>{{ Voyager::setting('admin.title', 'Voyager') }}</h1>
