@@ -1,6 +1,9 @@
 @extends('voyager::auth.master')
 
 @section('content')
+    <br>
+    <br>
+     <center><img width="230px" src="{{ asset('img/logo7.png') }}" alt="CF"></center>
     <div class="login-container">
 
         <p>INICIAR SESIÓN A CONTINUACIÓN:</p>
