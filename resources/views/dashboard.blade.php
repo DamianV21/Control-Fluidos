@@ -26,8 +26,12 @@
                 <div class="card-body">
                     @livewire('index')
                 </div>
+
+
             </div>
         </div>
+
+
 
         <!--
 

@@ -7,7 +7,8 @@
 
 
     <style>
-        body{margin: 0;}
+        body{margin: 0;
+            }
         .container{
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -46,7 +47,7 @@
 
 
     <div class="container">
-        <div class="left">
+        <div  class="left">
 
             <div>
                 <img width="350px" src="{{ asset('img/logo7.png') }}" alt="">
@@ -61,7 +62,7 @@
 
         </div>
 
-        <div class="right">
+        <div style=" border-top: 8px solid #5e80b7;" class="right">
             <img width="625px" src="{{ asset('img/inicio_login1.png') }}" alt="">
 
         </div>
