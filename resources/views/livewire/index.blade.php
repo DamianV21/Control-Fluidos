@@ -353,4 +353,9 @@
 
         </div>
     </div>
+
+    @foreach ($maquinas as $maquina)
+        <h1>{{ $maquina->rango_ph_min }} </h1>
+    @endforeach
+
 </div>
