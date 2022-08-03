@@ -27,7 +27,7 @@ class VoyagerPlantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
     public function index(Request $request)
     {
-
+        dd("hola musndo");
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
