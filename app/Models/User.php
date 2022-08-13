@@ -61,7 +61,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function scopeActive($query)
     {
-        return $query->where('role_id', 6);
+        return $query->where('role_id', 4);
     }
 
     public function scopeAutor($query)
@@ -72,7 +72,7 @@ class User extends \TCG\Voyager\Models\User
         if (auth()->user()->hasRole('Supervisor')) {
             return $query->where('id', auth()->id());
         } else {
-            return $query->where('role_id', 6);
+            return $query->where('role_id', 4);
         }
     }
 
@@ -85,7 +85,7 @@ class User extends \TCG\Voyager\Models\User
     public function scopeSupervisor($query)
     {
 
-        return $query->where('role_id', 5);
+        return $query->where('role_id', 14);
     }
 
     public function scopeIVAAsigned($query)
