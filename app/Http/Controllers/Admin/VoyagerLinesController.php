@@ -3,20 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Facades\Voyager;
 
-
-
-class VoyagerPlantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
+class VoyagerLinesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
-    public $empresas=[];
-
-    //***************************************
+       //***************************************
     //               ____
     //              |  _ \
     //              | |_) |
@@ -30,7 +25,6 @@ class VoyagerPlantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
     public function index(Request $request)
     {
-
 
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
@@ -67,10 +61,12 @@ class VoyagerPlantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
                 $query->{$dataType->scope}();
             }
 
-
-
             if (auth()->user()->hasRole('IVA Admin')) {
                 $query->where('created_by',auth()->id());
+            }
+
+            if (auth()->user()->hasRole('Supervisor')) {
+                $query->where('supervisor_id',auth()->id());
             }
 
             // Use withTrashed() if model uses SoftDeletes and if toggle is selected
@@ -205,4 +201,5 @@ class VoyagerPlantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
             'showCheckboxColumn'
         ));
     }
+
 }

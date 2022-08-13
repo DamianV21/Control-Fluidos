@@ -17,4 +17,6 @@ class Area extends Model
     public function usuarios(){
         return $this->belongsTo(User::class,'usuario_id');
     }
+
+
 }

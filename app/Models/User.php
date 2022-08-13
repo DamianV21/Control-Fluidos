@@ -61,6 +61,35 @@ class User extends \TCG\Voyager\Models\User
 
     public function scopeActive($query)
     {
-        return $query->where('role_id',4);
+        return $query->where('role_id', 6);
+    }
+
+    public function scopeAutor($query)
+    {
+        if (auth()->user()->hasRole('IVA Admin')) {
+            return $query->where('id', auth()->id());
+        }
+        if (auth()->user()->hasRole('Supervisor')) {
+            return $query->where('id', auth()->id());
+        } else {
+            return $query->where('role_id', 6);
+        }
+    }
+
+    public function scopeTecnico($query)
+    {
+
+        return $query->where('role_id', 2);
+    }
+
+    public function scopeSupervisor($query)
+    {
+
+        return $query->where('role_id', 5);
+    }
+
+    public function scopeIVAAsigned($query)
+    {
+        return $query->where('id', auth()->id());
     }
 }

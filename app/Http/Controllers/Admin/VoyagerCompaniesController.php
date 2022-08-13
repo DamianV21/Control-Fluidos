@@ -3,19 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Facades\Voyager;
 
-
-
-class VoyagerPlantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
+class VoyagerCompaniesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
-    public $empresas=[];
-
     //***************************************
     //               ____
     //              |  _ \
@@ -30,7 +25,6 @@ class VoyagerPlantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
     public function index(Request $request)
     {
-
 
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
@@ -68,10 +62,6 @@ class VoyagerPlantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
             }
 
 
-
-            if (auth()->user()->hasRole('IVA Admin')) {
-                $query->where('created_by',auth()->id());
-            }
 
             // Use withTrashed() if model uses SoftDeletes and if toggle is selected
             if ($model && in_array(SoftDeletes::class, class_uses_recursive($model)) && Auth::user()->can('delete', app($dataType->model_name))) {
