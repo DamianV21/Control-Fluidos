@@ -11,7 +11,9 @@ class Role extends Model
 
     public function scopeRoles($query)
     {
+        if (auth()->user()->hasRole('IVA Admin')) {
+            return $query->whereIn('id', [2, 14]);
+        }
         
-        return $query->whereIn('id', [2, 14]);
     }
 }
