@@ -11,7 +11,7 @@ class Role extends Model
 
     public function scopeRoles($query)
     {
-
-        return $query->where('id', 2);
+        
+        return $query->whereIn('id', [2, 14]);
     }
 }
