@@ -10,6 +10,7 @@ class Company extends Model
 {
     use HasFactory;
 
+
     public function scopeEmpresaIVA($query)
     {
         if (auth()->user()->hasRole('IVA Admin')) {

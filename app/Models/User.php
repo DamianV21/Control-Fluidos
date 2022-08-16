@@ -76,6 +76,13 @@ class User extends \TCG\Voyager\Models\User
         }
     }
 
+    public function scopeContacto($query)
+    {
+        if (auth()->user()->hasRole('IVA Admin')) {
+            return $query->where('id', auth()->id());
+        }
+    }
+
     public function scopeTecnico($query)
     {
 
@@ -92,4 +99,6 @@ class User extends \TCG\Voyager\Models\User
     {
         return $query->where('id', auth()->id());
     }
+
+
 }
