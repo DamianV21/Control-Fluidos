@@ -17,4 +17,12 @@ class Line extends Model
     public function plantas(){
         return $this->belongsTo(Plant::class,'planta_id');
     }
+
+    public function scopeLineaIva($query)
+    {
+        if (auth()->user()->hasRole('IVA Admin')) {
+            return $query->where('created_by',auth()->id());
+        }
+    }
 }
+
