@@ -18,5 +18,11 @@ class Area extends Model
         return $this->belongsTo(User::class,'usuario_id');
     }
 
+    public function scopeAreaIva($query)
+    {
+        if (auth()->user()->hasRole('IVA Admin')) {
+            return $query->where('created_by',auth()->id());
+        }
+    }
 
 }
