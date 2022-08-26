@@ -16,7 +16,11 @@ use App\Models\Refrigerante;
 class IndexContent extends Component
 {
 
-    public $planta,$area,$linea,$maquina;
+    public $selectedPlanta=null,$selectedArea=null,$selectedLinea=null,$selectedMaquina=null;
+    public $a_areas=[],$l_lineas=[],$m_maquinas=[];
+    public $numero_areas=0,$numero_lineas=0,$numero_maquinas=0;
+    //===============================================================================================
+    public $planta=null,$area=null,$linea=null,$maquina=null;
     public $plantas=[],$areas=[],$lineas=[],$maquinas=[];
     public $area_id,$usuario,$origen_agua,$dureza,$ph,$conductividad,$cloruros,$sulfatos;
     public $view_maquina_id,$view_maquina_nombre,$view_maquina_id2,$view_maquina_nombre2="Hola";
@@ -26,25 +30,6 @@ class IndexContent extends Component
     public $grasa_maquina,$grasa_usuario,$grasa_litros_rec;
     public $man_maquina,$man_usuario,$man_tipo,$man_litros_agua,$man_litros_con,$man_observaciones;
 
-    public function mount()
-    {
-        $this->plantas = Plant::where('usuario_id',auth()->id())->get();
-        $this->areas = collect();
-        $this->lineas = collect();
-        $this->maquinas = collect();
-    }
-
-    public function updatedPlanta($value)
-    {
-        $this->areas = Area::where('planta_id',$value)->get();
-        $this->area = $this->areas->first()->id ?? null;
-    }
-
-    public function updatedArea($valuee)
-    {
-        $this->lineas = Line::where('area_id',$valuee)->get();
-        $this->linea = $this->lineas->first()->id ?? null;
-    }
 
     public function updatedLinea($valueee)
     {
@@ -316,6 +301,25 @@ class IndexContent extends Component
 
     public function render()
     {
-        return view('livewire.menu.index-content');
+        return view('livewire.menu.index-content',[
+            'p_plantas' => Plant::where('usuario_id',auth()->id())
+            ->orWhere('created_by',auth()->id())
+            ->get()
+        ]);
+    }
+
+    public function updatedselectedPlanta($planta_id){
+        $this->a_areas=Area::where("planta_id",$planta_id)->get();
+        $this->numero_areas = $this->a_areas->count();
+    }
+
+    public function updatedselectedArea($area_id){
+        $this->l_lineas=Line::where("area_id",$area_id)->get();
+        $this->numero_lineas = $this->l_lineas->count();
+    }
+
+    public function updatedselectedLinea($linea_id){
+        $this->m_maquinas = Machine::where("linea_id",$linea_id)->get();
+        $this->numero_maquinas = $this->m_maquinas->count();
     }
 }

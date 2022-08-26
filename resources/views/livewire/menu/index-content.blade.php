@@ -1,46 +1,39 @@
-
-
-
-
 <div>
+
     <div class="row">
-        <div class="col-md-4">
+        <div  class="col-md-4">
+
             <!--  Filtro de Plantas -->
             <div class="col-sm-4">
-                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Plantas </strong><span
-                        class="badge text-white" style="background-color: #5e80b7">{{ $plantas->count() }}</span></h5>
-                <select style="width: 340px; height: 150px;" wire:model="planta" multiple
-                    aria-label="multiple select example" class="form-select1">
-                    @foreach ($plantas as $planta)
+                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Plantas
+                    </strong><span class="badge text-white"
+                        style="background-color: #5e80b7">{{ $p_plantas->count() }}</span></h5>
+                <select style="width: 330px; height: 150px;" multiple wire:model="selectedPlanta" class="form-control">
+                    @foreach ($p_plantas as $planta)
                         <option value="{{ $planta->id }}">{{ $planta->nombre }}</option>
                     @endforeach
                 </select>
             </div>
             <!--  Filtro de Areas -->
             <div class="col-sm-4">
-                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Áreas</strong> <span
-                        class="badge text-white" style="background-color: #5e80b7">{{ $areas->count() }}</span></h5>
-                <select style="width: 340px; height: 150px;" wire:model="area" multiple
-                    aria-label="multiple select example" class="form-select">
-                    @if ($areas->count() == 0)
-
-                    @endif
-                    @foreach ($areas as $area)
-                        <option value="{{ $area->id }}">{{ $area->nombre }}</option>
+                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Áreas</strong>
+                    <span class="badge text-white" style="background-color: #5e80b7">{{ $numero_areas }}</span>
+                </h5>
+                <select style="width: 330px; height: 150px;" multiple wire:model="selectedArea" class="form-control">
+                    @foreach ($a_areas as $areass)
+                        <option value="{{ $areass->id }}">{{ $areass->nombre }}</option>
                     @endforeach
                 </select>
             </div>
             <!--  Filtro de Lineas -->
             <div class="col-sm-4">
-                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Líneas</strong> <span
-                        class="badge text-white" style="background-color: #5e80b7">{{ $lineas->count() }}</span></h5>
-                <select style="width: 340px; height: 150px;" wire:model="linea" multiple
-                    aria-label="multiple select example" class="form-select">
-                    @if ($lineas->count() == 0)
+                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Líneas</strong>
+                    <span class="badge text-white" style="background-color: #5e80b7">{{ $numero_lineas }}</span>
+                </h5>
 
-                    @endif
-                    @foreach ($lineas as $linea)
-                        <option value="{{ $linea->id }}">{{ $linea->nombre }}</option>
+                <select style="width: 330px; height: 150px;" multiple wire:model="selectedLinea" class="form-control">
+                    @foreach ($l_lineas as $lineass)
+                        <option value="{{ $lineass->id }}">{{ $lineass->nombre }}</option>
                     @endforeach
                 </select>
             </div>
@@ -49,10 +42,10 @@
 
 
         <!--  Carga de Datos para los filtros -->
-        @if ($maquinas->count() == 0 and $lineas->count() == 0)
-            <div class="col-md-8">
+        @if ($numero_maquinas == 0 and $numero_lineas == 0)
+            <div style="border-left-width: 10px; border-color:white;" class="col-md-8">
 
-                @if ($areas->count() == 0)
+                @if ($numero_areas == 0)
                     <center>
                         <br>
                         <h1><strong>No se encontraron áreas registradas</strong></h1>
@@ -64,16 +57,17 @@
                         <br>
                     </center>
                     <div class="row">
-                        @foreach ($areas as $area)
-                            <div class="col-md-4">
-                                <div class="card" >
+                        @foreach ($a_areas as $area)
+                            <div  class="col-md-4">
+                                <div class="card">
                                     <br>
                                     <center><img style="width: 150px;" class="card-img-top"
                                             src="{{ asset('img/area_default.png') }}"></center>
                                     <div class="card-body">
                                         <p><strong>Información del area:</strong></p>
                                         <h5 class="card-title"><strong>Area:</strong> {{ $area->nombre }}</h5>
-                                        <p class="card-text"><strong>Planta:</strong> {{ $area->plantas->nombre }}
+                                        <p class="card-text"><strong>Planta:</strong>
+                                            {{ $area->plantas->nombre }}
                                         </p>
 
                                         <!-- Button trigger modal CalidadAgua -->
@@ -92,23 +86,21 @@
             <div class="col-md-8">
 
 
-                @if ($maquinas->count() == 0 || $lineas->count() == 0)
+                @if ($numero_maquinas == 0 || $numero_lineas == 0)
                     <center>
                         <br>
                         <h1><strong>Elige una línea</strong></h1>
 
                     </center>
-
-                 @else
-                 <center>
-                    <br>
-                    <h1><strong>Máquinas</strong></h1>
-                    <br>
-                </center>
-
+                @else
+                    <center>
+                        <br>
+                        <h1><strong>Máquinas</strong></h1>
+                        <br>
+                    </center>
                 @endif
 
-                @if ($lineas->count() == 0)
+                @if ($numero_lineas == 0)
                     @php
                         $maquinas = [];
                     @endphp
@@ -116,9 +108,9 @@
 
                 <div class="row">
 
-                    @foreach ($maquinas as $maquina)
+                    @foreach ($m_maquinas as $maquina)
                         <div class="col-md-4 ">
-                            <div class="card" >
+                            <div class="card">
                                 <br>
                                 <center><img class="card-img-top" style="width: 130px"
                                         src="{{ asset('img/machine_default.png') }}"></center>
@@ -620,7 +612,8 @@
                         <div class="form-group row">
                             <label for="man_observaciones" class="col-3">Observaciones</label>
                             <div class="col-9">
-                                <textarea placeholder="Escribe una observacion" style="heigh:auto;" id="man_observaciones" wire:model="man_observaciones" ></textarea>
+                                <textarea placeholder="Escribe una observacion" style="heigh:auto;" id="man_observaciones"
+                                    wire:model="man_observaciones"></textarea>
                                 @error('man_observaciones')
                                     <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
                                 @enderror
