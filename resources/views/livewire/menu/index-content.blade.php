@@ -1,7 +1,7 @@
 <div>
 
     <div class="row">
-        <div  class="col-md-4">
+        <div class="col-md-4">
 
             <!--  Filtro de Plantas -->
             <div class="col-sm-4">
@@ -48,35 +48,41 @@
                 @if ($numero_areas == 0)
                     <center>
                         <br>
-                        <h1><strong>No se encontraron áreas registradas</strong></h1>
+                        <img width="400px" src="{{ asset('img/seleccionplanta.png') }}" alt="logo">
                     </center>
                 @else
                     <center>
-                        <br>
+
                         <h1><strong>Áreas</strong></h1>
                         <br>
                     </center>
                     <div class="row">
                         @foreach ($a_areas as $area)
-                            <div  class="col-md-4">
-                                <div class="card">
-                                    <br>
-                                    <center><img style="width: 150px;" class="card-img-top"
-                                            src="{{ asset('img/area_default.png') }}"></center>
-                                    <div class="card-body">
-                                        <p><strong>Información del area:</strong></p>
-                                        <h5 class="card-title"><strong>Area:</strong> {{ $area->nombre }}</h5>
-                                        <p class="card-text"><strong>Planta:</strong>
-                                            {{ $area->plantas->nombre }}
-                                        </p>
+                            <div class="col-md-4">
 
-                                        <!-- Button trigger modal CalidadAgua -->
+                                <div class="card card-custom bg-white border-white border-0">
+                                    <div class="card-custom-img"
+                                        style="background-image: url({{ asset('img/fondo.png') }});"></div>
+                                    <div class="card-custom-avatar">
+                                        <img class="img-fluid" src="{{ asset('img/area_default.png') }}"
+                                            alt="Avatar" />
+                                    </div>
+                                    <div class="card-body" style="overflow-y: auto">
+                                        <p><strong>Información del area:</strong></p>
+                                        <h4 class="card-title"><strong>Area:</strong> {{ $area->nombre }}</h4>
+                                        <p class="card-text"><strong>Planta:</strong>
+                                            {{ $area->plantas->nombre }} </p>
+                                    </div>
+                                    <div class="card-footer" style="background: inherit; border-color: inherit;">
                                         <a class="btn btn-sm btn-block text-white" style="background-color: #5e80b7;"
                                             data-toggle="modal" data-target="#AddCalidadAgua"
                                             wire:click="AddArea({{ $area->id }})">Calidad
                                             Agua</a>
                                     </div>
                                 </div>
+
+
+
                             </div>
                         @endforeach
                     </div>
@@ -89,7 +95,7 @@
                 @if ($numero_maquinas == 0 || $numero_lineas == 0)
                     <center>
                         <br>
-                        <h1><strong>Elige una línea</strong></h1>
+                        <img width="400px" src="{{ asset('img/seleccionlinea.png') }}" alt="logo">
 
                     </center>
                 @else
@@ -701,3 +707,5 @@
         )
     });
 </script>
+
+<link rel="stylesheet" href="{{ asset('css/registros.css') }}">

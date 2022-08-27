@@ -7,10 +7,14 @@
 
     <x-app-layout>
 
-
-        <div  class="card card-outline card-primary">
+        <br>
+        <div  class="card card-custom bg-white border-white border-0">
             <div class="card-header">
-                <label style="color: #5e80b7"> <i class="far fa-folder-open"></i> </label><strong>Registro de datos</strong>
+                <label  style="color: #5e80b7"> <i class="far fa-folder-open"></i> </label><strong>Registro de datos</strong>
+
+                <div class="card-tools">
+                    <span> <img width="170px" src="{{ asset('img/logo9.png') }}" alt=""></span>
+                </div>
             </div>
             <div class="card-body">
                 @livewire('menu.index-content')
