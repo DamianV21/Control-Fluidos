@@ -1,19 +1,19 @@
 <div>
 
     <!-- Ordenar-->
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <label class="col-1.5" for="">Ordenar por:</label>
-                <div class="col-2">
-
-                    <div class="form-group">
-                        <select wire:model="sort" class="form-control">
-                            <option selected>Ordenar por</option>
-                            <option value="az">A-Z</option>
-                            <option value="za">Z-A</option>
-
-                        </select>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="row text-sm">
+                    <h1>Filtar por: </h1>
+                    <div>
+                        <div class="form-group text-sm">
+                            <select wire:model="sort" class="form-control text-sm">
+                                <option selected></option>
+                                <option value="az">A-Z</option>
+                                <option value="za">Z-A</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -22,29 +22,42 @@
 
     <!-- End Orden -->
 
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="row">
+                @foreach ($lineas as $linea)
+                    <div class="col-md-3">
 
-    <div class="row">
-        @foreach ($lineas as $linea)
-            <div class="col-md-3">
-                <div class="card" style="width: 14rem;">
-                    <br>
-                    <center><img class="card-img-top" src="{{ asset('img/linea_default.png') }}" style="width: 150px">
-                    </center>
-                    <div class="card-body">
-                        <p><strong>Información de Linea:</strong></p>
-                        <h5 class="card-title"> <strong>Linea:</strong> {{ $linea->nombre }}</h5>
-                        <p class="card-text"><strong>Area:</strong>{{ $linea->areas->nombre }}</p>
+
+
                         <br>
-                        <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7" data-toggle="modal"
-                            wire:click="OpenViewModal({{ $linea->id }})">Ver mas información</a>
+                        <div class="card card-custom bg-white border-white border-0">
+                            <div class="card-custom-img"
+                                style="background-image: url({{ asset('img/bg1.jpg') }});"></div>
+                            <div class="card-custom-avatar">
+                                <img class="img-fluid" src="{{ asset('img/linea_default.png') }}"
+                                    alt="Avatar" />
+                            </div>
+                            <div class="card-body text-sm" style="overflow-y: auto">
 
+                                <h4 class="card-title"><strong>Información de Línea:</strong> </h4>
+                                <p class="card-text"> <strong>Línea:</strong> {{ $linea->nombre }}</p>
+                                <p class="card-text"><strong>Área:</strong> {{ $linea->areas->nombre }}</p>
+                            </div>
+                            <div class="card-footer text-sm"
+                                style="background: inherit; border-color: inherit;">
 
+                                <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
+                                data-toggle="modal" wire:click="OpenViewModal({{ $linea->id }})">Ver mas
+                                información</a>
+
+                            </div>
+                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-        @endforeach
+        </div>
     </div>
-
 
 
     <!-- Modal -->
@@ -91,7 +104,7 @@
 
 </div>
 
-
+<link rel="stylesheet" href="{{ asset('css/registros.css') }}">
 
 <script>
     window.addEventListener('show-modal', event => {

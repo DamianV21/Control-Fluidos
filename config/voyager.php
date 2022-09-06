@@ -133,7 +133,7 @@ return [
                 'icon_class' => 'voyager-person',
             ],
             'voyager::generic.home' => [
-                'route'        => '/',
+                'route'        => '/dashboard',
                 'icon_class'   => 'voyager-home',
                 'target_blank' => true,
             ],

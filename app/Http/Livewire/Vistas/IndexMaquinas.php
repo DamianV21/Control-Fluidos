@@ -38,6 +38,7 @@ class IndexMaquinas extends Component
         $mantenimientos = Mantenimiento::where('maquina_id',$this->view_id_machine)->get();
 
         $maquinas = Machine::where('usuario_id',auth()->id())
+        ->orWhere('created_by',auth()->id())
         ->orderBy($this->sort,$this->direction)
         ->get();
 

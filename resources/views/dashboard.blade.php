@@ -457,8 +457,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Fuera de rango pH</div>
+                                            <div class="text-xs font-weight-bold text-warning  mb-1">
+                                                FUERA DE RANGO pH</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                                         </div>
                                         <div class="col-auto">
@@ -561,7 +561,7 @@
                             <!-- Illustrations -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Ultimas actividades</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Noticias marketing</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center">
@@ -621,7 +621,7 @@
                                 </div>
                             </div>
 
-                            <!-- Approach -->
+                            <!-- Approach
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Sección nueva </h6>
@@ -631,7 +631,7 @@
                                     <p class="mb-0"></p>
                                 </div>
                             </div>
-
+                        -->
                         </div>
                     </div>
 
@@ -683,6 +683,8 @@
                         this.closest('form').submit(); " role="button">Cerrar Sesión</a>
                         </div>
                     </form>
+
+
                 </div>
 
             </div>

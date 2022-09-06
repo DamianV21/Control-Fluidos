@@ -31,6 +31,7 @@ class IndexAreas extends Component
         $calidades = CalidadAgua::where('area_id',$this->view_id_area)->get();
 
         $areas = Area::where('usuario_id',auth()->id())
+        ->orWhere('created_by',auth()->id())
         ->orderBy($this->sort,$this->direction)
         ->get();
 

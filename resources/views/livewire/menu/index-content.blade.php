@@ -3,39 +3,51 @@
     <div class="row">
         <div class="col-md-4">
 
-            <!--  Filtro de Plantas -->
-            <div class="col-sm-4">
-                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Plantas
-                    </strong><span class="badge text-white"
-                        style="background-color: #5e80b7">{{ $p_plantas->count() }}</span></h5>
-                <select style="width: 330px; height: 150px;" multiple wire:model="selectedPlanta" class="form-control">
-                    @foreach ($p_plantas as $planta)
-                        <option value="{{ $planta->id }}">{{ $planta->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <!--  Filtro de Areas -->
-            <div class="col-sm-4">
-                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Áreas</strong>
-                    <span class="badge text-white" style="background-color: #5e80b7">{{ $numero_areas }}</span>
-                </h5>
-                <select style="width: 330px; height: 150px;" multiple wire:model="selectedArea" class="form-control">
-                    @foreach ($a_areas as $areass)
-                        <option value="{{ $areass->id }}">{{ $areass->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <!--  Filtro de Lineas -->
-            <div class="col-sm-4">
-                <h5><label style="color: #5e80b7"><i class="fa fa-filter"></i> </label><strong>Líneas</strong>
-                    <span class="badge text-white" style="background-color: #5e80b7">{{ $numero_lineas }}</span>
-                </h5>
+            <div class="card shadow mb-4">
+                <div class="card-body">
 
-                <select style="width: 330px; height: 150px;" multiple wire:model="selectedLinea" class="form-control">
-                    @foreach ($l_lineas as $lineass)
-                        <option value="{{ $lineass->id }}">{{ $lineass->nombre }}</option>
-                    @endforeach
-                </select>
+                    <!--  Filtro de Plantas -->
+                    <div class="form-group">
+                        <h5 class="text-sm"><label style="color: #5e80b7"><i class="fa fa-filter"></i>
+                            </label><strong>Plantas </strong>
+                            <span class="badge text-white"
+                                style="background-color: #5e80b7">{{ $p_plantas->count() }}</span>
+                        </h5>
+                        <select class="form-control" multiple wire:model="selectedPlanta">
+                            @foreach ($p_plantas as $planta)
+                                <option value="{{ $planta->id }}">{{ $planta->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+                    <!--  Filtro de Areas -->
+                    <div class="form-group">
+                        <h5 class="text-sm"><label style="color: #5e80b7"><i class="fa fa-filter"></i>
+                            </label><strong>Áreas</strong>
+                            <span class="badge text-white" style="background-color: #5e80b7">{{ $numero_areas }}</span>
+                        </h5>
+                        <select multiple wire:model="selectedArea" class="form-control">
+                            @foreach ($a_areas as $areass)
+                                <option value="{{ $areass->id }}">{{ $areass->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+                    <!--  Filtro de Lineas -->
+                    <div class="form-group">
+                        <h5 class="text-sm"><label style="color: #5e80b7"><i class="fa fa-filter"></i>
+                            </label><strong>Líneas</strong>
+                            <span class="badge text-white" style="background-color: #5e80b7">{{ $numero_lineas }}</span>
+                        </h5>
+                        <select multiple wire:model="selectedLinea" class="form-control">
+                            @foreach ($l_lineas as $lineass)
+                                <option value="{{ $lineass->id }}">{{ $lineass->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -43,109 +55,129 @@
 
         <!--  Carga de Datos para los filtros -->
         @if ($numero_maquinas == 0 and $numero_lineas == 0)
-            <div style="border-left-width: 10px; border-color:white;" class="col-md-8">
 
-                @if ($numero_areas == 0)
-                    <center>
-                        <br>
-                        <img width="400px" src="{{ asset('img/seleccionplanta.png') }}" alt="logo">
-                    </center>
-                @else
-                    <center>
+            <div class="col-md-8">
 
-                        <h1><strong>Áreas</strong></h1>
-                        <br>
-                    </center>
-                    <div class="row">
-                        @foreach ($a_areas as $area)
-                            <div class="col-md-4">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        @if ($numero_areas == 0)
+                            <center>
+                                <br>
+                                <img width="400px" src="{{ asset('img/seleccionplanta.png') }}" alt="logo">
+                            </center>
+                        @else
+                            <center>
 
-                                <div class="card card-custom bg-white border-white border-0">
-                                    <div class="card-custom-img"
-                                        style="background-image: url({{ asset('img/fondo.png') }});"></div>
-                                    <div class="card-custom-avatar">
-                                        <img class="img-fluid" src="{{ asset('img/area_default.png') }}"
-                                            alt="Avatar" />
+                                <h1><strong>Áreas</strong></h1>
+
+                            </center>
+                            <div class="row">
+                                @foreach ($a_areas as $area)
+                                    <div class="col-md-4">
+                                        <br>
+                                        <div class="card card-custom bg-white border-white border-0">
+                                            <div class="card-custom-img"
+                                                style="background-image: url({{ asset('img/fondo.png') }});"></div>
+                                            <div class="card-custom-avatar">
+                                                <img class="img-fluid" src="{{ asset('img/area_default.png') }}"
+                                                    alt="Avatar" />
+                                            </div>
+                                            <div class="card-body text-sm" style="overflow-y: auto">
+
+                                                <h4 class="card-title"><strong>Información del área:</strong> </h4>
+                                                <p class="card-text"><strong>Área:</strong>
+                                                    {{ $area->nombre }} </p>
+                                                <p class="card-text"><strong>Planta:</strong>
+                                                    {{ $area->plantas->nombre }} </p>
+                                            </div>
+                                            <div class="card-footer text-sm"
+                                                style="background: inherit; border-color: inherit;">
+                                                <a class="btn btn-sm btn-block text-white"
+                                                    style="background-color: #5e80b7;" data-toggle="modal"
+                                                    data-target="#AddCalidadAgua"
+                                                    wire:click="AddArea({{ $area->id }})">Calidad
+                                                    Agua</a>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="card-body" style="overflow-y: auto">
-                                        <p><strong>Información del area:</strong></p>
-                                        <h4 class="card-title"><strong>Area:</strong> {{ $area->nombre }}</h4>
-                                        <p class="card-text"><strong>Planta:</strong>
-                                            {{ $area->plantas->nombre }} </p>
-                                    </div>
-                                    <div class="card-footer" style="background: inherit; border-color: inherit;">
-                                        <a class="btn btn-sm btn-block text-white" style="background-color: #5e80b7;"
-                                            data-toggle="modal" data-target="#AddCalidadAgua"
-                                            wire:click="AddArea({{ $area->id }})">Calidad
-                                            Agua</a>
-                                    </div>
-                                </div>
-
-
-
+                                @endforeach
                             </div>
-                        @endforeach
+                        @endif
                     </div>
-                @endif
+                </div>
+
+
+
             </div>
         @else
             <div class="col-md-8">
-
-
-                @if ($numero_maquinas == 0 || $numero_lineas == 0)
-                    <center>
-                        <br>
-                        <img width="400px" src="{{ asset('img/seleccionlinea.png') }}" alt="logo">
-
-                    </center>
-                @else
-                    <center>
-                        <br>
-                        <h1><strong>Máquinas</strong></h1>
-                        <br>
-                    </center>
-                @endif
-
-                @if ($numero_lineas == 0)
-                    @php
-                        $maquinas = [];
-                    @endphp
-                @endif
-
-                <div class="row">
-
-                    @foreach ($m_maquinas as $maquina)
-                        <div class="col-md-4 ">
-                            <div class="card">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        @if ($numero_maquinas == 0 || $numero_lineas == 0)
+                            <center>
                                 <br>
-                                <center><img class="card-img-top" style="width: 130px"
-                                        src="{{ asset('img/machine_default.png') }}"></center>
-                                <div class="card-body">
-                                    <p><strong>Información de maquina:</strong></p>
-                                    <h5 class="card-title"><strong>Ids:</strong> {{ $maquina->ids }}</h5>
-                                    <p class="card-text"><strong>Marca:</strong> {{ $maquina->marca }}</p>
+                                <img width="400px" src="{{ asset('img/seleccionlinea.png') }}" alt="logo">
 
-                                    <!-- Button trigger modal Refrigerante -->
-                                    <a class="btn btn-sm btn-block text-white" style="background-color: #5e80b7"
-                                        data-toggle="modal" data-target="#AddRefrigeranteData"
-                                        wire:click="AddRefrigerante({{ $maquina->id }})">Refrigerante</a>
-                                    <!-- Button trigger modal Aceites -->
-                                    <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
-                                        data-toggle="modal" data-target="#AddAceite"
-                                        wire:click="AddRefrigerante({{ $maquina->id }})">Aceites</a>
-                                    <!-- Button trigger modal Grasas -->
-                                    <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
-                                        data-toggle="modal" data-target="#AddGrasa"
-                                        wire:click="AddRefrigerante({{ $maquina->id }})">Grasas</a>
-                                    <!-- Button trigger modal Mantenimiento -->
-                                    <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
-                                        data-toggle="modal" data-target="#AddMantenimiento"
-                                        wire:click="AddRefrigerante({{ $maquina->id }})">Mantenimiento</a>
+                            </center>
+                        @else
+                            <center>
+                                <h1><strong>Máquinas</strong></h1>
+                            </center>
+                        @endif
+
+                        @if ($numero_lineas == 0)
+                            @php
+                                $maquinas = [];
+                            @endphp
+                        @endif
+
+                        <div class="row">
+
+                            @foreach ($m_maquinas as $maquina)
+                                <div class="col-md-4 ">
+                                    <br>
+                                    <div class="card card-custom bg-white border-white border-0">
+                                        <div class="card-custom-img"
+                                            style="background-image: url({{ asset('img/bg1.jpg') }});"></div>
+                                        <div class="card-custom-avatar">
+                                            <img class="img-fluid" src="{{ asset('img/machine_default.png') }}"
+                                                alt="Avatar" />
+                                        </div>
+                                        <div class="card-body text-sm" style="overflow-y: auto">
+                                            <h4 class="card-title"><strong>Información de maquina:</strong></h4>
+                                            <p class="card-text"><strong>Ids:</strong> {{ $maquina->ids }}</p>
+                                            <p class="card-text"><strong>Marca:</strong> {{ $maquina->marca }}</p>
+                                        </div>
+                                        <div class="card-footer text-sm" style="background: inherit; border-color: inherit;">
+
+
+                                            <!-- Button trigger modal Refrigerante -->
+                                            <a class="btn btn-sm btn-block text-white" style="background-color: #5e80b7"
+                                                data-toggle="modal" data-target="#AddRefrigeranteData"
+                                                wire:click="AddRefrigerante({{ $maquina->id }})">Refrigerante</a>
+                                            <!-- Button trigger modal Aceites -->
+                                            <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
+                                                data-toggle="modal" data-target="#AddAceite"
+                                                wire:click="AddRefrigerante({{ $maquina->id }})">Aceites</a>
+                                            <!-- Button trigger modal Grasas -->
+                                            <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
+                                                data-toggle="modal" data-target="#AddGrasa"
+                                                wire:click="AddRefrigerante({{ $maquina->id }})">Grasas</a>
+                                            <!-- Button trigger modal Mantenimiento -->
+                                            <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
+                                                data-toggle="modal" data-target="#AddMantenimiento"
+                                                wire:click="AddRefrigerante({{ $maquina->id }})">Mantenimiento</a>
+                                        </div>
+                                    </div>
+
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
                 </div>
+
+
 
             </div>
         @endif
@@ -159,8 +191,8 @@
 
 
     <!-- Modal Calidad Agua -->
-    <div wire:ignore.self class="modal fade" data-backdrop="static" id="AddCalidadAgua" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" data-backdrop="static" id="AddCalidadAgua" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">

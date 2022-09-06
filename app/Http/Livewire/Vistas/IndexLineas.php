@@ -24,6 +24,7 @@ class IndexLineas extends Component
             $this->sort = 'nombre';
         }
         $lineas = Line::where('usuario_id',auth()->id())
+        ->orWhere('created_by',auth()->id())
         ->orderBy($this->sort,$this->direction)
         ->get();
 

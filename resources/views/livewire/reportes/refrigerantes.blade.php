@@ -122,7 +122,7 @@
         @if ($data->count() == 0)
             <center>
 
-                <img style="width: 300px" style="" src="{{ asset('img/sin_info.png') }}" alt="">
+                <img style="width: 250px" style="" src="{{ asset('img/undraw_predictive_analytics_re_wxt8.svg') }}" alt="">
                 <span class="font-sans text-lg font-bold text-slate-500">Realiza una consulta para generar el
                     reporte</span>
             </center>
