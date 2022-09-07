@@ -18,7 +18,4 @@ class Refrigerante extends Model
         return $this->belongsTo(User::class,'usuario_id');
     }
 
-    public function tecni (){
-        return $this->belongsTo(User::class,'usuario_id');
-    }
 }
