@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Reportes;
 
+use App\Models\Area;
 use App\Models\Machine;
 use App\Models\Plant;
 use App\Models\Refrigerante;
@@ -21,7 +22,7 @@ class Refrigerantes extends Component
 
     public $valores_espuma=[],$valores_aceite=[],$valores_olor_regular=[],$valores_olor_malo=[],$valores_olor_bueno=[];
 
-    public $nombre_maquina,$nombre_empresa,$nombre_usuario,$tecnico;
+    public $nombre_maquina,$nombre_empresa,$nombre_usuario,$id_usuario,$tecnico;
 
     public function mount()
     {
@@ -69,7 +70,7 @@ class Refrigerantes extends Component
         $this->suma_con_fin = $this->suma_con_fin + $d->concentracion_final;
         $this->nombre_maquina = $d->maquinas->ids;
         $this->nombre_empresa = $d->maquinas->plantas->nombre;
-        $this->nombre_usuario = $d->usuario_id;
+        $this->id_usuario = $d->usuario_id;
 
        }
 
@@ -79,11 +80,8 @@ class Refrigerantes extends Component
        $this->prom_con_fin = $this->suma_con_fin / $this->data->count();
 
 
-
-       $this->datass = User::where('id',$this->nombre_usuario)->get();
-       foreach($this->datass as $ww){
-        $this->tecnico = $ww->name;
-       }
+       $this->nombre_usuario = User::where('id',$this->id_usuario)->first();
+       $this->tecnico = $this->nombre_usuario->name;
 
        $this->valores_espuma = Refrigerante::whereBetween('created_at',[$from,$to])
         ->where('maquina_id',$this->valor)

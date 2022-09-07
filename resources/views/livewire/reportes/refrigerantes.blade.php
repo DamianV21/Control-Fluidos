@@ -100,7 +100,6 @@
                         <span>{{ $nombre_maquina }}</span>
                         <br>
                         <span>{{ $nombre_empresa }}</span>
-                        <span>{{ $tecnico }}</span>
                     </div>
                 </div>
                 <div class="row">
