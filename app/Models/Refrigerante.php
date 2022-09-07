@@ -14,10 +14,11 @@ class Refrigerante extends Model
         return $this->belongsTo(Machine::class,'maquina_id');
     }
 
-
-
-    public function tecnicos(){
+    public function usuarios(){
         return $this->belongsTo(User::class,'usuario_id');
     }
 
+    public function tecni (){
+        return $this->belongsTo(User::class,'usuario_id');
+    }
 }
