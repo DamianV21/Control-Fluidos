@@ -68,7 +68,7 @@ class Refrigerantes extends Component
         $this->suma_con_fin = $this->suma_con_fin + $d->concentracion_final;
         $this->nombre_maquina = $d->maquinas->ids;
         $this->nombre_empresa = $d->maquinas->plantas->nombre;
-        $this->nombre_usuario = $d->usuarios->name;
+        $this->nombre_usuario = $d->usuarios->role_id;
 
        }
 
