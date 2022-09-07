@@ -70,7 +70,7 @@ class Refrigerantes extends Component
         $this->suma_con_fin = $this->suma_con_fin + $d->concentracion_final;
         $this->nombre_maquina = $d->maquinas->ids;
         $this->nombre_empresa = $d->maquinas->plantas->nombre;
-        $this->id_usuario = $d->usuario_id;
+
 
        }
 
@@ -80,8 +80,7 @@ class Refrigerantes extends Component
        $this->prom_con_fin = $this->suma_con_fin / $this->data->count();
 
 
-       $this->nombre_usuario = User::where('id',$this->id_usuario)->first();
-       $this->tecnico = $this->nombre_usuario->name;
+
 
        $this->valores_espuma = Refrigerante::whereBetween('created_at',[$from,$to])
         ->where('maquina_id',$this->valor)

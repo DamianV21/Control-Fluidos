@@ -812,7 +812,7 @@
                         </tr>
                         <tr>
                             <td style="border: 1px solid black; " colspan="6"><strong>Tecnico:</strong>
-                                {{ $da->usuarios->name }}</td>
+                                {{ $da->usuario_id }}</td>
                         </tr>
                     </tbody>
                 </table>
