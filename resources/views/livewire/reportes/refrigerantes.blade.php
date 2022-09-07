@@ -409,7 +409,7 @@
                                             {{ $da->aceites_entrampados }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6"><strong>Técnico:</strong> {{ $da->usuarios->name}}</td>
+                                        <td colspan="6"><strong>Técnico:</strong> {{ $nombre_usuario}}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -20,7 +20,7 @@ class Refrigerantes extends Component
 
     public $valores_espuma=[],$valores_aceite=[],$valores_olor_regular=[],$valores_olor_malo=[],$valores_olor_bueno=[];
 
-    public $nombre_maquina,$nombre_empresa;
+    public $nombre_maquina,$nombre_empresa,$nombre_usuario;
 
     public function mount()
     {
@@ -68,6 +68,7 @@ class Refrigerantes extends Component
         $this->suma_con_fin = $this->suma_con_fin + $d->concentracion_final;
         $this->nombre_maquina = $d->maquinas->ids;
         $this->nombre_empresa = $d->maquinas->plantas->nombre;
+        $this->nombre_usuario = $d->usuarios->name;
 
        }
 
