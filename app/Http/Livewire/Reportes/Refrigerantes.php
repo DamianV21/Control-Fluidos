@@ -26,7 +26,9 @@ class Refrigerantes extends Component
 
     public function mount()
     {
-        $this->plantas = Plant::where('usuario_id',auth()->id())->get();
+        $this->plantas = Plant::where('usuario_id',auth()->id())
+        ->orWhere('created_by',auth()->id())
+        ->get();
         $this->maquinas = collect();
         $this->valores = collect();
         $this->data = collect();
@@ -36,12 +38,11 @@ class Refrigerantes extends Component
         $this->valores_olor_malo = collect();
         $this->valores_olor_bueno = collect();
     }
-    public function updatedPlanta($value)
-    {
-        $this->maquinas = Machine::where('planta_id',$value)->get();
-        $this->maquina = $this->maquinas->first()->id ?? null;
 
+    public function updatedPlanta($value){
+        $this->maquinas=Machine::where("planta_id",$value)->get();
     }
+
 
     public function updatedMaquina($valuee)
     {
