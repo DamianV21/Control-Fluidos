@@ -1,24 +1,29 @@
 <div>
 
     <!-- Ordenar-->
-    <div class="container text-center">
+
+    <div class="container">
         <div class="row">
-            <div class="col">
-                <div class="row text-sm">
-                    <h1>Filtar por: </h1>
-                    <div>
-                        <div class="form-group text-sm">
-                            <select wire:model="sort" class="form-control text-sm">
-                                <option selected></option>
-                                <option value="az">A-Z</option>
-                                <option value="za">Z-A</option>
-                            </select>
-                        </div>
-                    </div>
+            <div class="col-md-auto text-sm">
+                Filtrar por:
+            </div>
+            <div class="col-md-auto">
+
+                <div class="btn-group-sm btn-group-toggle" wire:model="sort" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" value="za" autocomplete="off"> <i
+                            class="fas fa-sort-alpha-down-alt"></i>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option3" value="az" autocomplete="off"> <i
+                            class="fas fa-sort-alpha-down"></i>
+                    </label>
                 </div>
             </div>
         </div>
     </div>
+
+    <br>
 
     <!-- End Orden -->
 
@@ -73,29 +78,61 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="right">
+                        <div class="right-container">
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Nombre:</span>
 
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <th>Nombre:</th>
-                                <td>{{ $view_line_nom }}</td>
-                            </tr>
-                            <tr>
-                                <th>Empresa:</th>
-                                <td>{{ $view_line_empre }}</td>
-                            </tr>
-                            <tr>
-                                <th>Planta:</th>
-                                <td>{{ $view_line_plan }}</td>
-                            </tr>
-                            <tr>
-                                <th>Area:</th>
-                                <td>{{ $view_line_area }}</td>
-                            </tr>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{  $view_line_nom }}" />
+                                    </div>
+
+                                    <i class="fas fa-spell-check"></i>
+                                </div>
+                            </section>
 
 
-                        </tbody>
-                    </table>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Empresa:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_line_empre }}" />
+                                    </div>
+                                    <i class="fas fa-building"></i>
+                                </div>
+                            </section>
+
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Planta:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_line_plan }}" />
+                                    </div>
+                                    <i class="fas fa-industry"></i>
+                                </div>
+                            </section>
+
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Area:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_line_area }}" />
+                                    </div>
+                                    <i class="fas fa-user-cog"></i>
+                                </div>
+                            </section>
+
+
+
+                        </div>
+                    </div>
+                    <!-- right-end -->
+
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -543,32 +543,39 @@
                                                     class="active"></li>
                                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+
                                             </ol>
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
                                                     <img class="d-block w-100"
-                                                        src="{{ asset('img/undraw_posting_photo.svg') }}"
+                                                        src="{{ asset('img/publicidad1.jpg') }}"
                                                         alt="First slide">
-                                                    <div class="carousel-caption d-none d-md-block">
+                                                   <!-- <div v class="carousel-caption d-none d-md-block">
                                                         <h5> Nuevo comentario</h5>
                                                         <p>Esta es una descripcion del comentario</p>
-                                                    </div>
+                                                    </div>-->
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <img class="d-block w-100" src="{{ asset('img/fondo.png') }}"
+                                                    <img class="d-block w-100" src="{{ asset('img/publicidad2.png') }}"
                                                         alt="Second slide">
-                                                    <div class="carousel-caption d-none d-md-block">
-                                                        <h5> Nuevo comentario</h5>
-                                                        <p>Esta es una descripcion del comentario</p>
-                                                    </div>
+
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <img class="d-block w-100" src="{{ asset('img/bg1.jpg') }}"
+                                                    <img class="d-block w-100" src="{{ asset('img/publicidad3.jpg') }}"
                                                         alt="Third slide">
-                                                    <div class="carousel-caption d-none d-md-block text-black">
-                                                        <h5> Nuevo comentario</h5>
-                                                        <p>Esta es una descripcion del comentario</p>
-                                                    </div>
+
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img class="d-block w-100" src="{{ asset('img/publicidad4.png') }}"
+                                                        alt="Second slide">
+
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img class="d-block w-100" src="{{ asset('img/publicidad5.jpg') }}"
+                                                        alt="Third slide">
+
                                                 </div>
                                             </div>
                                             <a class="carousel-control-prev" href="#carouselExampleIndicators"

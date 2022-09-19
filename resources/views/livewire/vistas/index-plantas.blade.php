@@ -1,27 +1,26 @@
 <div>
     <!-- Ordenar-->
 
-    <div class="container text-center">
+    <div class="container">
         <div class="row">
-            <div class="col">
-                <div class="row text-sm">
-                    <h1>Filtar por: </h1>
-                    <div>
-                        <div class="form-group text-sm">
-                            <select wire:model="sort" class="form-control text-sm">
-                                <option selected></option>
-                                <option value="az">A-Z</option>
-                                <option value="za">Z-A</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="col-md-auto text-sm">
+            Filtrar por:
+          </div>
+          <div class="col-md-auto">
+
+            <div class="btn-group-sm btn-group-toggle" wire:model="sort" data-toggle="buttons">
+                <label class="btn btn-primary">
+                  <input type="radio" name="options" id="option2" value="za" autocomplete="off"> <i class="fas fa-sort-alpha-down-alt"></i>
+                </label>
+                <label class="btn btn-primary">
+                  <input type="radio" name="options" id="option3" value="az" autocomplete="off"> <i class="fas fa-sort-alpha-down"></i>
+                </label>
+              </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-
-
+      <br>
 
     <!-- End Orden -->
 
@@ -73,10 +72,11 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-industry"></i><span class="span-bold"> Datos de la Planta</span></h5>
+                    <h5 class="modal-title"><label  style="color: #5e80b7"> <i class="fas fa-database"></i></label>
+                        <span class="span-bold"> Datos de la Planta</span></h5>
                     <button type="button" class="close" data-dismiss="modal" wire:click="CloseViewModal"
                         aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -166,39 +166,7 @@
                         </div>
                     </div>
                     <!-- right-end -->
-                    <!-- <table>
-                        <tbody>
-                            <tr>
-                                <th>Nombre:</th>
-                                <td>{{ $view_planta_nombre }}</td>
-                            </tr>
-                            <tr>
-                                <th>Direccion:</th>
-                                <td>{{ $view_planta_direc }}</td>
-                            </tr>
-                            <tr>
-                                <th>Ciudad:</th>
-                                <td>{{ $view_planta_ciudad }}</td>
-                            </tr>
-                            <tr>
-                                <th>Estado:</th>
-                                <td>{{ $view_planta_estado }}</td>
-                            </tr>
-                            <tr>
-                                <th>C.P:</th>
-                                <td>{{ $view_planta_cp }}</td>
-                            </tr>
-                            <tr>
-                                <th>Telefono:</th>
-                                <td>{{ $view_planta_tel }}</td>
-                            </tr>
-                            <tr>
-                                <th>Contaco:</th>
-                                <td>{{ $view_planta_con }}</td>
-                            </tr>
 
-                        </tbody>
-                    </table>-->
                 </div>
             </div>
         </div>
@@ -212,79 +180,6 @@
 
 <link rel="stylesheet" href="{{ asset('css/registros.css') }}">
 
-<style>
-    .span-bold {
-        font-size: 16px;
-        color: #27272e;
-        font-weight: 800;
-    }
-
-    img {
-        cursor: pointer;
-    }
-
-    .img {
-        width: 48px;
-        height: 48px;
-        background-color: #5e80b749;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .right {
-        width: auto;
-    }
-
-    .span-label {
-        font-size: 14px;
-        color: #5e80b7;
-        font-weight: 800;
-        margin-left: 4px;
-    }
-
-    .spn-light {
-        font-size: 14px;
-        color: #425466;
-        font-weight: 100;
-    }
-
-    .right-header {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-    }
-
-    ::placeholder {
-        font-size: 13px;
-        font-weight: 500;
-        color: #a1aab2;
-    }
-
-    input {
-        border: 0;
-        outline: 0;
-        background-color: transparent;
-
-    }
-
-    .right-footer {
-        /* width: 318px;
-  height: 46px; */
-        background-color: #edf2f7;
-        border-radius: 10px;
-        margin-top: 12px;
-        padding: 5px 4px 5px 16px;
-
-    }
-
-    .right-footer-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-</style>
 
 <script>
     window.addEventListener('show-modal', event => {
