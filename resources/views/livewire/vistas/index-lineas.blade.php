@@ -22,7 +22,6 @@
             </div>
         </div>
     </div>
-
     <br>
 
     <!-- End Orden -->
@@ -71,7 +70,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
+                        <span class="span-bold"> Datos de la Línea</span>
+                    </h5>
                     <button type="button" class="close" wire:click="CloseViewModal" data-dismiss="modal"
                         aria-label="Close">
                         <span aria-hidden="true">&times;</span>

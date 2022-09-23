@@ -76,10 +76,6 @@
     </div>
 
 
-
-
-
-
     <!-- Graficas -->
     <div class="col-md-12">
 
@@ -205,10 +201,7 @@
             </div>
         @endif
     </div>
-
-
     <br>
-
     <br>
     <!-- Datos Estadisticos -->
     <div class="col-md-12">
@@ -357,7 +350,6 @@
         'malo' => 'red',
         'bueno' => 'green',
     ];
-
     ?>
 
     <br>
@@ -409,7 +401,7 @@
                                             {{ $da->aceites_entrampados }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6"><strong>Técnico:</strong> {{ $da->usuario_id}}</td>
+                                        <td colspan="6"><strong>Técnico:</strong> {{ $da->usuarios->name ?? 'No existe'}}</td>
                                     </tr>
                                 </tbody>
                             </table>

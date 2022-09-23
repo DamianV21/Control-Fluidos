@@ -1,24 +1,26 @@
 <div>
     <!-- Ordenar-->
-    <div class="container text-center">
+    <div class="container">
         <div class="row">
-            <div class="col">
-                <div class="row text-sm">
-                    <h1>Filtar por: </h1>
-                    <div>
-                        <div class="form-group text-sm">
-                            <select wire:model="sort" class="form-control text-sm">
-                                <option selected></option>
-                                <option value="az">A-Z</option>
-                                <option value="za">Z-A</option>
-                            </select>
-                        </div>
-                    </div>
+            <div class="col-md-auto text-sm">
+                Filtrar por:
+            </div>
+            <div class="col-md-auto">
+
+                <div class="btn-group-sm btn-group-toggle" wire:model="sort" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" value="za" autocomplete="off"> <i
+                            class="fas fa-sort-alpha-down-alt"></i>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option3" value="az" autocomplete="off"> <i
+                            class="fas fa-sort-alpha-down"></i>
+                    </label>
                 </div>
             </div>
         </div>
     </div>
-
+    <br>
     <!-- End Orden -->
 
     <div class="card shadow mb-4">
@@ -71,77 +73,160 @@
     </div>
 
 
-
-
     <!-- Modal Informacion-->
     <div class="modal fade" id="MaquinaInfo" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"> <strong>Informacion de Maquina</strong> </h5>
+                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
+                        <span class="span-bold"> Datos de la Maquina</span>
+                    </h5>
                     <button type="button" class="close" wire:click="CloseViewModa" data-dismiss="modal"
                         aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered">
-                        <h1 style="text-align: center"><strong>Identificador de Maquina: </strong> {{ $view_maq_id }}
-                        </h1>
-                        <br>
-                        <tbody>
+                    <div class="right">
+                        <div class="right-container">
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Maquina:</span>
 
-                            <tr>
-                                <th>Marca:</th>
-                                <td>{{ $view_maq_mar }}</td>
-                            </tr>
-                            <tr>
-                                <th>Tipo de maquina:</th>
-                                <td>{{ $view_maq_tipo }}</td>
-                            </tr>
-                            <tr>
-                                <th>Aceite o grasa de guias:</th>
-                                <td>{{ $view_maq_ac }}</td>
-                            </tr>
-                            <tr>
-                                <th>Aceite hidraulico:</th>
-                                <td>{{ $view_maq_hi }}</td>
-                            </tr>
-                            <tr>
-                                <th>Refrigerante o aceite directo:</th>
-                                <td>{{ $view_maq_ref }}</td>
-                            </tr>
-                            <tr>
-                                <th>Capacidad tanque:</th>
-                                <td>{{ $view_tanque_maq }}</td>
-                            </tr>
-                            <tr>
-                                <th>Recomendación mínima:</th>
-                                <td>{{ $view_maq_min }}</td>
-                            </tr>
-                            <tr>
-                                <th>Recomendación máxima:</th>
-                                <td>{{ $view_maq_max }}</td>
-                            </tr>
-                            <tr>
-                                <th>Factor de refractor:</th>
-                                <td>{{ $view_maq_fac }}</td>
-                            </tr>
-                            <tr>
-                                <th>Rango de PH:</th>
-                                <td>{{ $view_maq_ph }}</td>
-                            </tr>
-                            <tr>
-                                <th>Carga inicial:</th>
-                                <td>{{ $view_maq_ini }}</td>
-                            </tr>
-                            <tr>
-                                <th>Mantenimiento preventivo (en días):</th>
-                                <td>{{ $view_maq_man }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{  $view_maq_id}}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Marca:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_mar }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Tipo de maquina:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_tipo }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Aceite o grasa de guías:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_ac  }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Aceite hidráulico:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_hi  }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Refrigerante o aceite directo:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_ref }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Capacidad tanque:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_tanque_maq }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Recomendación mínima:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_min }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Recomendación máxima:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_max }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Factor de refractor:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_fac }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Rango de PH:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_ph }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Carga inicial:</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_ini }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                            <section class="right-footer">
+                                <div class="right-footer-container">
+                                    <span class="span-label">Mantenimiento preventivo (en días):</span>
+                                    <div class="inp">
+                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
+                                            placeholder="{{ $view_maq_man }}" />
+                                    </div>
+
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <!-- right-end -->
+
 
                 </div>
             </div>
@@ -156,7 +241,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 style="text-align: center" class="modal-title"><strong>Informacion de Refrigerantes</strong>
+                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
+                        <span class="span-bold"> Datos de Refrigerante</span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -164,55 +250,122 @@
                 </div>
                 <div class="modal-body">
                     @foreach ($refrigerantes as $refri)
-                        <table class="table table-bordered">
-                            <h1 style="text-align: center"><strong>Fecha registrada: </strong> {{ $refri->created_at }}
-                            </h1>
-                            <tbody>
-                                <tr>
-                                    <th>Concentración inicial en grados Brix %:</th>
-                                    <td>{{ $refri->concentracion_inicial }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Litros de recarga:</th>
-                                    <td>{{ $refri->litros_recarga }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Concentración de la recarga en grados Brix %:</th>
-                                    <td>{{ $refri->concentracion_recarga }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Concentración final en grados Brix %:</th>
-                                    <td>{{ $refri->concentracion_final }}</td>
-                                </tr>
-                                <tr>
-                                    <th>pH:</th>
-                                    <td>{{ $refri->ph }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Aroma:</th>
-                                    <td>{{ $refri->aroma }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Aceites entrampados:</th>
-                                    <td>{{ $refri->aceites_entrampados }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Color:</th>
-                                    <td>{{ $refri->color }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Exceso de espuma :</th>
-                                    <td>{{ $refri->exceso_espuma }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Comentarios del técnico:</th>
-                                    <td>{{ $refri->comentarios }}</td>
-                                </tr>
 
+                    <div class="card shadow mb-4 border-left-primary">
+                        <!-- Card Header - Accordion -->
+                        <a href="#num{{ $refri->id }}" class="d-block card-header py-3" data-toggle="collapse"
+                            role="button" aria-expanded="true" aria-controls="num{{ $refri->id }}">
+                            <h6 style="font-size: 14px;" class="m-0 font-weight-bold text-primary">
+                                <label style="color: #5e80b7"><i class="fas fa-clipboard-list"></i></label> Fecha
+                                de Registro:
+                                <span class="span-bold2"> {{ \Carbon\Carbon::parse($refri->created_at)->formatLocalized('%d %B %Y %I:%M %p')  }}</span>
+                            </h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse" id="num{{ $refri->id }}">
+                            <div class="card-body">
+                                <div class="right">
+                                    <div class="right-container">
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Concentración inicial en grados Brix %:</span>
 
-                            </tbody>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $refri->concentracion_inicial }}" />
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Litros de recarga:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $refri->litros_recarga }}" />
+                                                </div>
 
-                        </table>
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Concentración de la recarga en grados Brix %:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $refri->concentracion_recarga }}" />
+                                                </div>
+
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Concentración final en grados Brix %:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text"
+                                                        placeholder="{{ $refri->concentracion_final }}" />
+                                                </div>
+
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">pH:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $refri->ph }}" />
+                                                </div>
+
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Aroma:	</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $refri->aroma }}" />
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Aceites entrampados:	</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $refri->aceites_entrampados  }}" />
+                                                </div>
+                                            </div>
+                                        </section><section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Color:		</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $refri->color}}" />
+                                                </div>
+                                            </div>
+                                        </section><section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Exceso de espuma :	</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $refri->exceso_espuma }}" />
+                                                </div>
+                                            </div>
+                                        </section><section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Comentarios del técnico:	</span>
+                                                <div class="inp">
+                                                    <textarea style="border-radius: 10px; width:auto;"
+                                                    disabled  placeholder="{{ $refri->comentarios }}"></textarea>
+
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <!-- right-end -->
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </div>
 
@@ -228,38 +381,79 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 style="text-align: center" class="modal-title"><strong>Información de Aceites</strong></h5>
+                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
+                        <span class="span-bold"> Datos de Aceite</span>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     @foreach ($aceites as $aceite)
-                        <table class="table table-bordered">
-                            <h1 style="text-align: center"><strong>Fecha registrada: </strong>
-                                {{ $aceite->created_at }}</h1>
-                            <tbody>
-                                <tr>
-                                    <th>Aspecto:</th>
-                                    <td>{{ $aceite->aspecto }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Color:</th>
-                                    <td>{{ $aceite->color }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Aroma:</th>
-                                    <td>{{ $aceite->aroma }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Litros de recarga:</th>
-                                    <td>{{ $aceite->litros_recarga }}</td>
-                                </tr>
 
+                    <div class="card shadow mb-4 border-left-primary">
+                        <!-- Card Header - Accordion -->
+                        <a href="#num{{ $aceite->id }}" class="d-block card-header py-3" data-toggle="collapse"
+                            role="button" aria-expanded="true" aria-controls="num{{ $aceite->id }}">
+                            <h6 style="font-size: 14px;" class="m-0 font-weight-bold text-primary">
+                                <label style="color: #5e80b7"><i class="fas fa-clipboard-list"></i></label> Fecha
+                                de Registro:
+                                <span class="span-bold2"> {{ \Carbon\Carbon::parse($aceite->created_at)->formatLocalized('%d %B %Y %I:%M %p')  }}</span>
+                            </h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse" id="num{{ $aceite->id }}">
+                            <div class="card-body">
+                                <div class="right">
+                                    <div class="right-container">
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Aspecto:</span>
 
-                            </tbody>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $aceite->aspecto }}" />
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Color:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $aceite->color }}" />
+                                                </div>
 
-                        </table>
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Aroma:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $aceite->aroma }}" />
+                                                </div>
+
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Litros de recarga:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text"
+                                                        placeholder="{{ $aceite->litros_recarga }}" />
+                                                </div>
+
+                                            </div>
+                                        </section>
+
+                                    </div>
+                                </div>
+                                <!-- right-end -->
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </div>
 
@@ -274,25 +468,46 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 style="text-align: center" class="modal-title"><strong>Información de Grasas</strong></h5>
+                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
+                        <span class="span-bold"> Datos de Grasas</span>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     @foreach ($grasas as $grasa)
-                        <table class="table table-bordered">
-                            <h1 style="text-align: center"><strong>Fecha registrada: </strong>
-                                {{ $grasa->created_at }}</h1>
-                            <tbody>
-                                <tr>
-                                    <th>Litros de Recarga:</th>
-                                    <td>{{ $grasa->litros_recarga }}</td>
-                                </tr>
+                    <div class="card shadow mb-4 border-left-primary">
+                        <!-- Card Header - Accordion -->
+                        <a href="#num{{ $grasa->id }}" class="d-block card-header py-3" data-toggle="collapse"
+                            role="button" aria-expanded="true" aria-controls="num{{ $grasa->id }}">
+                            <h6 style="font-size: 14px;" class="m-0 font-weight-bold text-primary">
+                                <label style="color: #5e80b7"><i class="fas fa-clipboard-list"></i></label> Fecha
+                                de Registro:
+                                <span class="span-bold2"> {{ \Carbon\Carbon::parse($grasa->created_at)->formatLocalized('%d %B %Y %I:%M %p')  }}</span>
+                            </h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse" id="num{{ $grasa->id }}">
+                            <div class="card-body">
+                                <div class="right">
+                                    <div class="right-container">
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Litros de Recarga:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $grasa->litros_recarga }}" />
+                                                </div>
+                                            </div>
+                                        </section>
 
-                            </tbody>
-
-                        </table>
+                                    </div>
+                                </div>
+                                <!-- right-end -->
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </div>
 
@@ -307,7 +522,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 style="text-align: center" class="modal-title"><strong>Información de Mantenimeintos</strong>
+                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
+                        <span class="span-bold"> Datos de Mantenimientos</span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -315,31 +531,67 @@
                 </div>
                 <div class="modal-body">
                     @foreach ($mantenimientos as $mantenimiento)
-                        <table class="table table-bordered">
-                            <h1 style="text-align: center"><strong>Fecha registrada: </strong>
-                                {{ $mantenimiento->created_at }}</h1>
-                            <tbody>
-                                <tr>
-                                    <th>Aspecto:</th>
-                                    <td>{{ $mantenimiento->tipo }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Color:</th>
-                                    <td>{{ $mantenimiento->litros_recarga_agua }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Aroma:</th>
-                                    <td>{{ $mantenimiento->litros_recarga_con }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Litros de recarga:</th>
-                                    <td>{{ $mantenimiento->observaciones }}</td>
-                                </tr>
+
+                    <div class="card shadow mb-4 border-left-primary">
+                        <!-- Card Header - Accordion -->
+                        <a href="#num{{ $mantenimiento->id }}" class="d-block card-header py-3" data-toggle="collapse"
+                            role="button" aria-expanded="true" aria-controls="num{{ $mantenimiento->id }}">
+                            <h6 style="font-size: 14px;" class="m-0 font-weight-bold text-primary">
+                                <label style="color: #5e80b7"><i class="fas fa-clipboard-list"></i></label> Fecha
+                                de Registro:
+                                <span class="span-bold2"> {{ \Carbon\Carbon::parse($mantenimiento->created_at)->formatLocalized('%d %B %Y %I:%M %p')  }}</span>
+                            </h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse" id="num{{ $mantenimiento->id }}">
+                            <div class="card-body">
+                                <div class="right">
+                                    <div class="right-container">
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Tipo de mantenimiento:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $mantenimiento->tipo }}" />
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Litros de Recarga de Agua:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $mantenimiento->litros_recarga_agua }}" />
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Litros de Recarga de Concentrado:</span>
+                                                <div class="inp">
+                                                    <input style="border-radius: 10px; width:auto;" disabled
+                                                        type="text" placeholder="{{ $mantenimiento->litros_recarga_con}}" />
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="right-footer">
+                                            <div class="right-footer-container">
+                                                <span class="span-label">Observaciones:</span>
+                                                <div class="inp">
+                                                    <textarea style="border-radius: 10px; width:auto;" disabled
+                                                    placeholder="{{ $mantenimiento->observaciones }}"></textarea>
+
+                                                </div>
+                                            </div>
+                                        </section>
 
 
-                            </tbody>
-
-                        </table>
+                                    </div>
+                                </div>
+                                <!-- right-end -->
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </div>
 

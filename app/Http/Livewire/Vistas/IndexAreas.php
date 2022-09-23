@@ -90,9 +90,9 @@ class IndexAreas extends Component
         $collec = Area::where('id',$id)->first();
 
         $this->view_area_nom = $collec->nombre;
-        $this->view_area_empresa = $collec->empresas->nombre;
-        $this->view_area_planta = $collec->plantas->nombre;
-        $this->view_area_user = $collec->usuarios->name;
+        $this->view_area_empresa = $collec->empresas->nombre ?? 'No existe';
+        $this->view_area_planta = $collec->plantas->nombre ?? 'No existe';
+        $this->view_area_user = $collec->usuarios->name ?? 'No existe';
 
 
         $this->dispatchBrowserEvent('show-modal');

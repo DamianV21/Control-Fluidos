@@ -12,6 +12,7 @@
     <title>Control Fluidos | Inicio</title>
 
     <!-- Custom fonts for this template-->
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -121,18 +122,18 @@
             </div>
 
             <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
+            <div class="sidebar-card d-none d-lg-flex ">
                 <img class="sidebar-card-illustration mb-2" src="{{ asset('img/undraw_upload_re_pasx.svg') }}"
                     alt="admin">
                 <p class="text-center mb-2"><strong>Sistema Administrativo</strong> dirigete al panel para administrar
                     tu información.</p>
-                <a class="btn btn-success btn-sm" href="admin">Ingresar</a>
+                <a class="btn btn-success btn-sm "  href="admin">Ingresar</a>
             </div>
 
         </ul>
         <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
+        <!-- Contenido Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -317,7 +318,7 @@
                         <div class="topbar-divider d-none d-sm-block"></div>       -->
 
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                            <a class="nav-link dropdown-toggle"  id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <script type="text/javascript">
                                     function startTime() {
@@ -341,7 +342,7 @@
                                         startTime();
                                     }
                                 </script>
-                                <div id="reloj" style="font-size:14px;"></div>
+                                <div id="reloj" style="font-size:15px;"></div>
                             </a>
                         </li>
 
@@ -380,8 +381,8 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h4 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block "><i
+                        <h5 class="h6 mb-0 text-gray-800"><i class="fas fa-tachometer-alt"></i> Dashboard</h5>
+                        <a  class="d-none d-sm-inline-block "><i
                                 class="fas fa-stroopwafel fa-spin"></i></a>
                     </div>
 
@@ -474,13 +475,12 @@
                         </div>
                     </div>
 
-                    <!-- Content Row -->
+                    <!-- Seccion 2 -->
                     <div class="row">
 
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
-
-                            <!-- Project Card Example -->
+                            <!-- Contenido 1 -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Nivel de Máquinas</h6>
@@ -518,8 +518,44 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            <!-- Contenido 1 -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Nivel de Máquinas</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold"> Honder 010 <span
+                                            class="float-right">50%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 50%"
+                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Honder 07 <span class="float-right">40%</span>
+                                    </h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Honder 06 <span class="float-right">60%</span>
+                                    </h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="width: 60%"
+                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Honder 04 <span class="float-right">80%</span>
+                                    </h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
+                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Honder 05 <span class="float-right">40%</span>
+                                    </h4>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 40%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -607,13 +643,14 @@
                             </div>
                         -->
                         </div>
+
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
 
+                    <!-- Seccion 3 -->
+                    <div class="row">
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -631,21 +668,6 @@
                             </div>
                         </div>
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary"></h6>
-
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
 

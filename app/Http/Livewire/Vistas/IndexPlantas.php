@@ -43,7 +43,7 @@ class IndexPlantas extends Component
         $this->view_planta_estado = $collec->estado;
         $this->view_planta_cp = $collec->codigopostal;
         $this->view_planta_tel = $collec->telefono;
-        $this->view_planta_con = $collec->clientes->nombre;
+        $this->view_planta_con = $collec->clientes->nombre ?? 'No existe';
 
         $this->dispatchBrowserEvent('show-modal');
     }

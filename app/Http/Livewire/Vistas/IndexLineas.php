@@ -36,9 +36,9 @@ class IndexLineas extends Component
         $collec = Line::where('id',$id)->first();
 
         $this->view_line_nom = $collec->nombre;
-        $this->view_line_empre = $collec->empresas->nombre;
-        $this->view_line_plan = $collec->plantas->nombre;
-        $this->view_line_area = $collec->areas->nombre;
+        $this->view_line_empre = $collec->empresas->nombre ?? 'No existe';
+        $this->view_line_plan = $collec->plantas->nombre ?? 'No existe';
+        $this->view_line_area = $collec->areas->nombre ?? 'No existe';
 
 
         $this->dispatchBrowserEvent('show-modal');

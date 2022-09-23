@@ -9,9 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Control Fluidos | Inicio</title>
+    <title>Control Fluidos | Registro de datos</title>
 
     <!-- Custom fonts for this template-->
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -281,14 +282,18 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
+                    sesión actual.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+
+                    <button class="btn btn-secondary"  data-dismiss="modal">Cancelar</button>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <div class="nav-item">
-                            <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
-                        this.closest('form').submit(); " role="button">Cerrar Sesión</a>
+                            <a class="btn btn-primary" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                        this.closest('form').submit(); "
+                                role="button">Cerrar Sesión</a>
                         </div>
                     </form>
 
