@@ -360,24 +360,9 @@
                             <div class="col-9">
                                 <!--<input type="number" step="0.01" id="refrigerante_ph" class="form-control" wire:model="refrigerante_ph">-->
 
+                                <input type="number" step="0.01" id="refrigerante_ph" class="form-control"
+                                wire:model="refrigerante_ph">
 
-                                <select class="form-control" wire:model="refrigerante_ph" id="refrigerante_ph">
-                                    <option selected>Elige un valor</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                </select>
 
                                 @error('refrigerante_ph')
                                     <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
