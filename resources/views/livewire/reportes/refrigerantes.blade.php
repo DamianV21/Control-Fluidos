@@ -45,10 +45,10 @@
 
             <div class="row">
                 <div class="col-md-3">
-                     <a class="btn btn-danger text-sm btn-block {{ count($data) < 1 ? 'disabled' : '' }}"
+                     <!--<a class="btn btn-danger text-sm btn-block {{ count($data) < 1 ? 'disabled' : '' }}"
                         href="{{ url('report/pdf' . '/' . $valor . '/' . $dateFrom . '/' . $dateTo) }}"
                         target="_blank">
-                        <i class="fa fa-file-pdf"></i> Generar PDF </a>
+                        <i class="fa fa-file-pdf"></i> Generar PDF </a> -->
 
                    <!-- <a class="btn btn-success btn-block {{ count($data) < 1 ? 'disabled' : '' }}"
                         href="{{ url('report/excel' . '/' . $valor . '/' . $dateFrom . '/' . $dateTo) }}"

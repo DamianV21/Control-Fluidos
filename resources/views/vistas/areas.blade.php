@@ -123,7 +123,7 @@
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="{{ asset('img/undraw_upload_re_pasx.svg') }}" alt="admin">
                 <p class="text-center mb-2"><strong>Sistema Administrativo</strong> dirigete al panel para administrar tu información.</p>
-                <a class="btn btn-success btn-sm" href="admin">Ingresar</a>
+                <a class="btn btn-success btn-sm {{ auth()->user()->role_id > 2 ? '' : 'disabled' }}" href="admin">Ingresar</a>
             </div>
 
         </ul>
