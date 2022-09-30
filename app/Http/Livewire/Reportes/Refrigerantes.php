@@ -28,6 +28,7 @@ class Refrigerantes extends Component
     {
         $this->plantas = Plant::where('usuario_id',auth()->id())
         ->orWhere('created_by',auth()->id())
+        ->orWhere('supervisor_id',auth()->id())
         ->get();
         $this->maquinas = collect();
         $this->valores = collect();
