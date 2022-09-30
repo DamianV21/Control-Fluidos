@@ -32,6 +32,7 @@ class IndexAreas extends Component
 
         $areas = Area::where('usuario_id',auth()->id())
         ->orWhere('created_by',auth()->id())
+        ->orWhere('supervisor_id',auth()->id())
         ->orderBy($this->sort,$this->direction)
         ->get();
 

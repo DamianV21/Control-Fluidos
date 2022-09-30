@@ -304,6 +304,7 @@ class IndexContent extends Component
         return view('livewire.menu.index-content',[
             'p_plantas' => Plant::where('usuario_id',auth()->id())
             ->orWhere('created_by',auth()->id())
+            ->orWhere('supervisor_id',auth()->id())
             ->get()
         ]);
     }
