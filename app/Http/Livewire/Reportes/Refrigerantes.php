@@ -15,14 +15,12 @@ class Refrigerantes extends Component
 
     public $maquinas=[],$plantas=[],$data=[],$valores=[],$planta,$maquina,$valor,$valor_maquina,$dateFrom, $dateTo;
     public $datass=[];
-
     public $suma_con_ini=0, $prom_con_ini=0,$suma_vol_ini=0, $prom_vol_ini=0,
     $suma_vol_rec=0,$suma_con_rec=0, $prom_con_rec=0,$suma_con_fin=0, $prom_con_fin=0,
     $espuma_si=0,$espuma_no=0,$aceite_si=0,$aceite_no=0,$olor_malo=0,$olor_regular=0,$olor_bueno=0;
-
     public $valores_espuma=[],$valores_aceite=[],$valores_olor_regular=[],$valores_olor_malo=[],$valores_olor_bueno=[];
-
     public $nombre_maquina,$nombre_empresa,$nombre_usuario,$id_usuario,$tecnico;
+    public $litros_concentrado;
 
     public function mount()
     {

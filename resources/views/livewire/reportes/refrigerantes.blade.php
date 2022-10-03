@@ -184,14 +184,14 @@
                                     <td class="text-white" style="background: #7099da"><strong>Litros de
                                             concentrado(Lts/día)</strong></td>
                                     @foreach ($data as $d)
-                                        <td class="text-center">{{ $d->concentracion_inicial }}</td>
+                                        <td class="text-center">{{ ($d->litros_recarga * $d->concentracion_recarga)* $d->maquinas->fac_refractor }}</td>
                                     @endforeach
                                 </tr>
                                 <tr>
                                     <td class="text-white" style="background: #7099da"><strong>Total de concentrado
                                             acumulado</strong></td>
                                     @foreach ($data as $d)
-                                        <td class="text-center">{{ $d->concentracion_inicial }}</td>
+                                        <td class="text-center">{{ $d->concentracion_recarga }}</td>
                                     @endforeach
                                 </tr>
                             </tbody>
