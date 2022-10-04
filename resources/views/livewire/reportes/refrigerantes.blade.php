@@ -181,17 +181,24 @@
                                     @endforeach
                                 </tr>
                                 <tr>
+                                    <td class="text-white" style="background: #7099da"><strong>pH</strong>
+                                    </td>
+                                    @foreach ($data as $d)
+                                        <td class="text-center">{{ $d->ph }}</td>
+                                    @endforeach
+                                </tr>
+                                <tr>
                                     <td class="text-white" style="background: #7099da"><strong>Litros de
                                             concentrado(Lts/día)</strong></td>
                                     @foreach ($data as $d)
-                                        <td class="text-center">{{ ($d->litros_recarga * $d->concentracion_recarga)* $d->maquinas->fac_refractor }}</td>
+                                        <td class="text-center">{{ ($d->litros_recarga * $d->concentracion_recarga* $d->maquinas->fac_refractor) / 100 }}</td>
                                     @endforeach
                                 </tr>
                                 <tr>
                                     <td class="text-white" style="background: #7099da"><strong>Total de concentrado
                                             acumulado</strong></td>
                                     @foreach ($data as $d)
-                                        <td class="text-center">{{ $d->concentracion_recarga }}</td>
+                                        <td class="text-center">{{ $num1 +=$d->concentracion_recarga }}</td>
                                     @endforeach
                                 </tr>
                             </tbody>
@@ -309,7 +316,7 @@
                                                     (Lts/días)</strong>
                                             </td>
 
-                                            <td class="text-center">9.6</td>
+                                            <td class="text-center">{{ round($promedio_concentrado, 2) }}</td>
 
                                         </tr>
                                         <tr>
@@ -318,7 +325,7 @@
                                                     acumulado</strong>
                                             </td>
 
-                                            <td class="text-center">7.5</td>
+                                            <td class="text-center">{{ $num1 }}</td>
 
                                         </tr>
 
