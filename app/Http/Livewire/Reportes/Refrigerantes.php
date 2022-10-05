@@ -20,7 +20,7 @@ class Refrigerantes extends Component
     $espuma_si=0,$espuma_no=0,$aceite_si=0,$aceite_no=0,$olor_malo=0,$olor_regular=0,$olor_bueno=0;
     public $valores_espuma=[],$valores_aceite=[],$valores_olor_regular=[],$valores_olor_malo=[],$valores_olor_bueno=[];
     public $nombre_maquina,$nombre_empresa,$nombre_usuario,$id_usuario,$tecnico;
-    public $litros_concentrado,$num1,$promedio_concentrado,$suma_concentrado;
+    public $litros_concentrado,$num1,$promedio_concentrado,$suma_concentrado,$promedio_ph,$suma_ph;
 
     public function mount()
     {
@@ -71,14 +71,15 @@ class Refrigerantes extends Component
         $this->nombre_maquina = $d->maquinas->ids;
         $this->nombre_empresa = $d->maquinas->plantas->nombre;
         $this->suma_concentrado += ($d->litros_recarga * $d->concentracion_recarga* $d->maquinas->fac_refractor) / 100;
-        $this->promedio_concentrado = $this->suma_concentrado / $this->data->count();
+        $this->suma_ph += $d->ph;
        }
 
        $this->prom_con_ini = $this->suma_con_ini /  $this->data->count();
        $this->prom_vol_ini = $this->suma_vol_ini / $this->data->count();
        $this->prom_con_rec = $this->suma_con_rec / $this->data->count();
        $this->prom_con_fin = $this->suma_con_fin / $this->data->count();
-
+       $this->promedio_concentrado = $this->suma_concentrado / $this->data->count();
+       $this->promedio_ph = $this->suma_ph / $this->data->count();
 
 
 

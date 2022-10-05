@@ -311,6 +311,13 @@
 
                                         </tr>
                                         <tr>
+                                            <td class="text-white" style="background: #5e80b7"><strong>pH </strong>
+                                            </td>
+
+                                            <td class="text-center">{{ round($promedio_ph, 2) }}</td>
+
+                                        </tr>
+                                        <tr>
                                             <td class="text-white" style="background: #5e80b7"><strong>Litros de
                                                     Concentrado
                                                     (Lts/días)</strong>
