@@ -61,61 +61,69 @@ class Refrigerantes extends Component
         ->get();
 
 
+        if ($this->data->count() == 0) {
+            $this->dispatchBrowserEvent('data_vacia', [
+            'title'         =>      'Reporte',
+            'title_sub'         =>   'No se tienen registros',
+        ]);
+        }
+        else{
+            foreach($this->data as $d){
+                $this->suma_con_ini = $this->suma_con_ini + $d->concentracion_inicial;
+                $this->suma_vol_ini = $this->suma_vol_ini + $d->volumen_inicial;
+                $this->suma_vol_rec = $this->suma_vol_rec + $d->litros_recarga;
+                $this->suma_con_rec = $this->suma_con_rec + $d->concentracion_recarga;
+                $this->suma_con_fin = $this->suma_con_fin + $d->concentracion_final;
+                $this->nombre_maquina = $d->maquinas->ids;
+                $this->nombre_empresa = $d->maquinas->plantas->nombre;
+                $this->suma_concentrado += ($d->litros_recarga * $d->concentracion_recarga* $d->maquinas->fac_refractor) / 100;
+                $this->suma_ph += $d->ph;
+               }
 
-       foreach($this->data as $d){
-        $this->suma_con_ini = $this->suma_con_ini + $d->concentracion_inicial;
-        $this->suma_vol_ini = $this->suma_vol_ini + $d->volumen_inicial;
-        $this->suma_vol_rec = $this->suma_vol_rec + $d->litros_recarga;
-        $this->suma_con_rec = $this->suma_con_rec + $d->concentracion_recarga;
-        $this->suma_con_fin = $this->suma_con_fin + $d->concentracion_final;
-        $this->nombre_maquina = $d->maquinas->ids;
-        $this->nombre_empresa = $d->maquinas->plantas->nombre;
-        $this->suma_concentrado += ($d->litros_recarga * $d->concentracion_recarga* $d->maquinas->fac_refractor) / 100;
-        $this->suma_ph += $d->ph;
-       }
-
-       $this->prom_con_ini = $this->suma_con_ini /  $this->data->count();
-       $this->prom_vol_ini = $this->suma_vol_ini / $this->data->count();
-       $this->prom_con_rec = $this->suma_con_rec / $this->data->count();
-       $this->prom_con_fin = $this->suma_con_fin / $this->data->count();
-       $this->promedio_concentrado = $this->suma_concentrado / $this->data->count();
-       $this->promedio_ph = $this->suma_ph / $this->data->count();
-
-
-
-       $this->valores_espuma = Refrigerante::whereBetween('created_at',[$from,$to])
-        ->where('maquina_id',$this->valor)
-        ->where('exceso_espuma','Si')
-        ->get();
-       $this->espuma_si = ($this->valores_espuma->count() * 100) / $this->data->count() ;
-       $this->espuma_no = (($this->data->count()-$this->valores_espuma->count())*100) / $this->data->count();
+               $this->prom_con_ini = $this->suma_con_ini /  $this->data->count();
+               $this->prom_vol_ini = $this->suma_vol_ini / $this->data->count();
+               $this->prom_con_rec = $this->suma_con_rec / $this->data->count();
+               $this->prom_con_fin = $this->suma_con_fin / $this->data->count();
+               $this->promedio_concentrado = $this->suma_concentrado / $this->data->count();
+               $this->promedio_ph = $this->suma_ph / $this->data->count();
 
 
-       $this->valores_aceite = Refrigerante::whereBetween('created_at',[$from,$to])
-        ->where('maquina_id',$this->valor)
-        ->where('aceites_entrampados','Si')
-        ->get();
-        $this->aceite_si = ($this->valores_aceite->count() * 100) / $this->data->count() ;
-       $this->aceite_no = (($this->data->count()-$this->valores_aceite->count())*100) / $this->data->count();
+
+               $this->valores_espuma = Refrigerante::whereBetween('created_at',[$from,$to])
+                ->where('maquina_id',$this->valor)
+                ->where('exceso_espuma','Si')
+                ->get();
+               $this->espuma_si = ($this->valores_espuma->count() * 100) / $this->data->count() ;
+               $this->espuma_no = (($this->data->count()-$this->valores_espuma->count())*100) / $this->data->count();
 
 
-       $this->valores_olor_malo = Refrigerante::whereBetween('created_at',[$from,$to])
-       ->where('maquina_id',$this->valor)
-       ->where('aroma','Malo')
-       ->get();
-       $this->olor_malo = ($this->valores_olor_malo->count() * 100) / $this->data->count() ;
+               $this->valores_aceite = Refrigerante::whereBetween('created_at',[$from,$to])
+                ->where('maquina_id',$this->valor)
+                ->where('aceites_entrampados','Si')
+                ->get();
+                $this->aceite_si = ($this->valores_aceite->count() * 100) / $this->data->count() ;
+               $this->aceite_no = (($this->data->count()-$this->valores_aceite->count())*100) / $this->data->count();
 
-       $this->valores_olor_regular = Refrigerante::whereBetween('created_at',[$from,$to])
-       ->where('maquina_id',$this->valor)
-       ->where('aroma','Regular')
-       ->get();
-       $this->olor_regular = ($this->valores_olor_regular->count() * 100) / $this->data->count() ;
 
-       $this->valores_olor_bueno = Refrigerante::whereBetween('created_at',[$from,$to])
-       ->where('maquina_id',$this->valor)
-       ->where('aroma','Bueno')
-       ->get();
-       $this->olor_bueno = ($this->valores_olor_bueno->count() * 100) / $this->data->count() ;
+               $this->valores_olor_malo = Refrigerante::whereBetween('created_at',[$from,$to])
+               ->where('maquina_id',$this->valor)
+               ->where('aroma','Malo')
+               ->get();
+               $this->olor_malo = ($this->valores_olor_malo->count() * 100) / $this->data->count() ;
+
+               $this->valores_olor_regular = Refrigerante::whereBetween('created_at',[$from,$to])
+               ->where('maquina_id',$this->valor)
+               ->where('aroma','Regular')
+               ->get();
+               $this->olor_regular = ($this->valores_olor_regular->count() * 100) / $this->data->count() ;
+
+               $this->valores_olor_bueno = Refrigerante::whereBetween('created_at',[$from,$to])
+               ->where('maquina_id',$this->valor)
+               ->where('aroma','Bueno')
+               ->get();
+               $this->olor_bueno = ($this->valores_olor_bueno->count() * 100) / $this->data->count() ;
+        }
+
 
     }
 

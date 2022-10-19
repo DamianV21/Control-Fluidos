@@ -56,6 +56,10 @@ Route::get('/reportes', function () {
     return view('vistas.reportes');
 });
 
+Route::get('/reportes-area', function () {
+    return view('vistas.reportes-areas');
+});
+
 Route::get('report/pdf/{maquina}/{f1}/{f2}', [ExportController::class, 'reportPDF']);
 
 

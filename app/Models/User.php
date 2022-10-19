@@ -92,7 +92,7 @@ class User extends \TCG\Voyager\Models\User
     public function scopeSupervisor($query)
     {
 
-        return $query->where('role_id', 14);
+        return $query->where('role_id', 5);
     }
 
     public function scopeIVAAsigned($query)

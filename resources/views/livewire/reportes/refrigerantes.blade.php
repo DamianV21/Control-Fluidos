@@ -45,12 +45,11 @@
 
             <div class="row">
                 <div class="col-md-3">
-                     <a class="btn btn-danger text-sm btn-block {{ count($data) < 1 ? 'disabled' : '' }}"
-                        href="{{ url('report/pdf' . '/' . $valor . '/' . $dateFrom . '/' . $dateTo) }}"
-                        target="_blank">
+                    <a class="btn btn-danger text-sm btn-block {{ count($data) < 1 ? 'disabled' : '' }}"
+                        href="{{ url('report/pdf' . '/' . $valor . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">
                         <i class="fa fa-file-pdf"></i> Generar PDF </a>
 
-                   <!-- <a class="btn btn-success btn-block {{ count($data) < 1 ? 'disabled' : '' }}"
+                    <!-- <a class="btn btn-success btn-block {{ count($data) < 1 ? 'disabled' : '' }}"
                         href="{{ url('report/excel' . '/' . $valor . '/' . $dateFrom . '/' . $dateTo) }}"
                         target="_blank">
                         <i class="fa fa-calculator"></i> Exportar a Excel </a>-->
@@ -66,8 +65,8 @@
                         Consultar
                     </button>
 
-                    <a class="btn btn-block text-sm text-white {{ count($data) < 1 ? 'disabled' : '' }}" href="/reportes"
-                        style="background-color: #383838">
+                    <a class="btn btn-block text-sm text-white {{ count($data) < 1 ? 'disabled' : '' }}"
+                        href="/reportes" style="background-color: #383838">
                         <i class="fas fa-paper-plane"></i> Nuevo reporte
                     </a>
                 </div>
@@ -116,7 +115,8 @@
         @if ($data->count() == 0)
             <center>
 
-                <img style="width: 250px" style="" src="{{ asset('img/undraw_predictive_analytics_re_wxt8.svg') }}" alt="">
+                <img style="width: 250px" style=""
+                    src="{{ asset('img/undraw_predictive_analytics_re_wxt8.svg') }}" alt="">
                 <span class="font-sans text-lg font-bold text-slate-500">Realiza una consulta para generar el
                     reporte</span>
             </center>
@@ -191,14 +191,16 @@
                                     <td class="text-white" style="background: #7099da"><strong>Litros de
                                             concentrado(Lts/día)</strong></td>
                                     @foreach ($data as $d)
-                                        <td class="text-center">{{ ($d->litros_recarga * $d->concentracion_recarga* $d->maquinas->fac_refractor) / 100 }}</td>
+                                        <td class="text-center">
+                                            {{ ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100 }}
+                                        </td>
                                     @endforeach
                                 </tr>
                                 <tr>
                                     <td class="text-white" style="background: #7099da"><strong>Total de concentrado
                                             acumulado</strong></td>
                                     @foreach ($data as $d)
-                                        <td class="text-center">{{ $num1 +=$d->concentracion_recarga }}</td>
+                                        <td class="text-center">{{ $num1 += $d->concentracion_recarga }}</td>
                                     @endforeach
                                 </tr>
                             </tbody>
@@ -415,7 +417,8 @@
                                             {{ $da->aceites_entrampados }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6"><strong>Técnico:</strong> {{ $da->usuarios->name ?? 'No existe'}}</td>
+                                        <td colspan="6"><strong>Técnico:</strong>
+                                            {{ $da->usuarios->name ?? 'No existe' }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -483,7 +486,18 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    window.addEventListener('data_vacia', function(e) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '¡Algo salió mal!',
+            footer: 'No hay datos para mostrar'
+        })
+    });
+</script>
 
 <script>
     Highcharts.chart('grafica', {

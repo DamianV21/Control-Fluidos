@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Control Fluidos | Plantas</title>
+    <title>Control Fluidos | Reportes maquinas</title>
 
     <!-- Custom fonts for this template-->
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
@@ -101,7 +101,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="reportes">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Estado de Máquina</span></a>
+                    <span>Estado de Maquina</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -222,14 +222,15 @@
 
                     <div class="card shadow mb-4 bg-white  border-white border-0">
                         <div class="card-body py-3 border-left-primary">
-                            <label  style="color: #5e80b7"> <i class="fas fa-industry"></i></label><strong> Información de Plantas</strong>
+                            <label  style="color: #5e80b7"> <i class="fas fa-fw fa-chart-area">
+                                </i></label><strong> Generar reporte "Estado de Área"</strong>
                         </div>
                     </div>
 
                     <!-- ?????????????????????? Contenido ??????????????????????????????-->
 
                     <x-app-layout>
-                        @livewire('vistas.index-plantas')
+                        @livewire('reportes.reporte-area')
                     </x-app-layout>
 
 
