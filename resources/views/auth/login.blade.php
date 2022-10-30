@@ -16,12 +16,12 @@
             @csrf
 
             <div>
-                <x-jet-label for="email" value="{{ __('Correo') }}" />
-                <x-jet-input id="email" placeholder="ejemplo@correo.com" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-label class="text-left" for="email" value="{{ __('Correo electrónico') }}" />
+                <x-jet-input id="email" placeholder="ejemplo@correo.com" class="block mt-1 w-full " type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Contraseña') }}" />
+                <x-jet-label class="text-left" for="password" value="{{ __('Contraseña') }}" />
                 <x-jet-input id="password" placeholder="Escribe tu contraseña" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
@@ -39,7 +39,7 @@
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4" >
+                <x-jet-button class="ml-4 redonde" >
                     {{ __('INICIAR SESIÓN') }}
                 </x-jet-button>
             </div>
@@ -48,3 +48,9 @@
 </x-guest-layout>
 
 
+<style>
+    .redonde {
+   border-radius: 50px;
+   background-color: #5e80b7;
+ }
+</style>
