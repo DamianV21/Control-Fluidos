@@ -30,8 +30,8 @@
 
 
             .bg-glass {
-                background-color: hsla(0, 0%, 100%, 0.541) !important;
-                backdrop-filter: saturate(200%) blur(10px);
+                background-color: hsla(0, 0%, 100%, 0.733) !important;
+                backdrop-filter: saturate(200%) blur(0px);
                 width: 430px;
                 border-radius: 15px;
             }
@@ -41,7 +41,7 @@
                 font-size: 65px;
                 letter-spacing: 5px;
                 word-spacing: 0px;
-                color: #ffffffbd;
+                color: #ffffffd5;
                 font-weight: bold;
                 text-decoration: none;
                 font-style: normal;
