@@ -35,7 +35,7 @@ class ExportController extends Controller
         $planta_nombre = Plant::find($planta_machine)->nombre;
         $planta_ubicacion = Plant::find($planta_machine)->ciudad;
         $usuario_id = Machine::find($valor)->usuario_id;
-        $responsable = User::find($usuario_id)->name;
+        $responsable = User::find($usuario_id)->name ?? 'No Aplica';
         $producto = Machine::find($valor)->a_g_guias;
         $machine = Machine::find($valor)->ids;
         $tipo_maquina = Machine::find($valor)->tipo;
