@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class ReporteArea extends Component
 {
-    public $plantas=[],$areas=[],$valores=[],$planta,$area,$valor;
+    public $plantas=[],$areas=[],$valores=[],$data=[],$planta,$area,$valor;
     public $lineas=[],$maquinas=[],$datos=[];
 
 
@@ -27,8 +27,9 @@ class ReporteArea extends Component
         ->orWhere('supervisor_id',auth()->id())
         ->get();
         $this->areas = collect();
-        $this->lineas = collect();
+        $this->data = collect();
         $this->maquinas = collect();
+        $this->valores = collect();
     }
 
     public function updatedPlanta($value){
@@ -37,9 +38,13 @@ class ReporteArea extends Component
 
     public function updatedArea($value2)
     {
+       $this->valores=Machine::where("area_id",$value2)->select("id")->get();
 
-       $this->lineas=Line::where("area_id",$value2)->get();
-       $this->maquinas=Machine::where("area_id",$value2)->get();
+    }
+
+    public function Consulta()
+    {
+        $this->data=Refrigerante::whereIn("maquina_id",[205,206,207,208,209])->get();
     }
 
 

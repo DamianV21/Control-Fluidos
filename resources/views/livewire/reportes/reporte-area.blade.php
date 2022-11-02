@@ -5,7 +5,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <h6><strong>Elige una planta</strong></h6>
+                    <h6><strong>Elige una Planta</strong></h6>
                     <div class="form-group">
                         <select wire:model="planta" class="form-control">
                             <option value="0">Ninguno</option>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <h6><strong>Elige una área</strong></h6>
+                    <h6><strong>Elige una Área</strong></h6>
                     <div class="form-group">
                         <select wire:model="area" class="form-control">
                             <option selected value="0">Ninguno</option>
@@ -41,33 +41,37 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-3">
+
+
+
+                </div>
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-3 pt-2">
+                    <button wire:click="Consulta()" class="btn  btn-block text-sm text-white"
+                        style="background-color: #5e80b7;"> <i class="fa fa-search"></i>
+                        Consultar
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
+
+
     <div>
+       <h1>Total resultados {{ $data->count() }}</h1>
+        @foreach ($data as $d)
 
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Maquinas</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($maquinas as $maquina)
-                <tr>
-                    <th scope="row">{{ $maquina->ids }}</th>
-                    <td>{{ $maquina->refrigerantes->ph ?? 'No existe' }}</td>
-                  </tr>
-                @endforeach
-
-
-            </tbody>
-          </table>
-
-
+            <p>{{ $d->maquinas->ids}}</p>
+        @endforeach
     </div>
+
+
 
 </div>

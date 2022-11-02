@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-md-3">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 pt-2">
                     <button wire:click="Consulta()"
                         class="btn  btn-block text-sm text-white {{ count($data) > 1 ? 'disabled' : '' }}"
                         style="background-color: #5e80b7;"> <i class="fa fa-search"></i>
@@ -72,6 +72,9 @@
                 </div>
             </div>
         </div>
+        {{$valores}}
+        {{$valor}}
+
     </div>
 
 

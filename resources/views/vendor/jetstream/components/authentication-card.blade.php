@@ -31,7 +31,7 @@
 
             .bg-glass {
                 background-color: hsla(0, 0%, 100%, 0.733) !important;
-                backdrop-filter: saturate(200%) blur(0px);
+                backdrop-filter: saturate(200%) blur(5px);
                 width: 430px;
                 border-radius: 15px;
             }
