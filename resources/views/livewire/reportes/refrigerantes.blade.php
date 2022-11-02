@@ -72,8 +72,7 @@
                 </div>
             </div>
         </div>
-        {{$valores}}
-        {{$valor}}
+
 
     </div>
 
