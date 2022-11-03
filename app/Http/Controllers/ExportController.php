@@ -21,8 +21,9 @@ class ExportController extends Controller
         $dias_d = [];
 
         $daa = null;
-
-        $suma_con_ini=0; $suma_vol_ini=0; $suma_vol_rec=0; $suma_con_rec=0; $suma_con_fin=0;
+        $num1=0;
+        $suma_concentrado=0;
+        $suma_con_ini=0; $suma_vol_ini=0; $suma_vol_rec=0; $suma_con_rec=0; $suma_con_fin=0; $suma_ph=0;
 
         $from = Carbon::parse($dateFrom)->format('Y-m-d') . ' 00:00:00';
         $to = Carbon::parse($dateTo)->format('Y-m-d') . ' 23:59:59';
@@ -31,16 +32,16 @@ class ExportController extends Controller
             ->where('maquina_id', $valor)
             ->get();
 
-        $planta_machine = Machine::find($valor)->planta_id;
-        $planta_nombre = Plant::find($planta_machine)->nombre;
-        $planta_ubicacion = Plant::find($planta_machine)->ciudad;
-        $usuario_id = Machine::find($valor)->usuario_id;
+        $planta_machine = Machine::find($valor)->planta_id ?? 'No Aplica';
+        $planta_nombre = Plant::find($planta_machine)->nombre ?? 'No Aplica';
+        $planta_ubicacion = Plant::find($planta_machine)->ciudad ?? 'No Aplica';
+        $usuario_id = Machine::find($valor)->usuario_id ?? 'No Aplica';
         $responsable = User::find($usuario_id)->name ?? 'No Aplica';
-        $producto = Machine::find($valor)->a_g_guias;
-        $machine = Machine::find($valor)->ids;
-        $tipo_maquina = Machine::find($valor)->tipo;
-        $area_id = Machine::find($valor)->area_id;
-        $nombre_area = Area::find($area_id)->nombre;
+        $producto = Machine::find($valor)->producto ?? 'No Aplica';
+        $machine = Machine::find($valor)->ids ?? 'No Aplica';
+        $tipo_maquina = Machine::find($valor)->tipo ?? 'No Aplica';
+        $area_id = Machine::find($valor)->area_id ?? 'No Aplica';
+        $nombre_area = Area::find($area_id)->nombre ?? 'No Aplica';
 
         foreach ($data as $d) {
             $suma_con_ini = $suma_con_ini + $d->concentracion_inicial;
@@ -48,6 +49,8 @@ class ExportController extends Controller
             $suma_vol_rec = $suma_vol_rec + $d->litros_recarga;
             $suma_con_rec = $suma_con_rec + $d->concentracion_recarga;
             $suma_con_fin = $suma_con_fin + $d->concentracion_final;
+            $suma_ph = $suma_ph + $d->ph;
+            $suma_concentrado += ($d->litros_recarga * $d->concentracion_recarga* $d->maquinas->fac_refractor) / 100;
             $con_inicial[] = [$d['concentracion_inicial']];
             $con_final[] = [$d['concentracion_final']];
             $reco_min[] = [$d->maquinas['reco_min']];
@@ -59,6 +62,8 @@ class ExportController extends Controller
         $prom_vol_ini = $suma_vol_ini / $data->count();
         $prom_con_rec = $suma_con_rec / $data->count();
         $prom_con_fin = $suma_con_fin / $data->count();
+        $promedio_ph = $suma_ph / $data->count();
+        $promedio_concentrado = $suma_concentrado / $data->count();
 
         $date = \Carbon\Carbon::now()->format('d-m-Y h:i:s A');
 
@@ -82,7 +87,11 @@ class ExportController extends Controller
             'con_final',
             'reco_min',
             'reco_max',
-            'dias_d'
+            'dias_d',
+            'num1',
+            'promedio_ph',
+            'promedio_concentrado'
+
         ));
 
 

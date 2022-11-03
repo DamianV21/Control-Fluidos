@@ -161,7 +161,7 @@
                                                                                  fill: false,
                                                                                  backgroundColor: 'rgb(255,255 ,255 )',
                                                                                  borderColor: 'rgb(255,255 ,255 )',
-                                                                                 data: [10],
+                                                                                 data: [20],
                                                                                },
                                                                                {
                                                                                  label: 'Concentración Inicial',
@@ -349,11 +349,20 @@
                 </tr>
                 <tr>
                     <td class="rob-bol" style="text-align:center; background: #BFBFBF; border: 1px solid #000000;">
+                        Rango pH
+                    </td>
+                    @foreach ($data as $d)
+                        <td class="text-center" style="text-align:center; border: 1px solid #000000;">
+                            {{ $d->ph }}</td>
+                    @endforeach
+                </tr>
+                <tr>
+                    <td class="rob-bol" style="text-align:center; background: #BFBFBF; border: 1px solid #000000;">
                         Litros de
                         concentrado(Lts/día)</td>
                     @foreach ($data as $d)
                         <td class="text-center" style="text-align:center; border: 1px solid #000000;">
-                            {{ $d->concentracion_inicial }}</td>
+                            {{ ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100 }}</td>
                     @endforeach
                 </tr>
                 <tr>
@@ -364,7 +373,7 @@
                         acumulado</td>
                     @foreach ($data as $d)
                         <td class="text-center" style="text-align:center; border: 1px solid #000000;">
-                            {{ $d->concentracion_inicial }}</td>
+                            {{ $num1 += ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100 }}</td>
                     @endforeach
                 </tr>
             </tbody>
@@ -469,12 +478,23 @@
                             <tr>
                                 <td class="rob-bol"
                                     style="text-align:center; background: #BFBFBF; border: 1px solid #000000;">
+                                    pH
+                                </td>
+
+                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">
+                                    {{ round($promedio_ph, 2) }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="rob-bol"
+                                    style="text-align:center; background: #BFBFBF; border: 1px solid #000000;">
                                     Litros de
                                     Concentrado
                                     (Lts/días)
                                 </td>
 
-                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">9.6</td>
+                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">{{ round($promedio_concentrado, 2) }}</td>
 
                             </tr>
                             <tr>
@@ -485,7 +505,7 @@
                                     acumulado
                                 </td>
 
-                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">7.5</td>
+                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">{{ $num1 }}</td>
 
                             </tr>
 

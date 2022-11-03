@@ -182,7 +182,7 @@
                                     @endforeach
                                 </tr>
                                 <tr>
-                                    <td class="text-white" style="background: #7099da"><strong>pH</strong>
+                                    <td class="text-white" style="background: #7099da"><strong>Rango pH</strong>
                                     </td>
                                     @foreach ($data as $d)
                                         <td class="text-center">{{ $d->ph }}</td>
@@ -201,7 +201,7 @@
                                     <td class="text-white" style="background: #7099da"><strong>Total de concentrado
                                             acumulado</strong></td>
                                     @foreach ($data as $d)
-                                        <td class="text-center">{{ $num1 += $d->concentracion_recarga }}</td>
+                                        <td class="text-center">{{ $num1 += ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100 }}</td>
                                     @endforeach
                                 </tr>
                             </tbody>
