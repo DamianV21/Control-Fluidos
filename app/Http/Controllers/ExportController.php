@@ -17,13 +17,23 @@ class ExportController extends Controller
 {
     public function reportPDF($valor, $dateFrom = null, $dateTo = null)
     {
-        $data = []; $con_inicial = []; $con_final = []; $reco_min= []; $reco_max= []; $dias = [];
+        $data = [];
+        $con_inicial = [];
+        $con_final = [];
+        $reco_min = [];
+        $reco_max = [];
+        $dias = [];
         $dias_d = [];
 
         $daa = null;
-        $num1=0;
-        $suma_concentrado=0;
-        $suma_con_ini=0; $suma_vol_ini=0; $suma_vol_rec=0; $suma_con_rec=0; $suma_con_fin=0; $suma_ph=0;
+        $num1 = 0;
+        $suma_concentrado = 0;
+        $suma_con_ini = 0;
+        $suma_vol_ini = 0;
+        $suma_vol_rec = 0;
+        $suma_con_rec = 0;
+        $suma_con_fin = 0;
+        $suma_ph = 0;
 
         $from = Carbon::parse($dateFrom)->format('Y-m-d') . ' 00:00:00';
         $to = Carbon::parse($dateTo)->format('Y-m-d') . ' 23:59:59';
@@ -50,13 +60,12 @@ class ExportController extends Controller
             $suma_con_rec = $suma_con_rec + $d->concentracion_recarga;
             $suma_con_fin = $suma_con_fin + $d->concentracion_final;
             $suma_ph = $suma_ph + $d->ph;
-            $suma_concentrado += ($d->litros_recarga * $d->concentracion_recarga* $d->maquinas->fac_refractor) / 100;
+            $suma_concentrado += ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100;
             $con_inicial[] = [$d['concentracion_inicial']];
             $con_final[] = [$d['concentracion_final']];
             $reco_min[] = [$d->maquinas['reco_min']];
             $reco_max[] = [$d->maquinas['reco_max']];
             $dias_d[] =  \Carbon\Carbon::parse($d->created_at)->format('d');
-
         }
         $prom_con_ini = $suma_con_ini /  $data->count();
         $prom_vol_ini = $suma_vol_ini / $data->count();
@@ -66,6 +75,46 @@ class ExportController extends Controller
         $promedio_concentrado = $suma_concentrado / $data->count();
 
         $date = \Carbon\Carbon::now()->format('d-m-Y h:i:s A');
+
+        //Datos de Graficas
+
+        $valores_espuma = Refrigerante::whereBetween('created_at', [$from, $to])
+            ->where('maquina_id', $valor)
+            ->where('exceso_espuma', 'Si')
+            ->get();
+        $espuma_si = ($valores_espuma->count() * 100) / $data->count();
+        $espuma_no = (($data->count() - $valores_espuma->count()) * 100) / $data->count();
+
+
+        $ultimo_registro_espuma = $data->first()->exceso_espuma ?? null;
+        $ultimo_registro_olor = $data->first()->aroma ?? null;
+        $ultimo_registro_aceites = $data->first()->aceites_entrampados ?? null;
+
+
+        $valores_olor_malo = Refrigerante::whereBetween('created_at', [$from, $to])
+            ->where('maquina_id', $valor)
+            ->where('aroma', 'Malo')
+            ->get();
+        $olor_malo = ($valores_olor_malo->count() * 100) / $data->count();
+
+        $valores_olor_regular = Refrigerante::whereBetween('created_at', [$from, $to])
+            ->where('maquina_id', $valor)
+            ->where('aroma', 'Regular')
+            ->get();
+        $olor_regular = ($valores_olor_regular->count() * 100) / $data->count();
+
+        $valores_olor_bueno = Refrigerante::whereBetween('created_at', [$from, $to])
+            ->where('maquina_id', $valor)
+            ->where('aroma', 'Bueno')
+            ->get();
+        $olor_bueno = ($valores_olor_bueno->count() * 100) / $data->count();
+
+        $valores_aceite = Refrigerante::whereBetween('created_at',[$from,$to])
+                ->where('maquina_id',$valor)
+                ->where('aceites_entrampados','Si')
+                ->get();
+                $aceite_si = ($valores_aceite->count() * 100) / $data->count() ;
+               $aceite_no = (($data->count()-$valores_aceite->count())*100) / $data->count();
 
 
         $pdf = PDF::loadView('pdf.reporte', compact(
@@ -90,7 +139,17 @@ class ExportController extends Controller
             'dias_d',
             'num1',
             'promedio_ph',
-            'promedio_concentrado'
+            'promedio_concentrado',
+            'espuma_si',
+            'espuma_no',
+            'olor_malo',
+            'olor_regular',
+            'olor_bueno',
+            'aceite_si',
+            'aceite_no',
+            'ultimo_registro_espuma',
+            'ultimo_registro_olor',
+            'ultimo_registro_aceites'
 
         ));
 
@@ -98,10 +157,10 @@ class ExportController extends Controller
 
 
         $pdf->setPaper('legal', 'landscape');
-       // $pdf->setOptions('defaultFont', 'Courier');
+        // $pdf->setOptions('defaultFont', 'Courier');
 
 
-        return $pdf->stream($machine.' '.$nombre_area.' '.$date.'.pdf'); //VisualizarReporte
+        return $pdf->stream($machine . ' ' . $nombre_area . ' ' . $date . '.pdf'); //VisualizarReporte
         //return $pdf->download('MaquinaReporte.pdf'); //DescargarReporte
 
     }

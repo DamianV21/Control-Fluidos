@@ -68,6 +68,23 @@
         .rob-bol {
             font-family: roboto-bold;
         }
+
+        .green {
+            background: rgb(155, 187, 89);
+            color: white;
+        }
+
+        .red {
+            background: rgb(240, 0, 0);
+            color: white;
+        }
+
+        .yellow {
+            background: rgb(240, 236, 0);
+
+        }
+
+
     </style>
 </head>
 
@@ -152,56 +169,56 @@
         $d_con_final = json_encode($con_final);
         $d_dias = json_encode($dias_d);
         $qc->setConfig("{
-                                                                                 type: 'line',
-                                                                           data: {
-                                                                             labels: $d_dias,
-                                                                             datasets: [
-                                                                                 {
-                                                                                 label: 'Datos:',
-                                                                                 fill: false,
-                                                                                 backgroundColor: 'rgb(255,255 ,255 )',
-                                                                                 borderColor: 'rgb(255,255 ,255 )',
-                                                                                 data: [20],
-                                                                               },
-                                                                               {
-                                                                                 label: 'Concentración Inicial',
-                                                                                 backgroundColor: 'rgb(149, 147, 146)',
-                                                                                 borderColor: 'rgb(149, 147, 146)',
-                                                                                 data: $d_con_inicial,
-                                                                                 fill: false,
-                                                                               },
-                                                                               {
-                                                                                 label: 'Concentración Final',
-                                                                                 backgroundColor: 'rgb(94, 128, 183)',
-                                                                                 borderColor: 'rgb(94, 128, 183)',
-                                                                                 data: $d_con_final,
-                                                                                 fill: false,
-                                                                               },
-                                                                               {
-                                                                                 label: 'Minimo',
-                                                                                 backgroundColor: 'rgb(193, 192, 192 )',
-                                                                                 borderColor: 'rgb(193, 192, 192)',
-                                                                                 data: $d_reco_min,
-                                                                                 fill: false,
-                                                                               },
-                                                                               {
-                                                                                 label: 'Maximo',
-                                                                                 backgroundColor: 'rgb(193, 192, 192)',
-                                                                                 borderColor: 'rgb(193, 192, 192)',
-                                                                                 data: $d_reco_max,
-                                                                                 fill: false,
-                                                                               },
+                                                                                         type: 'line',
+                                                                                   data: {
+                                                                                     labels: $d_dias,
+                                                                                     datasets: [
+                                                                                         {
+                                                                                         label: 'Datos:',
+                                                                                         fill: false,
+                                                                                         backgroundColor: 'rgb(255,255 ,255 )',
+                                                                                         borderColor: 'rgb(255,255 ,255 )',
+                                                                                         data: [20],
+                                                                                       },
+                                                                                       {
+                                                                                         label: 'Concentración Inicial',
+                                                                                         backgroundColor: 'rgb(149, 147, 146)',
+                                                                                         borderColor: 'rgb(149, 147, 146)',
+                                                                                         data: $d_con_inicial,
+                                                                                         fill: false,
+                                                                                       },
+                                                                                       {
+                                                                                         label: 'Concentración Final',
+                                                                                         backgroundColor: 'rgb(94, 128, 183)',
+                                                                                         borderColor: 'rgb(94, 128, 183)',
+                                                                                         data: $d_con_final,
+                                                                                         fill: false,
+                                                                                       },
+                                                                                       {
+                                                                                         label: 'Minimo',
+                                                                                         backgroundColor: 'rgb(193, 192, 192 )',
+                                                                                         borderColor: 'rgb(193, 192, 192)',
+                                                                                         data: $d_reco_min,
+                                                                                         fill: false,
+                                                                                       },
+                                                                                       {
+                                                                                         label: 'Maximo',
+                                                                                         backgroundColor: 'rgb(193, 192, 192)',
+                                                                                         borderColor: 'rgb(193, 192, 192)',
+                                                                                         data: $d_reco_max,
+                                                                                         fill: false,
+                                                                                       },
 
 
-                                                                             ],
-                                                                           },
-                                                                           options: {
-                                                                             title: {
-                                                                               display: false,
-                                                                               text: 'Gráfica de Concentración',
-                                                                             },
-                                                                           },
-                                                                               }");
+                                                                                     ],
+                                                                                   },
+                                                                                   options: {
+                                                                                     title: {
+                                                                                       display: false,
+                                                                                       text: 'Gráfica de Concentración',
+                                                                                     },
+                                                                                   },
+                                                                                       }");
 
         $a = $qc->getUrl();
         $imageData = base64_encode(file_get_contents($a));
@@ -362,7 +379,8 @@
                         concentrado(Lts/día)</td>
                     @foreach ($data as $d)
                         <td class="text-center" style="text-align:center; border: 1px solid #000000;">
-                            {{ ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100 }}</td>
+                            {{ ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100 }}
+                        </td>
                     @endforeach
                 </tr>
                 <tr>
@@ -373,7 +391,8 @@
                         acumulado</td>
                     @foreach ($data as $d)
                         <td class="text-center" style="text-align:center; border: 1px solid #000000;">
-                            {{ $num1 += ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100 }}</td>
+                            {{ $num1 += ($d->litros_recarga * $d->concentracion_recarga * $d->maquinas->fac_refractor) / 100 }}
+                        </td>
                     @endforeach
                 </tr>
             </tbody>
@@ -494,7 +513,8 @@
                                     (Lts/días)
                                 </td>
 
-                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">{{ round($promedio_concentrado, 2) }}</td>
+                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">
+                                    {{ round($promedio_concentrado, 2) }}</td>
 
                             </tr>
                             <tr>
@@ -505,7 +525,8 @@
                                     acumulado
                                 </td>
 
-                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">{{ $num1 }}</td>
+                                <td class="text-center" style="text-align:center; border: 1px solid #000000;">
+                                    {{ $num1 }}</td>
 
                             </tr>
 
@@ -581,6 +602,24 @@
     <br>
 
     <!--GRAFICAs CIRCULOS-->
+
+    <?php
+    $arr_espuma_aceite = [
+        'Si' => 'red',
+        'No' => 'green',
+        'si' => 'red',
+        'no' => 'green',
+    ];
+
+    $arr_aroma = [
+        'Regular' => 'yellow',
+        'Malo' => 'red',
+        'Bueno' => 'green',
+        'regular' => 'yellow',
+        'malo' => 'red',
+        'bueno' => 'green',
+    ];
+    ?>
     <section>
         <table cellpadding="0" cellspacing="0" width="100%">
             <tbody>
@@ -590,29 +629,28 @@
 
                         $qc = new QuickChart();
                         $qc->setConfig("{
-                                                                                                            type: 'doughnut',
-                                                                              data: {
-                                                                                datasets: [
-                                                                                  {
-                                                                                    data: [94, 25, 72],
-                                                                                    backgroundColor: [
-                                                                                      'rgb(155, 187, 89)',
-                                                                                      'rgb(240, 236, 0)',
-                                                                                      'rgb(240, 0, 0)',
+                                                                                                                                    type: 'doughnut',
+                                                                                                      data: {
+                                                                                                        datasets: [
+                                                                                                          {
+                                                                                                            data: [$espuma_no,$espuma_si],
+                                                                                                            backgroundColor: [
+                                                                                                              'rgb(155, 187, 89)',
+                                                                                                              'rgb(240, 0, 0)',
 
-                                                                                    ],
-                                                                                    label: 'Dataset 1',
-                                                                                  },
-                                                                                ],
-                                                                                labels: ['Nada', 'Poco', 'Mucho'],
-                                                                              },
-                                                                              options: {
-                                                                                title: {
-                                                                                  display: true,
-                                                                                  text: 'Espuma',
-                                                                                },
-                                                                              },
-                                                                                                                                               }");
+                                                                                                            ],
+                                                                                                            label: 'Dataset 1',
+                                                                                                          },
+                                                                                                        ],
+                                                                                                        labels: ['No', 'Si'],
+                                                                                                      },
+                                                                                                      options: {
+                                                                                                        title: {
+                                                                                                          display: true,
+                                                                                                          text: 'Espuma',
+                                                                                                        },
+                                                                                                      },
+                                                                                                                                                                       }");
 
                         $a = $qc->getUrl();
                         $imageData = base64_encode(file_get_contents($a));
@@ -624,29 +662,29 @@
                         <?php
                         $qc = new QuickChart();
                         $qc->setConfig("{
-                                                                                                            type: 'doughnut',
-                                                                              data: {
-                                                                                datasets: [
-                                                                                  {
-                                                                                    data: [94, 25, 72],
-                                                                                    backgroundColor: [
-                                                                                      'rgb(155, 187, 89)',
-                                                                                      'rgb(240, 236, 0)',
-                                                                                      'rgb(240, 0, 0)',
+                                                                                                                                    type: 'doughnut',
+                                                                                                      data: {
+                                                                                                        datasets: [
+                                                                                                          {
+                                                                                                            data: [$olor_bueno, $olor_regular, $olor_malo],
+                                                                                                            backgroundColor: [
+                                                                                                              'rgb(155, 187, 89)',
+                                                                                                              'rgb(240, 236, 0)',
+                                                                                                              'rgb(240, 0, 0)',
 
-                                                                                    ],
-                                                                                    label: 'Dataset 1',
-                                                                                  },
-                                                                                ],
-                                                                                labels: ['Ninguno', 'Ligero', 'Fuerte'],
-                                                                              },
-                                                                              options: {
-                                                                                title: {
-                                                                                  display: true,
-                                                                                  text: 'Mal olor',
-                                                                                },
-                                                                              },
-                                                                                                                                               }");
+                                                                                                            ],
+                                                                                                            label: 'Dataset 1',
+                                                                                                          },
+                                                                                                        ],
+                                                                                                        labels: ['Bueno', 'Regular', 'Malo'],
+                                                                                                      },
+                                                                                                      options: {
+                                                                                                        title: {
+                                                                                                          display: true,
+                                                                                                          text: 'Mal olor',
+                                                                                                        },
+                                                                                                      },
+                                                                                                                                                                       }");
 
                         $a = $qc->getUrl();
                         $imageData = base64_encode(file_get_contents($a));
@@ -657,29 +695,28 @@
                         <?php
                         $qc = new QuickChart();
                         $qc->setConfig("{
-                                                                                                            type: 'doughnut',
-                                                                              data: {
-                                                                                datasets: [
-                                                                                  {
-                                                                                    data: [94, 25, 72],
-                                                                                    backgroundColor: [
-                                                                                      'rgb(155, 187, 89)',
-                                                                                      'rgb(240, 236, 0)',
-                                                                                      'rgb(240, 0, 0)',
+                                                                                                                                    type: 'doughnut',
+                                                                                                      data: {
+                                                                                                        datasets: [
+                                                                                                          {
+                                                                                                            data: [$aceite_no, $aceite_si],
+                                                                                                            backgroundColor: [
+                                                                                                              'rgb(155, 187, 89)',
+                                                                                                              'rgb(240, 0, 0)',
 
-                                                                                    ],
-                                                                                    label: 'Dataset 1',
-                                                                                  },
-                                                                                ],
-                                                                                labels: ['Nada', 'Poco', 'Mucho'],
-                                                                              },
-                                                                              options: {
-                                                                                title: {
-                                                                                  display: true,
-                                                                                  text: 'Aceite entrampado',
-                                                                                },
-                                                                              },
-                                                                                                                                               }");
+                                                                                                            ],
+                                                                                                            label: 'Dataset 1',
+                                                                                                          },
+                                                                                                        ],
+                                                                                                        labels: ['No', 'Si'],
+                                                                                                      },
+                                                                                                      options: {
+                                                                                                        title: {
+                                                                                                          display: true,
+                                                                                                          text: 'Aceite entrampado',
+                                                                                                        },
+                                                                                                      },
+                                                                                                                                                                       }");
 
                         $a = $qc->getUrl();
                         $imageData = base64_encode(file_get_contents($a));
@@ -695,8 +732,8 @@
                                 <tr>
                                     <td style="text-align:center;  border: 1px solid black;" width="50%">Ultimo
                                         registro:</td>
-                                    <td style="text-align:center; background:#F00000; border: 1px solid black;"
-                                        width="50%">Mucho</td>
+                                    <td style="text-align:center; border: 1px solid black;"
+                                        class="<?php echo $arr_espuma_aceite[$ultimo_registro_espuma]; ?>" width="50%">{{ $ultimo_registro_espuma }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -707,8 +744,8 @@
                                 <tr>
                                     <td style="text-align:center;  border: 1px solid black;" width="50%">Ultimo
                                         registro:</td>
-                                    <td style="text-align:center; background:#F0EC00; border: 1px solid black;"
-                                        width="50%">Ligero</td>
+                                    <td style="text-align:center; border: 1px solid black;" class="<?php echo $arr_aroma[$ultimo_registro_olor]; ?>"
+                                        width="50%">{{ $ultimo_registro_olor }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -719,8 +756,8 @@
                                 <tr>
                                     <td style="text-align:center;  border: 1px solid black;" width="50%">Ultimo
                                         registro:</td>
-                                    <td style="text-align:center; background:#9BBB59;  border: 1px solid black;"
-                                        width="50%">Nada</td>
+                                    <td style="text-align:center;   border: 1px solid black;" class="<?php echo $arr_espuma_aceite[$ultimo_registro_aceites]; ?>"
+                                        width="50%">{{ $ultimo_registro_aceites}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -822,17 +859,17 @@
                             <td style="border: 1px solid black; " rowspan="2"><strong>Año:</strong>
                                 {{ \Carbon\Carbon::parse($da->created_at)->format('Y') }}</td>
                             <td style="border: 1px solid black; ">Espuma</td>
-                            <td style="border: 1px solid black; background-color: green">{{ $da->exceso_espuma }}
+                            <td style="border: 1px solid black; text-align:center;" class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">{{ $da->exceso_espuma }}
                             </td>
                             <td style="border: 1px solid black; ">Mal olor</td>
-                            <td style="border: 1px solid black; background-color: yellow">{{ $da->aroma }}</td>
+                            <td style="border: 1px solid black; text-align:center; " class="<?php echo $arr_aroma[$da->aroma]; ?>">{{ $da->aroma }}</td>
                             <td style="border: 1px solid black; ">A.Entrampado</td>
-                            <td style="border: 1px solid black; background-color: red">
+                            <td style="border: 1px solid black; text-align:center; " class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">
                                 {{ $da->aceites_entrampados }}</td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid black; " colspan="6"><strong>Tecnico:</strong>
-                                {{ $da->usuario_id }}</td>
+                                {{ $da->usuarios->name ?? 'No existe' }}</td>
                         </tr>
                     </tbody>
                 </table>
