@@ -36,9 +36,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
                 <div class="sidebar-brand-icon">
-                    <img width="70px" src="{{ asset('img/logo_cf.png') }}" alt="logo">
+                    <img width="50px" src="{{ asset('img/logo_sf.png') }}" alt="logo">
                 </div>
-                <div class="sidebar-brand-text mx-3">Control Fluidos</div>
+                <div class="sidebar-brand-text mx-3 text-lg">ADMON</div>
             </a>
 
             <!-- Divider -->
