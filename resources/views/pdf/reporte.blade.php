@@ -606,6 +606,7 @@
     <?php
     $arr_espuma_aceite = [
         'Si' => 'red',
+        'Sí' => 'red',
         'No' => 'green',
         'si' => 'red',
         'no' => 'green',
