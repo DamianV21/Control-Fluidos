@@ -314,7 +314,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title"><label style="color: #5e80b7"> <i
                                 class="fas fa-cloud-upload-alt"></i></label>
-                        <span class="span-bold"> Registrar Refrigerante</span>
+                        <span class="span-bold"> Registrar Refrigerante  "{{ $view_maquina_nombre }}"</span>
                     </h5>
                     <a type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
@@ -423,10 +423,18 @@
                                 <select class="form-control redonde" id="color" wire:model="color">
 
                                     <option selected>Elige un valor</option>
-                                    <option value="Marrón">Marrón</option>
                                     <option value="Beige">Beige</option>
+                                    <option value="Marrón">Marrón</option>
                                     <option value="Blanco">Blanco</option>
                                     <option value="Amarillo">Amarillo</option>
+                                    <option value="Amarillo claro">Amarillo claro</option>
+                                    <option value="Amarillo oscuro">Amarillo oscuro</option>
+                                    <option value="Bronceado">Bronceado</option>
+                                    <option value="Bronceado suave">Bronceado claro</option>
+                                    <option value="Bronceado oscuro">Bronceado oscuro</option>
+                                    <option value="Verde">Verde</option>
+                                    <option value="Verde claro">Verde claro</option>
+                                    <option value="Verde oscuro">Verde oscuro</option>
                                 </select>
                                 @error('color')
                                     <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
@@ -450,7 +458,7 @@
                         <div class="form-group row">
                             <label for="comentarios" class="col-5"><strong>Comentarios</strong></label>
                             <div class="col-7">
-                                <textarea class="redondee" placeholder="Escribe un comentario" style="heigh:auto;" id="comentarios" wire:model="comentarios"></textarea>
+                                <textarea class="redond" placeholder="Escribe un comentario"  id="comentarios" wire:model="comentarios"></textarea>
                                 @error('comentarios')
                                     <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
                                 @enderror
@@ -493,7 +501,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title"><label style="color: #5e80b7"> <i
                                 class="fas fa-cloud-upload-alt"></i></label>
-                        <span class="span-bold"> Registrar Aceites</span>
+                        <span class="span-bold"> Registrar Aceites   "{{ $view_maquina_nombre }}"</span>
                     </h5>
                     <a type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
@@ -596,7 +604,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title"><label style="color: #5e80b7"> <i
                                 class="fas fa-cloud-upload-alt"></i></label>
-                        <span class="span-bold"> Registrar Grasas</span>
+                        <span class="span-bold"> Registrar Grasas   "{{ $view_maquina_nombre }}"</span>
                     </h5>
                     <a type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
@@ -654,7 +662,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title"><label style="color: #5e80b7"> <i
                                 class="fas fa-cloud-upload-alt"></i></label>
-                        <span class="span-bold"> Registrar Mantenimientos</span>
+                        <span class="span-bold"> Registrar Mantenimientos   "{{ $view_maquina_nombre }}"</span>
                     </h5>
                     <a type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
@@ -812,12 +820,22 @@
     border-radius: 50px;
     }
     .redondee{
-    border-radius: 0px;
+    border-radius: 5px;
+
+    }
+
+    .redond{
+    border-radius: 15px;
+    width: 260px;
     }
 
     @media(max-width:900px){
     .redondee{
     border-radius: 15px;
+    }
+
+    .redond{
+    width: 180px;
     }
 
 
