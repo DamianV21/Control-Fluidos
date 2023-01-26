@@ -831,9 +831,6 @@
     <section class="columnas">
 
         <!-- Tabla comentarios -->
-
-
-
         <div>
             <center><span class="rob-bol" style="font-size: 18px; "> Observaciones</span></center>
         </div>

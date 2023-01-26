@@ -14,8 +14,8 @@ use Livewire\Component;
 class ReporteArea extends Component
 {
     public $plantas=[],$areas=[],$valores=[],$data=[],$fechas=[],$concentraciones_prom=[],$planta,$area,$valor,$count_data=0;
-    public $lineas=[],$maquinas=[],$datos=[],$nombre_area,$nombre_planta,$dateFrom, $dateTo, $concentracion_baja = 0, $concentracion_alta =0,
-     $concentracion_ok = 0;
+    public $lineas=[],$maquinas=[],$datos=[],$id_area,$val,$nombre_area,$nombre_planta,$dateFrom, $dateTo, $concentracion_baja = 0, $concentracion_alta =0,
+     $concentracion_ok = 0, $ph_ok=0, $ph_bajo=0;
 
 
 
@@ -34,17 +34,21 @@ class ReporteArea extends Component
         $this->data = collect();
         $this->maquinas = collect();
         $this->valores = collect();
+        $this->val = collect();
     }
 
     public function updatedPlanta($value){
         $this->areas=Area::where("planta_id",$value)->get();
         $this->nombre_planta = Plant::where("id",$value)->first()->nombre ?? null;
+
+
     }
 
     public function updatedArea($value2)
     {
        $this->maquinas=Machine::where("area_id",$value2)->select('id')->get()->toArray();
        $this->nombre_area = Area::where("id",$value2)->first()->nombre ?? null;
+       $this->id_area = Area::where("id",$value2)->first()->id ?? null;
 
     }
 
@@ -61,7 +65,6 @@ class ReporteArea extends Component
         else{
             $from = Carbon::parse($this->dateFrom)->format('Y-m-d') . ' 00:00:00';
             $to = Carbon::parse($this->dateTo)->format('Y-m-d') . ' 23:59:59';
-
 
             $this->data = Refrigerante::
             selectRaw('machines.ids,

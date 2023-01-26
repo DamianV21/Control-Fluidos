@@ -220,12 +220,7 @@
                 <!-- ================================ Begin Page Content  ======================================-->
                 <div class="container-fluid">
 
-                    <div class="card shadow mb-4 bg-white  border-white border-0">
-                        <div class="card-body py-3 border-left-primary">
-                            <label  style="color: #5e80b7"> <i class="fas fa-fw fa-chart-area">
-                                </i></label><strong> Generar reporte "Estado de Área"</strong>
-                        </div>
-                    </div>
+
 
                     <!-- ?????????????????????? Contenido ??????????????????????????????-->
 

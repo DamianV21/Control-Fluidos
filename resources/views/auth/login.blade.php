@@ -16,32 +16,33 @@
             @csrf
 
             <div>
-                <x-jet-label class="text-left" for="email" value="{{ __('Correo electrónico') }}" />
+                 <x-jet-label class="text-left" for="email" value="{{ __('Correo electrónico') }}" />
                 <x-jet-input id="email" placeholder="ejemplo@correo.com" class="block mt-1 w-full " type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="mt-4">
                 <x-jet-label class="text-left" for="password" value="{{ __('Contraseña') }}" />
-                <x-jet-input id="password" placeholder="Escribe tu contraseña" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-jet-input id="password" placeholder="***********" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Recordarme') }}</span>
+                    <span class="ml-2 login-forgot">{{ __('Recordarme') }}</span>
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex" >
+                <x-jet-button class="form-btn" >
+                    {{ __('Iniciar Sesión') }}
+                </x-jet-button>
+            </div>
+            <div class="flex">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="login-forgot" href="{{ route('password.request') }}">
                         {{ __('Olvidaste tu contraseña?') }}
                     </a>
                 @endif
-
-                <x-jet-button class="ml-4 redonde" >
-                    {{ __('INICIAR SESIÓN') }}
-                </x-jet-button>
             </div>
         </form>
     </x-jet-authentication-card>
@@ -49,8 +50,25 @@
 
 
 <style>
-    .redonde {
-   border-radius: 50px;
-   background-color: #5e80b7;
+    .form-btn {
+        padding: 13px 20px 12px;
+    background-color: #000;
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #fff;
+    margin-bottom: 24px;
+    width: 100%;
+ }
+ .form-btn:hover{
+    border: 1px solid #000;
+      background-color: transparent;
+      color: #000;
+ }
+
+ .login-forgot{
+    font-size: 14px;
+    color: #919aa3;
  }
 </style>

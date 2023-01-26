@@ -164,4 +164,6 @@ class ExportController extends Controller
         //return $pdf->download('MaquinaReporte.pdf'); //DescargarReporte
 
     }
+
+
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AExportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
 
@@ -61,6 +62,10 @@ Route::get('/reportes-area', function () {
 });
 
 Route::get('report/pdf/{maquina}/{f1}/{f2}', [ExportController::class, 'reportPDF']);
+
+Route::get('report_area/pdf/{area}/{f1}/{f2}', [AExportController::class, 'report_areaPDF']);
+
+
 
 
 Route::group(['prefix' => 'admin'], function () {
