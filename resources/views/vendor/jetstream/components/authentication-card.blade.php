@@ -23,7 +23,7 @@
                 <div class="brand-wrapper">
                     <img src="img/logo_admon3.png" width="250px" alt="logo" class="logo" >
                   </div>
-              <p class="login-card-description">Iniciar sesión en su cuenta</p>
+              <p class="login-card-description">Iniciar sesión</p>
               {{ $slot }}
             </div>
           </div>
