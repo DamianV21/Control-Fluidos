@@ -1,936 +1,336 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.principal')
 
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Control Fluidos | Inicio</title>
-
-    <!-- Custom fonts for this template-->
-    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/grafcias.css">
-
-</head>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul style="background-color: #5e80b7;" class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
-                <div class="sidebar-brand-icon">
-                    <img width="50px" src="{{ asset('img/logo_sf.png') }}" alt="logo">
-                </div>
-                <div class="sidebar-brand-text mx-3 text-lg">ADMON</div>
+@section('templateSidenav')
+    <?php
+    $ocultar1 = [
+        '2' => '',
+        '6' => 'display: none',
+        '1' => '',
+        '3' => '',
+        '4' => '',
+        '5' => '',
+    ];
+    ?>
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
+        id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href="dashboard">
+                <img src="img/favicon2.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="img/logo_letra.png" class="navbar-brand-img h-100" alt="main_logo">
+                <!--<span class="ms-1 font-weight-bold">Soft UI Dashboard</span>-->
             </a>
+        </div>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+        <hr class="horizontal dark mt-0">
+        <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="dashboard">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="12px" height="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                <title>Pagina inicio</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g id="office" transform="translate(153.000000, 2.000000)">
+                                                <path class="color-background"
+                                                    d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                </li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Modulos</h6>
+                </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+                <li class="nav-item" style="<?php echo $ocultar1[auth()->user()->role_id]; ?>">
+                    <a class="nav-link" href="menu">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                <title>Registrar datos</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(453.000000, 454.000000)">
+                                                <path class="color-background"
+                                                    d="M0 405.3V448c0 35.3 86 64 192 64s192-28.7 192-64v-42.7C342.7 434.4 267.2 448 192 448S41.3 434.4 0 405.3zM320 128c106 0 192-28.7 192-64S426 0 320 0 128 28.7 128 64s86 64 192 64zM0 300.4V352c0 35.3 86 64 192 64s192-28.7 192-64v-51.6c-41.3 34-116.9 51.6-192 51.6S41.3 334.4 0 300.4zm416 11c57.3-11.1 96-31.7 96-55.4v-42.7c-23.2 16.4-57.3 27.6-96 34.5v63.6zM192 160C86 160 0 195.8 0 240s86 80 192 80 192-35.8 192-80-86-80-192-80zm219.3 56.3c60-10.8 100.7-32 100.7-56.3v-42.7c-35.5 25.1-96.5 38.6-160.7 41.8 29.5 14.3 51.2 33.5 60 57.2z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Registros</span>
+                    </a>
+                </li>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Módulos
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-
-            <li class="nav-item">
-                <a class="nav-link" href="menu">
-                    <i class="fas fa-database"></i>
-                    <span>Registros</span></a>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Ubicaciones</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Consulta de módulos:</h6>
-                        <a class="collapse-item" href="plantas"><i class="fas fa-industry"></i> Plantas</a>
-                        <a class="collapse-item" href="areas"><i class="fas fa-project-diagram"></i>
-                            Áreas</a>
-                        <a class="collapse-item" href="lineas"><i class="fas fa-sitemap"></i>
-                            Líneas</a>
-                        <a class="collapse-item" href="maquinas"><i class="fas fa-columns"></i> Máquinas</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Reportes
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="reportes">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Estado de Máquina</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="reportes-area">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>General Área</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex ">
-                <img class="sidebar-card-illustration mb-2" src="{{ asset('img/undraw_upload_re_pasx.svg') }}"
-                    alt="admin">
-                <p class="text-center mb-2"><strong>Sistema Administrativo</strong> dirigete al panel para administrar
-                    tu información.</p>
-                <a class="btn btn-success btn-sm {{ auth()->user()->role_id > 2 ? '' : 'disabled' }}"  href="admin">Ingresar</a>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Contenido Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
+                <li class="nav-item">
+                    <a class="nav-link" href="general">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                <title>Al día</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g id="office" transform="translate(153.000000, 2.000000)">
+                                                <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                <path class="color-background"
+                                                    d="M288 32C128.94 32 0 160.94 0 320c0 52.8 14.25 102.26 39.06 144.8 5.61 9.62 16.3 15.2 27.44 15.2h443c11.14 0 21.83-5.58 27.44-15.2C561.75 422.26 576 372.8 576 320c0-159.06-128.94-288-288-288zm0 64c14.71 0 26.58 10.13 30.32 23.65-1.11 2.26-2.64 4.23-3.45 6.67l-9.22 27.67c-5.13 3.49-10.97 6.01-17.64 6.01-17.67 0-32-14.33-32-32S270.33 96 288 96zM96 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm48-160c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm246.77-72.41l-61.33 184C343.13 347.33 352 364.54 352 384c0 11.72-3.38 22.55-8.88 32H232.88c-5.5-9.45-8.88-20.28-8.88-32 0-33.94 26.5-61.43 59.9-63.59l61.34-184.01c4.17-12.56 17.73-19.45 30.36-15.17 12.57 4.19 19.35 17.79 15.17 30.36zm14.66 57.2l15.52-46.55c3.47-1.29 7.13-2.23 11.05-2.23 17.67 0 32 14.33 32 32s-14.33 32-32 32c-11.38-.01-20.89-6.28-26.57-15.22zM480 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" />
+                            </svg>
 
                         </div>
-                    </form>
+                        <span class="nav-link-text ms-1">General</span>
+                    </a>
+                </li>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample" href="#">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+
+                            <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                <title>Ubicacion de datos</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF"
+                                        fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(453.000000, 454.000000)">
+                                                <path class="color-background"
+                                                    d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z" />
+                            </svg>
+
+                        </div>
+                        <span class="nav-link-text ms-1">Ubicaciones</span>
+                    </a>
+                    <div class="collapse my-1 fixed-start ms-4 " id="collapseExample">
+                        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+                            <ul class="navbar-nav">
+                                <li class="nav-item" style="<?php echo $ocultar1[auth()->user()->role_id]; ?>">
+                                    <a class="nav-link" href="plantas">
+                                        <div
+                                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+
+                                            <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 576 512">
+                                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                                <title>Acera de Plantas</title>
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF"
+                                                        fill-rule="nonzero">
+                                                        <g transform="translate(1716.000000, 291.000000)">
+                                                            <g id="office" transform="translate(153.000000, 2.000000)">
+                                                                <path class="color-background"
+                                                                    d="M560 288h-80v96l-32-21.3-32 21.3v-96h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16zm-384-64h224c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16h-80v96l-32-21.3L256 96V0h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16zm64 64h-80v96l-32-21.3L96 384v-96H16c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16z" />
+                                            </svg>
 
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <!--  <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                        -->
-
-                        <!-- Dropdown - Messages -->
-                        <!--
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                          -->
+                                        <span class="nav-link-text ms-1">Plantas</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="<?php echo $ocultar1[auth()->user()->role_id]; ?>">
+                                    <a class="nav-link" href="areas">
+                                        <div
+                                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                            <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 640 512">
+                                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                                <title>Acerca de Áreas</title>
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF"
+                                                        fill-rule="nonzero">
+                                                        <g transform="translate(1716.000000, 291.000000)">
+                                                            <g id="office" transform="translate(153.000000, 2.000000)">
+                                                                <path class="color-background"
+                                                                    d="M384 320H256c-17.67 0-32 14.33-32 32v128c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32V352c0-17.67-14.33-32-32-32zM192 32c0-17.67-14.33-32-32-32H32C14.33 0 0 14.33 0 32v128c0 17.67 14.33 32 32 32h95.72l73.16 128.04C211.98 300.98 232.4 288 256 288h.28L192 175.51V128h224V64H192V32zM608 0H480c-17.67 0-32 14.33-32 32v128c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32V32c0-17.67-14.33-32-32-32z" />
+                                            </svg>
 
-                        <!-- Nav Item - Alerts
-
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>   -->
-
-                        <!-- Counter - Alerts
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>   -->
-
-
-
-
-                        <!-- Dropdown - Alerts
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
+                                        <span class="nav-link-text ms-1">Áreas</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="<?php echo $ocultar1[auth()->user()->role_id]; ?>">
+                                    <a class="nav-link" href="lineas">
+                                        <div
+                                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                            <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 640 512">
+                                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                                <title>Acerca de Líneas</title>
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF"
+                                                        fill-rule="nonzero">
+                                                        <g transform="translate(1716.000000, 291.000000)">
+                                                            <g id="office" transform="translate(153.000000, 2.000000)">
+                                                                <path class="color-background"
+                                                                    d="M128 352H32c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32zm-24-80h192v48h48v-48h192v48h48v-57.59c0-21.17-17.23-38.41-38.41-38.41H344v-64h40c17.67 0 32-14.33 32-32V32c0-17.67-14.33-32-32-32H256c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h40v64H94.41C73.23 224 56 241.23 56 262.41V320h48v-48zm264 80h-96c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32zm240 0h-96c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32z" />
+                                            </svg>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        <span class="nav-link-text ms-1">Líneas</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="maquinas">
+                                        <div
+                                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                            <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 512 512">
+                                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                                <title>Acerca de las Maquinas</title>
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF"
+                                                        fill-rule="nonzero">
+                                                        <g transform="translate(1716.000000, 291.000000)">
+                                                            <g id="office" transform="translate(153.000000, 2.000000)">
+                                                                <path class="color-background"
+                                                                    d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64V160h160v256zm224 0H288V160h160v256z" />
+                                            </svg>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>   -->
+                                        <span class="nav-link-text ms-1">Maquinas</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
 
-                        <!-- Nav Item - Messages
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>   -->
+                <li class="nav-item mt-3" style="<?php echo $ocultar1[auth()->user()->role_id]; ?>">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Estadisticas</h6>
+                </li>
+                <li class="nav-item" style="<?php echo $ocultar1[auth()->user()->role_id]; ?>">
+                    <a class="nav-link  " href="reportes">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                <title>Reporte de maquinas</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF"
+                                        fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(1.000000, 0.000000)">
+                                                <path class="color-background"
+                                                    d="M332.8 320h38.4c6.4 0 12.8-6.4 12.8-12.8V172.8c0-6.4-6.4-12.8-12.8-12.8h-38.4c-6.4 0-12.8 6.4-12.8 12.8v134.4c0 6.4 6.4 12.8 12.8 12.8zm96 0h38.4c6.4 0 12.8-6.4 12.8-12.8V76.8c0-6.4-6.4-12.8-12.8-12.8h-38.4c-6.4 0-12.8 6.4-12.8 12.8v230.4c0 6.4 6.4 12.8 12.8 12.8zm-288 0h38.4c6.4 0 12.8-6.4 12.8-12.8v-70.4c0-6.4-6.4-12.8-12.8-12.8h-38.4c-6.4 0-12.8 6.4-12.8 12.8v70.4c0 6.4 6.4 12.8 12.8 12.8zm96 0h38.4c6.4 0 12.8-6.4 12.8-12.8V108.8c0-6.4-6.4-12.8-12.8-12.8h-38.4c-6.4 0-12.8 6.4-12.8 12.8v198.4c0 6.4 6.4 12.8 12.8 12.8zM496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z" />
+                            </svg>
 
+                        </div>
+                        <span class="nav-link-text ms-1">Estado de maquina</span>
+                    </a>
+                </li>
+                <li class="nav-item" style="<?php echo $ocultar1[auth()->user()->role_id]; ?>">
+                    <a class="nav-link  " href="reportes-area">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF"
+                                        fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(154.000000, 300.000000)">
+                                                <path class="color-background"
+                                                    d="M496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM464 96H345.94c-21.38 0-32.09 25.85-16.97 40.97l32.4 32.4L288 242.75l-73.37-73.37c-12.5-12.5-32.76-12.5-45.25 0l-68.69 68.69c-6.25 6.25-6.25 16.38 0 22.63l22.62 22.62c6.25 6.25 16.38 6.25 22.63 0L192 237.25l73.37 73.37c12.5 12.5 32.76 12.5 45.25 0l96-96 32.4 32.4c15.12 15.12 40.97 4.41 40.97-16.97V112c.01-8.84-7.15-16-15.99-16z" />
+                            </svg>
 
-                        <!-- Counter - Messages
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>    -->
+                        </div>
+                        <span class="nav-link-text ms-1">Estado de área</span>
+                    </a>
+                </li>
 
+            </ul>
+        </div>
+        <?php
+        $ocultar = [
+            '2' => 'disabled',
+            '6' => 'disabled',
+            '1' => '',
+            '3' => '',
+            '4' => '',
+            '5' => '',
+        ];
+        ?>
+        <div class="sidenav-footer mx-3 mt-4">
+            <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
+                <div class="full-background" style="background-image: url('img/bg5.jpg')"></div>
+                <div class="card-body text-start p-3 w-100">
+                    <div class="docs-info">
+                        <h6 class="text-white up mb-0">¿Necesitas ayuda?</h6>
+                        <p class="text-xs font-weight-bold">Organiza tu información</p>
+                        <a href="admin" target="_blank"
+                            class="btn btn-white btn-sm w-100 mb-0 <?php echo $ocultar[auth()->user()->role_id]; ?>">Administrativo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+@endsection
 
-                        <!-- Dropdown - Messages
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
+@section('templatePaginacion')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Paginas</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+        </ol>
+        <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+    </nav>
+@endsection
+
+@section('templateBase')
+    <title>Dashboard | CFDA</title>
+    @livewire('dashboard.tarjetas')
+@endsection
+
+@section('templateFooter')
+    <!-- Pie de pagina -->
+    <footer class="footer pt-1  ">
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-lg-between">
+                <div class="col-lg-6 mb-lg-0 mb-4">
+                    <div class="copyright text-center text-sm text-muted text-lg-start">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>,
+                        hecho por
+                        <a href="https://cuttingfluids.com.mx/wp/es_es/" class="font-weight-bold" target="_blank">Cutting
+                            Fluids S.A. de C.V.</a>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-2">
+                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                        <li class="nav-item">
+                            <a href="https://www.facebook.com/cuttingfluids" class="nav-link text-muted"
+                                target="_blank"><i class="fab fa-facebook-f"></i></a>
                         </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>       -->
-
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle"  id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <script type="text/javascript">
-                                    function startTime() {
-                                        today = new Date();
-                                        h = today.getHours();
-                                        m = today.getMinutes();
-                                        s = today.getSeconds();
-                                        m = checkTime(m);
-                                        s = checkTime(s);
-                                        document.getElementById('reloj').innerHTML = h + ":" + m + ":" + s;
-                                        t = setTimeout('startTime()', 500);
-                                    }
-
-                                    function checkTime(i) {
-                                        if (i < 10) {
-                                            i = "0" + i;
-                                        }
-                                        return i;
-                                    }
-                                    window.onload = function() {
-                                        startTime();
-                                    }
-                                </script>
-                                <div id="reloj" style="font-size:15px;"></div>
-                            </a>
+                        <li class="nav-item">
+                            <a href="https://twitter.com/CuttingFluids" class="nav-link text-muted" target="_blank"><i
+                                    class="fab fa-twitter"></i></a>
                         </li>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-                                <img class="img-profile rounded-circle" src="{{ asset('img/avatar.png') }}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="perfil">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Cerrar sesión
-                                </a>
-                            </div>
+                        <li class="nav-item">
+                            <a href="https://www.instagram.com/cuttingfluidsmx/" class="nav-link text-muted"
+                                target="_blank"><i class="fab fa-instagram"></i></a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="https://www.linkedin.com/company/cutting-fluids" class="nav-link pe-0 text-muted"
+                                target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.youtube.com/channel/UCpcNqZiRpgNnpiElsplAFpQ"
+                                class="nav-link pe-0 text-muted" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </li>
                     </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- ================================ Begin Page Content  ======================================-->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h5 class="h6 mb-0 text-gray-800"><i class="fas fa-tachometer-alt"></i> Dashboard</h5>
-                        <a  class="d-none d-sm-inline-block "><i
-                                class="fas fa-stroopwafel fa-spin"></i></a>
-                    </div>
-
-                    <!-- Seccion de Tarjetasphp artisa -->
-
-                    @livewire('dashboard.tarjetas')
-
-
-                    <!-- Seccion 2 -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-                            <!-- Contenido 1 -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Nivel de Máquinas</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold"> Honder 010 <span
-                                            class="float-right">50%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 50%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Honder 07 <span class="float-right">40%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Honder 06 <span class="float-right">60%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Honder 04 <span class="float-right">80%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Honder 05 <span class="float-right">40%</span>
-                                    </h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 40%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Contenido 1 -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Nivel de Máquinas</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold"> Honder 010 <span
-                                            class="float-right">50%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 50%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Honder 07 <span class="float-right">40%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Honder 06 <span class="float-right">60%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Honder 04 <span class="float-right">80%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Honder 05 <span class="float-right">40%</span>
-                                    </h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 40%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Noticias marketing</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <!--<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="{{ asset('img/undraw_posting_photo.svg') }}" alt="...">  -->
-
-
-                                        <div id="carouselExampleIndicators" class="carousel slide"
-                                            data-ride="carousel">
-                                            <ol class="carousel-indicators">
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="0"
-                                                    class="active"></li>
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-
-                                            </ol>
-                                            <div class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                    <img class="d-block w-100"
-                                                        src="{{ asset('img/publicidad1.jpg') }}"
-                                                        alt="First slide">
-                                                   <!-- <div v class="carousel-caption d-none d-md-block">
-                                                        <h5> Nuevo comentario</h5>
-                                                        <p>Esta es una descripcion del comentario</p>
-                                                    </div>-->
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img class="d-block w-100" src="{{ asset('img/publicidad2.png') }}"
-                                                        alt="Second slide">
-
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img class="d-block w-100" src="{{ asset('img/publicidad3.jpg') }}"
-                                                        alt="Third slide">
-
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img class="d-block w-100" src="{{ asset('img/publicidad4.png') }}"
-                                                        alt="Second slide">
-
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img class="d-block w-100" src="{{ asset('img/publicidad5.jpg') }}"
-                                                        alt="Third slide">
-
-                                                </div>
-                                            </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleIndicators"
-                                                role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Anterior</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#carouselExampleIndicators"
-                                                role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Siguiente</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <a target="_blank" rel="nofollow" href="">Ver mas información &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Sección nueva </h6>
-                                </div>
-                                <div class="card-body">
-                                    <p></p>
-                                    <p class="mb-0"></p>
-                                </div>
-                            </div>
-                        -->
-                        </div>
-
-                    </div>
-
-
-                    <!-- Seccion 3 -->
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Ultimas concentraciones</h6>
-
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-
-                                    <figure class="highcharts-figure">
-                                        <div id="graficas"></div>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
                 </div>
-                <!-- ================================== /.container-fluid ============================================= -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <!--<span>Copyright &copy; Cutting Fluids 2022</span>-->
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
-                    sesión actual.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <div class="nav-item">
-                            <a class="btn btn-primary" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                        this.closest('form').submit(); "
-                                role="button">Cerrar Sesión</a>
-                        </div>
-                    </form>
-
-
-                </div>
-
             </div>
         </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-
-    <!-- highcharts Graficas -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-    <script>
-        Highcharts.chart('graficas', {
-            chart: {
-                type: 'spline'
-            },
-            title: {
-                text: 'Snow depth at Vikjafjellet, Norway'
-            },
-            subtitle: {
-                text: 'Irregular time data in Highcharts JS'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: { // don't display the dummy year
-                    month: '%e. %b',
-                    year: '%b'
-                },
-                title: {
-                    text: 'Date'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Snow depth (m)'
-                },
-                min: 0
-            },
-            tooltip: {
-                headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
-            },
-
-            plotOptions: {
-                series: {
-                    marker: {
-                        enabled: true,
-                        radius: 2.5
-                    }
-                }
-            },
-
-            colors: ['#6CF', '#39F', '#06C', '#036', '#000'],
-
-            // Define the data points. All series have a dummy year of 1970/71 in order
-            // to be compared on the same x axis. Note that in JavaScript, months start
-            // at 0 for January, 1 for February etc.
-            series: [{
-                name: "Winter 2019-2020",
-                data: [
-                    [Date.UTC(1970, 9, 24), 0],
-                    [Date.UTC(1970, 9, 27), 0.12],
-                    [Date.UTC(1970, 9, 30), 0.09],
-                    [Date.UTC(1970, 10, 3), 0.13],
-                    [Date.UTC(1970, 10, 6), 0.12],
-                    [Date.UTC(1970, 10, 9), 0.13],
-                    [Date.UTC(1970, 10, 12), 0.13],
-                    [Date.UTC(1970, 10, 15), 0.16],
-                    [Date.UTC(1970, 10, 18), 0.19],
-                    [Date.UTC(1970, 10, 21), 0.25],
-                    [Date.UTC(1970, 10, 24), 0.26],
-                    [Date.UTC(1970, 10, 27), 0.24],
-                    [Date.UTC(1970, 10, 30), 0.25],
-                    [Date.UTC(1970, 11, 3), 0.26],
-                    [Date.UTC(1970, 11, 6), 0.36],
-                    [Date.UTC(1970, 11, 9), 0.43],
-                    [Date.UTC(1970, 11, 12), 0.32],
-                    [Date.UTC(1970, 11, 15), 0.48],
-                    [Date.UTC(1970, 11, 18), 0.5],
-                    [Date.UTC(1970, 11, 21), 0.44],
-                    [Date.UTC(1970, 11, 24), 0.43],
-                    [Date.UTC(1970, 11, 27), 0.45],
-                    [Date.UTC(1970, 11, 30), 0.4],
-                    [Date.UTC(1971, 0, 3), 0.39],
-                    [Date.UTC(1971, 0, 6), 0.56],
-                    [Date.UTC(1971, 0, 9), 0.57],
-                    [Date.UTC(1971, 0, 12), 0.68],
-                    [Date.UTC(1971, 0, 15), 0.93],
-                    [Date.UTC(1971, 0, 18), 1.11],
-                    [Date.UTC(1971, 0, 21), 1.01],
-                    [Date.UTC(1971, 0, 24), 0.99],
-                    [Date.UTC(1971, 0, 27), 1.17],
-                    [Date.UTC(1971, 0, 30), 1.24],
-                    [Date.UTC(1971, 1, 3), 1.41],
-                    [Date.UTC(1971, 1, 6), 1.47],
-                    [Date.UTC(1971, 1, 9), 1.4],
-                    [Date.UTC(1971, 1, 12), 1.92],
-                    [Date.UTC(1971, 1, 15), 2.03],
-                    [Date.UTC(1971, 1, 18), 2.46],
-                    [Date.UTC(1971, 1, 21), 2.53],
-                    [Date.UTC(1971, 1, 24), 2.73],
-                    [Date.UTC(1971, 1, 27), 2.67],
-                    [Date.UTC(1971, 2, 3), 2.65],
-                    [Date.UTC(1971, 2, 6), 2.62],
-                    [Date.UTC(1971, 2, 9), 2.79],
-                    [Date.UTC(1971, 2, 13), 2.93],
-                    [Date.UTC(1971, 2, 20), 3.09],
-                    [Date.UTC(1971, 2, 27), 2.76],
-                    [Date.UTC(1971, 2, 30), 2.73],
-                    [Date.UTC(1971, 3, 4), 2.9],
-                    [Date.UTC(1971, 3, 9), 2.77],
-                    [Date.UTC(1971, 3, 12), 2.78],
-                    [Date.UTC(1971, 3, 15), 2.76],
-                    [Date.UTC(1971, 3, 18), 2.76],
-                    [Date.UTC(1971, 3, 21), 2.7],
-                    [Date.UTC(1971, 3, 24), 2.61],
-                    [Date.UTC(1971, 3, 27), 2.52],
-                    [Date.UTC(1971, 3, 30), 2.53],
-                    [Date.UTC(1971, 4, 3), 2.55],
-                    [Date.UTC(1971, 4, 6), 2.52],
-                    [Date.UTC(1971, 4, 9), 2.44],
-                    [Date.UTC(1971, 4, 12), 2.43],
-                    [Date.UTC(1971, 4, 15), 2.43],
-                    [Date.UTC(1971, 4, 18), 2.48],
-                    [Date.UTC(1971, 4, 21), 2.41],
-                    [Date.UTC(1971, 4, 24), 2.16],
-                    [Date.UTC(1971, 4, 27), 2.01],
-                    [Date.UTC(1971, 4, 30), 1.88],
-                    [Date.UTC(1971, 5, 2), 1.62],
-                    [Date.UTC(1971, 5, 6), 1.43],
-                    [Date.UTC(1971, 5, 9), 1.3],
-                    [Date.UTC(1971, 5, 12), 1.11],
-                    [Date.UTC(1971, 5, 15), 0.84],
-                    [Date.UTC(1971, 5, 18), 0.54],
-                    [Date.UTC(1971, 5, 21), 0.19],
-                    [Date.UTC(1971, 5, 23), 0]
-                ]
-            }, {
-                name: "Winter 2020-2021",
-                data: [
-                    [Date.UTC(1970, 10, 14), 0],
-                    [Date.UTC(1970, 11, 6), 0.35],
-                    [Date.UTC(1970, 11, 13), 0.35],
-                    [Date.UTC(1970, 11, 20), 0.33],
-                    [Date.UTC(1970, 11, 30), 0.53],
-                    [Date.UTC(1971, 0, 13), 0.62],
-                    [Date.UTC(1971, 0, 20), 0.6],
-                    [Date.UTC(1971, 1, 2), 0.69],
-                    [Date.UTC(1971, 1, 18), 0.67],
-                    [Date.UTC(1971, 1, 21), 0.65],
-                    [Date.UTC(1971, 1, 24), 0.66],
-                    [Date.UTC(1971, 1, 27), 0.66],
-                    [Date.UTC(1971, 2, 3), 0.61],
-                    [Date.UTC(1971, 2, 6), 0.6],
-                    [Date.UTC(1971, 2, 9), 0.69],
-                    [Date.UTC(1971, 2, 12), 0.66],
-                    [Date.UTC(1971, 2, 15), 0.75],
-                    [Date.UTC(1971, 2, 18), 0.76],
-                    [Date.UTC(1971, 2, 21), 0.75],
-                    [Date.UTC(1971, 2, 24), 0.69],
-                    [Date.UTC(1971, 2, 27), 0.82],
-                    [Date.UTC(1971, 2, 30), 0.86],
-                    [Date.UTC(1971, 3, 3), 0.81],
-                    [Date.UTC(1971, 3, 6), 1],
-                    [Date.UTC(1971, 3, 9), 1.15],
-                    [Date.UTC(1971, 3, 10), 1.35],
-                    [Date.UTC(1971, 3, 12), 1.26],
-                    [Date.UTC(1971, 3, 15), 1.18],
-                    [Date.UTC(1971, 3, 18), 1.14],
-                    [Date.UTC(1971, 3, 21), 1.04],
-                    [Date.UTC(1971, 3, 24), 1.06],
-                    [Date.UTC(1971, 3, 27), 1.05],
-                    [Date.UTC(1971, 3, 30), 1.03],
-                    [Date.UTC(1971, 4, 3), 1.01],
-                    [Date.UTC(1971, 4, 6), 0.98],
-                    [Date.UTC(1971, 4, 9), 0.94],
-                    [Date.UTC(1971, 4, 12), 0.8],
-                    [Date.UTC(1971, 4, 15), 0.61],
-                    [Date.UTC(1971, 4, 18), 0.43],
-                    [Date.UTC(1971, 4, 21), 0.29],
-                    [Date.UTC(1971, 4, 24), 0.1],
-                    [Date.UTC(1971, 4, 26), 0]
-                ]
-            }, {
-                name: "Winter 2021-2022",
-                data: [
-                    [Date.UTC(1970, 10, 5), 0],
-                    [Date.UTC(1970, 10, 12), 0.1],
-                    [Date.UTC(1970, 10, 21), 0.15],
-                    [Date.UTC(1970, 10, 22), 0.19],
-                    [Date.UTC(1970, 10, 27), 0.17],
-                    [Date.UTC(1970, 10, 30), 0.27],
-                    [Date.UTC(1970, 11, 2), 0.25],
-                    [Date.UTC(1970, 11, 4), 0.27],
-                    [Date.UTC(1970, 11, 5), 0.26],
-                    [Date.UTC(1970, 11, 6), 0.25],
-                    [Date.UTC(1970, 11, 7), 0.26],
-                    [Date.UTC(1970, 11, 8), 0.26],
-                    [Date.UTC(1970, 11, 9), 0.25],
-                    [Date.UTC(1970, 11, 10), 0.25],
-                    [Date.UTC(1970, 11, 11), 0.25],
-                    [Date.UTC(1970, 11, 12), 0.26],
-                    [Date.UTC(1970, 11, 22), 0.22],
-                    [Date.UTC(1970, 11, 23), 0.22],
-                    [Date.UTC(1970, 11, 24), 0.22],
-                    [Date.UTC(1970, 11, 25), 0.24],
-                    [Date.UTC(1970, 11, 26), 0.24],
-                    [Date.UTC(1970, 11, 27), 0.24],
-                    [Date.UTC(1970, 11, 28), 0.24],
-                    [Date.UTC(1970, 11, 29), 0.24],
-                    [Date.UTC(1970, 11, 30), 0.22],
-                    [Date.UTC(1970, 11, 31), 0.18],
-                    [Date.UTC(1971, 0, 1), 0.17],
-                    [Date.UTC(1971, 0, 2), 0.23],
-                    [Date.UTC(1971, 0, 9), 0.5],
-                    [Date.UTC(1971, 0, 10), 0.5],
-                    [Date.UTC(1971, 0, 11), 0.53],
-                    [Date.UTC(1971, 0, 12), 0.48],
-                    [Date.UTC(1971, 0, 13), 0.4],
-                    [Date.UTC(1971, 0, 17), 0.36],
-                    [Date.UTC(1971, 0, 22), 0.69],
-                    [Date.UTC(1971, 0, 23), 0.62],
-                    [Date.UTC(1971, 0, 29), 0.72],
-                    [Date.UTC(1971, 1, 2), 0.95],
-                    [Date.UTC(1971, 1, 10), 1.73],
-                    [Date.UTC(1971, 1, 15), 1.76],
-                    [Date.UTC(1971, 1, 26), 2.18],
-                    [Date.UTC(1971, 2, 2), 2.22],
-                    [Date.UTC(1971, 2, 6), 2.13],
-                    [Date.UTC(1971, 2, 8), 2.11],
-                    [Date.UTC(1971, 2, 9), 2.12],
-                    [Date.UTC(1971, 2, 10), 2.11],
-                    [Date.UTC(1971, 2, 11), 2.09],
-                    [Date.UTC(1971, 2, 12), 2.08],
-                    [Date.UTC(1971, 2, 13), 2.08],
-                    [Date.UTC(1971, 2, 14), 2.07],
-                    [Date.UTC(1971, 2, 15), 2.08],
-                    [Date.UTC(1971, 2, 17), 2.12],
-                    [Date.UTC(1971, 2, 18), 2.19],
-                    [Date.UTC(1971, 2, 21), 2.11],
-                    [Date.UTC(1971, 2, 24), 2.1],
-                    [Date.UTC(1971, 2, 27), 1.89],
-                    [Date.UTC(1971, 2, 30), 1.92],
-                    [Date.UTC(1971, 3, 3), 1.9],
-                    [Date.UTC(1971, 3, 6), 1.95],
-                    [Date.UTC(1971, 3, 9), 1.94],
-                    [Date.UTC(1971, 3, 12), 2],
-                    [Date.UTC(1971, 3, 15), 1.9],
-                    [Date.UTC(1971, 3, 18), 1.84],
-                    [Date.UTC(1971, 3, 21), 1.75],
-                    [Date.UTC(1971, 3, 24), 1.69],
-                    [Date.UTC(1971, 3, 27), 1.64],
-                    [Date.UTC(1971, 3, 30), 1.64],
-                    [Date.UTC(1971, 4, 3), 1.58],
-                    [Date.UTC(1971, 4, 6), 1.52],
-                    [Date.UTC(1971, 4, 9), 1.43],
-                    [Date.UTC(1971, 4, 12), 1.42],
-                    [Date.UTC(1971, 4, 15), 1.37],
-                    [Date.UTC(1971, 4, 18), 1.26],
-                    [Date.UTC(1971, 4, 21), 1.11],
-                    [Date.UTC(1971, 4, 24), 0.92],
-                    [Date.UTC(1971, 4, 27), 0.75],
-                    [Date.UTC(1971, 4, 30), 0.55],
-                    [Date.UTC(1971, 5, 3), 0.35],
-                    [Date.UTC(1971, 5, 6), 0.21],
-                    [Date.UTC(1971, 5, 9), 0]
-                ]
-            }]
-        });
-    </script>
-
-</body>
-
-</html>
+    </footer>
+    <!--End Pie de pagina -->
+@endsection

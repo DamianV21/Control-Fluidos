@@ -89,6 +89,12 @@ class User extends \TCG\Voyager\Models\User
         return $query->where('role_id', 2);
     }
 
+    public function scopeCliente($query)
+    {
+
+        return $query->where('role_id', 6);
+    }
+
     public function scopeSupervisor($query)
     {
 

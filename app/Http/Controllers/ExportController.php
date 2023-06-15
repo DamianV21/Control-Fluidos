@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Client;
 use App\Models\Machine;
 use App\Models\Plant;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
@@ -44,6 +46,10 @@ class ExportController extends Controller
 
         $planta_machine = Machine::find($valor)->planta_id ?? 'No Aplica';
         $planta_nombre = Plant::find($planta_machine)->nombre ?? 'No Aplica';
+        $direccion_empresa = Plant::find($planta_machine)->direccion ?? 'No Aplica';
+        $telefono_empresa = Plant::find($planta_machine)->telefono ?? 'No Aplica';
+        $id_contacto = Plant::find($planta_machine)->contacto_id ?? '0';
+        $contacto_empresa = Client::find($id_contacto)->nombre ?? 'No Aplica';
         $planta_ubicacion = Plant::find($planta_machine)->ciudad ?? 'No Aplica';
         $usuario_id = Machine::find($valor)->usuario_id ?? 'No Aplica';
         $responsable = User::find($usuario_id)->name ?? 'No Aplica';
@@ -52,6 +58,7 @@ class ExportController extends Controller
         $tipo_maquina = Machine::find($valor)->tipo ?? 'No Aplica';
         $area_id = Machine::find($valor)->area_id ?? 'No Aplica';
         $nombre_area = Area::find($area_id)->nombre ?? 'No Aplica';
+        $numero_aleatorio = Str::random(10);
 
         foreach ($data as $d) {
             $suma_con_ini = $suma_con_ini + $d->concentracion_inicial;
@@ -74,7 +81,7 @@ class ExportController extends Controller
         $promedio_ph = $suma_ph / $data->count();
         $promedio_concentrado = $suma_concentrado / $data->count();
 
-        $date = \Carbon\Carbon::now()->format('d-m-Y h:i:s A');
+        $date = \Carbon\Carbon::now()->format('d-m-Y');
 
         //Datos de Graficas
 
@@ -82,8 +89,8 @@ class ExportController extends Controller
             ->where('maquina_id', $valor)
             ->where('exceso_espuma', 'Si')
             ->get();
-        $espuma_si = ($valores_espuma->count() * 100) / $data->count();
-        $espuma_no = (($data->count() - $valores_espuma->count()) * 100) / $data->count();
+        $espuma_si = round(($valores_espuma->count() * 100) / $data->count(),2);
+        $espuma_no = round((($data->count() - $valores_espuma->count()) * 100) / $data->count(),2);
 
 
         $ultimo_registro_espuma = $data->first()->exceso_espuma ?? null;
@@ -95,26 +102,26 @@ class ExportController extends Controller
             ->where('maquina_id', $valor)
             ->where('aroma', 'Malo')
             ->get();
-        $olor_malo = ($valores_olor_malo->count() * 100) / $data->count();
+        $olor_malo = round(($valores_olor_malo->count() * 100) / $data->count(),2);
 
         $valores_olor_regular = Refrigerante::whereBetween('created_at', [$from, $to])
             ->where('maquina_id', $valor)
             ->where('aroma', 'Regular')
             ->get();
-        $olor_regular = ($valores_olor_regular->count() * 100) / $data->count();
+        $olor_regular = round(($valores_olor_regular->count() * 100) / $data->count(),2);
 
         $valores_olor_bueno = Refrigerante::whereBetween('created_at', [$from, $to])
             ->where('maquina_id', $valor)
             ->where('aroma', 'Bueno')
             ->get();
-        $olor_bueno = ($valores_olor_bueno->count() * 100) / $data->count();
+        $olor_bueno = round(($valores_olor_bueno->count() * 100) / $data->count(),2);
 
         $valores_aceite = Refrigerante::whereBetween('created_at',[$from,$to])
                 ->where('maquina_id',$valor)
                 ->where('aceites_entrampados','Si')
                 ->get();
-                $aceite_si = ($valores_aceite->count() * 100) / $data->count() ;
-               $aceite_no = (($data->count()-$valores_aceite->count())*100) / $data->count();
+                $aceite_si = round(($valores_aceite->count() * 100) / $data->count(),2) ;
+               $aceite_no = round((($data->count()-$valores_aceite->count())*100) / $data->count(),2);
 
 
         $pdf = PDF::loadView('pdf.reporte', compact(
@@ -149,7 +156,11 @@ class ExportController extends Controller
             'aceite_no',
             'ultimo_registro_espuma',
             'ultimo_registro_olor',
-            'ultimo_registro_aceites'
+            'ultimo_registro_aceites',
+            'direccion_empresa',
+            'telefono_empresa',
+            'contacto_empresa',
+            'numero_aleatorio'
 
         ));
 

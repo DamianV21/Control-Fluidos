@@ -1,151 +1,66 @@
 <div>
-
-    <!-- Ordenar-->
-
-    <div class="container">
+    <div class="container-fluid py-4">
         <div class="row">
-            <div class="col-md-auto text-sm">
-                Filtrar por:
-            </div>
-            <div class="col-md-auto">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Acerca de todas las Líneas</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Línea</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Planta</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Área</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Responsable</th>
 
-                <div class="btn-group-sm btn-group-toggle" wire:model="sort" data-toggle="buttons">
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" value="za" autocomplete="off"> <i
-                            class="fas fa-sort-alpha-down-alt"></i>
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" value="az" autocomplete="off"> <i
-                            class="fas fa-sort-alpha-down"></i>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-
-    <!-- End Orden -->
-
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="row">
-                @foreach ($lineas as $linea)
-                    <div class="col-md-3">
-
-
-
-                        <br>
-                        <div class="card card-custom bg-white border-white border-0">
-                            <div class="card-custom-img"
-                                style="background-image: url({{ asset('img/bg1.jpg') }});"></div>
-                            <div class="card-custom-avatar">
-                                <img class="img-fluid" src="{{ asset('img/linea_default.png') }}"
-                                    alt="Avatar" />
-                            </div>
-                            <div class="card-body text-sm" style="overflow-y: auto">
-
-                                <h4 class="card-title"><strong>Información de Línea:</strong> </h4>
-                                <p class="card-text"> <strong>Línea:</strong> {{ $linea->nombre }}</p>
-                                <p class="card-text"><strong>Área:</strong> {{ $linea->areas->nombre }}</p>
-                            </div>
-                            <div class="card-footer text-sm"
-                                style="background: inherit; border-color: inherit;">
-
-                                <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
-                                data-toggle="modal" wire:click="OpenViewModal({{ $linea->id }})">Ver mas
-                                información</a>
-
-                            </div>
+                                        <th class="text-secondary opacity-7"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($lineas as $linea)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <i class="fas fa-sitemap me-3"></i>
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{ $linea->nombre }}</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">
+                                                    {{ $linea->plantas->nombre ?? 'No existe' }}</p>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    {{ $linea->empresas->nombre ?? 'No existe' }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">
+                                                    {{ $linea->areas->nombre ?? 'No existe' }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">
+                                                    {{ $linea->usuarios->name ?? 'No existe' }}</p>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="DataViewDetail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
-                        <span class="span-bold"> Datos de la Línea</span>
-                    </h5>
-                    <button type="button" class="close" wire:click="CloseViewModal" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="right">
-                        <div class="right-container">
-                            <section class="right-footer">
-                                <div class="right-footer-container">
-                                    <span class="span-label">Nombre:</span>
-
-                                    <div class="inp">
-                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
-                                            placeholder="{{  $view_line_nom }}" />
-                                    </div>
-
-                                    <i class="fas fa-spell-check"></i>
-                                </div>
-                            </section>
-
-
-                            <section class="right-footer">
-                                <div class="right-footer-container">
-                                    <span class="span-label">Empresa:</span>
-                                    <div class="inp">
-                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
-                                            placeholder="{{ $view_line_empre }}" />
-                                    </div>
-                                    <i class="fas fa-building"></i>
-                                </div>
-                            </section>
-
-                            <section class="right-footer">
-                                <div class="right-footer-container">
-                                    <span class="span-label">Planta:</span>
-                                    <div class="inp">
-                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
-                                            placeholder="{{ $view_line_plan }}" />
-                                    </div>
-                                    <i class="fas fa-industry"></i>
-                                </div>
-                            </section>
-
-                            <section class="right-footer">
-                                <div class="right-footer-container">
-                                    <span class="span-label">Area:</span>
-                                    <div class="inp">
-                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
-                                            placeholder="{{ $view_line_area }}" />
-                                    </div>
-                                    <i class="fas fa-user-cog"></i>
-                                </div>
-                            </section>
-
-
-
-                        </div>
-                    </div>
-                    <!-- right-end -->
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
-
-<link rel="stylesheet" href="{{ asset('css/registros.css') }}">
-
-<script>
-    window.addEventListener('show-modal', event => {
-        $('#DataViewDetail').modal('show');
-    });
-</script>

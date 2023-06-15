@@ -12,6 +12,8 @@ use App\Models\Machine;
 use App\Models\Mantenimiento;
 use App\Models\Plant;
 use App\Models\Refrigerante;
+use JeroenNoten\LaravelAdminLte\View\Components\Tool\Modal;
+use Laravel\Ui\Presets\Bootstrap;
 
 class IndexContent extends Component
 {
@@ -29,6 +31,7 @@ class IndexContent extends Component
     public $aceite_maquina,$aceite_usuario,$aspecto,$aceite_color,$aceite_aroma,$acaeite_litros_rec;
     public $grasa_maquina,$grasa_usuario,$grasa_litros_rec;
     public $man_maquina,$man_usuario,$man_tipo,$man_litros_agua,$man_litros_con,$man_observaciones;
+    public $view_area_id, $view_area_nombre;
 
 
     public function updatedLinea($valueee)
@@ -124,6 +127,9 @@ class IndexContent extends Component
 
         $this->dispatchBrowserEvent('close-modal-agua');
 
+
+
+
     }
 
     public function AddRefrigerante($id){
@@ -170,7 +176,7 @@ class IndexContent extends Component
         $this->aceite_aroma = '';
         $this->acaeite_litros_rec = '';
 
-        $this->dispatchBrowserEvent('close-modal-aceite');
+       $this->dispatchBrowserEvent('close-modal-aceite');
 
     }
 
@@ -320,7 +326,7 @@ class IndexContent extends Component
     }
 
     public function updatedselectedLinea($linea_id){
-        $this->m_maquinas = Machine::where("linea_id",$linea_id)->get();
+        $this->m_maquinas = Machine::where("linea_id",$linea_id) ->where('is_active', 1)->get();
         $this->numero_maquinas = $this->m_maquinas->count();
     }
 }

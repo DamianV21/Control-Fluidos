@@ -17,6 +17,9 @@ class Line extends Model
     public function plantas(){
         return $this->belongsTo(Plant::class,'planta_id');
     }
+    public function usuarios(){
+        return $this->belongsTo(User::class,'usuario_id');
+    }
 
     public function scopeLineaIva($query)
     {

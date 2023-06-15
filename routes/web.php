@@ -36,6 +36,10 @@ Route::get('/menu', function () {
     return view('vistas.menu');
 });
 
+Route::get('/general', function () {
+    return view('vistas.general');
+});
+
 Route::get('/plantas', function () {
     return view('vistas.plantas');
 });

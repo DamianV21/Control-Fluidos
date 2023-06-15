@@ -3,12 +3,14 @@
 namespace App\Http\Livewire\Reportes;
 
 use App\Models\Area;
+use App\Models\Client;
 use App\Models\Machine;
 use App\Models\Plant;
 use App\Models\Refrigerante;
 use App\Models\User;
 use Livewire\Component;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Refrigerantes extends Component
 {
@@ -19,7 +21,8 @@ class Refrigerantes extends Component
     $suma_vol_rec=0,$suma_con_rec=0, $prom_con_rec=0,$suma_con_fin=0, $prom_con_fin=0,
     $espuma_si=0,$espuma_no=0,$aceite_si=0,$aceite_no=0,$olor_malo=0,$olor_regular=0,$olor_bueno=0;
     public $valores_espuma=[],$valores_aceite=[],$valores_olor_regular=[],$valores_olor_malo=[],$valores_olor_bueno=[];
-    public $nombre_maquina,$nombre_empresa,$nombre_usuario,$id_usuario,$tecnico;
+    public $nombre_maquina,$nombre_empresa,$telefono_empresa,$direccion_empresa,$contacto_empresa,
+    $id_contacto,$nombre_usuario,$id_usuario,$tecnico,$numero_aleatorio,$producto;
     public $litros_concentrado,$num1,$promedio_concentrado,$suma_concentrado,$promedio_ph,$suma_ph;
 
     public function mount()
@@ -39,7 +42,8 @@ class Refrigerantes extends Component
     }
 
     public function updatedPlanta($value){
-        $this->maquinas=Machine::where("planta_id",$value)->get();
+        $this->maquinas=Machine::where("planta_id",$value) ->where('is_active', 1)->get();
+
     }
 
 
@@ -75,7 +79,11 @@ class Refrigerantes extends Component
                 $this->suma_con_rec = $this->suma_con_rec + $d->concentracion_recarga;
                 $this->suma_con_fin = $this->suma_con_fin + $d->concentracion_final;
                 $this->nombre_maquina = $d->maquinas->ids;
+                $this->producto = $d->maquinas->producto;
                 $this->nombre_empresa = $d->maquinas->plantas->nombre;
+                $this->telefono_empresa = $d->maquinas->plantas->telefono ;
+                $this->direccion_empresa = $d->maquinas->plantas->direccion;
+                $this->id_contacto = $d->maquinas->plantas->contacto_id;
                 $this->suma_concentrado += ($d->litros_recarga * $d->concentracion_recarga* $d->maquinas->fac_refractor) / 100;
                 $this->suma_ph += $d->ph;
                }
@@ -87,7 +95,9 @@ class Refrigerantes extends Component
                $this->promedio_concentrado = $this->suma_concentrado / $this->data->count();
                $this->promedio_ph = $this->suma_ph / $this->data->count();
 
+               $this->numero_aleatorio = Str::random(10);
 
+               $this->contacto_empresa = Client::where('id',$this->id_contacto)->first()->nombre ?? 'No existe';
 
                $this->valores_espuma = Refrigerante::whereBetween('created_at',[$from,$to])
                 ->where('maquina_id',$this->valor)
@@ -122,6 +132,8 @@ class Refrigerantes extends Component
                ->where('aroma','Bueno')
                ->get();
                $this->olor_bueno = ($this->valores_olor_bueno->count() * 100) / $this->data->count() ;
+
+
         }
 
 

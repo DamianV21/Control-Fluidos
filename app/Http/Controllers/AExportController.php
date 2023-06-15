@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Client;
 use App\Models\Machine;
 use App\Models\Plant;
 use App\Models\Refrigerante;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
@@ -43,12 +45,18 @@ class AExportController extends Controller
         $maquinas=Machine::where("area_id",$id_area)->select('id')->get()->toArray();
         $planta_id = Area::find($id_area)->planta_id ?? 'No Aplica';
         $nombre_planta = Plant::find($planta_id)->nombre ?? 'No Aplica';
-        $ubicacion_planta = Plant::find($planta_id)->ciudad ?? 'No Aplica';
-        $usuario_id = Area::find($id_area)->usuario_id ?? 'No Aplica';
+        $ubicacion_planta = Plant::find($planta_id)->direccion ?? 'No Aplica';
+        $telefono_planta = Plant::find($planta_id)->telefono ?? 'No Aplica';
+        $contacto_id = Plant::find($planta_id)->contacto_id ?? '0';
+        $contacto_planta = Client::find($contacto_id)->nombre ?? 'No Aplica';
+        $usuario_id = Area::find($id_area)->created_by ?? '0';
         $responsable = User::find($usuario_id)->name ?? 'No Aplica';
+        $numero_aleatorio = Str::random(10);
+        $date = \Carbon\Carbon::now()->format('d-m-Y');
+
 
         $data = Refrigerante::
-            selectRaw('machines.ids,
+            selectRaw('refrigerantes.maquina_id,
             GROUP_CONCAT(refrigerantes.ph order by refrigerantes.created_at ASC) AS ph,
             GROUP_CONCAT(refrigerantes.concentracion_final order by refrigerantes.created_at ASC) AS con_final,
             GROUP_CONCAT(refrigerantes.created_at order by refrigerantes.created_at ASC) AS fechas,
@@ -61,7 +69,7 @@ class AExportController extends Controller
             ->get();
 
             foreach($data as $d){
-                $datos[$d->ids] = ["value" => explode(",", $d->ph),"value2" => explode(",", $d->con_final),
+                $datos[$d->maquinas->ids] = ["value" => explode(",", $d->ph),"value2" => explode(",", $d->con_final),
                 "prom_ph" => explode(",", $d->prom_ph),"prom_con" => explode(",", $d->prom_con)];
 
                 $fechas=["fecha" =>explode(",",$d->fechas)];
@@ -127,10 +135,13 @@ class AExportController extends Controller
                 'concentracion_alta',
                 'concentracion_ok',
                 'ph_ok',
-                'ph_bajo'
+                'ph_bajo',
+                'telefono_planta',
+                'contacto_planta',
+                'numero_aleatorio'
             ));
 
             $pdf->setPaper('legal', 'landscape');
-            return $pdf->stream('ReporteArea.pdf');
+            return $pdf->stream($nombre_area . ' ' . $date . '.pdf');
     }
 }

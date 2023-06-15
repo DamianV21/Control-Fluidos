@@ -10,18 +10,18 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/login.css">
 </head>
-<body style="background-image: url('/img/bg1.jpg'); background-position: center; ">
+<body style="background-image: url('/img/bg5.jpg'); background-position: center; ">
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <div class="container">
       <div class="card login-card">
         <div class="row no-gutters">
           <div class="col-md-5">
-            <img src="img/bg1.jpg" alt="login" class="login-card-img">
+            <img src="img/presentacion6.png" alt="login" class="login-card-img">
           </div>
           <div class="col-md-7">
             <div class="card-body">
                 <div class="brand-wrapper">
-                    <img src="img/logo_admon3.png" width="250px" alt="logo" class="logo" >
+                    <img src="img/cfda2.png" width="220px" alt="logo" class="logo" >
                   </div>
               <p class="login-card-description">Iniciar sesión en su cuenta</p>
               {{ $slot }}

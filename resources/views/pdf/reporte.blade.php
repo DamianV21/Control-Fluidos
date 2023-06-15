@@ -2,33 +2,76 @@
 <html lang="es">
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Reporte de Maquina</title>
-
     <style>
-        html {
-            min-height: 100%;
-            position: relative;
-
-        }
-
         body {
-            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .data-info {
+            margin-bottom: 0rem;
+            margin-top: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        .data-detail {
+            margin-bottom: 0rem;
+            margin-top: 0.1rem;
+        }
+
+        .table-info {
+            margin-top: 0rem;
+        }
+
+        .table-detail {
+            margin-top: 0rem;
+            margin-bottom: 2rem;
+            margin-left: 10rem;
+
+        }
+
+        hr.horizontal {
+            background-color: rgb(243, 243, 243);
+            color: #ebebeb;
+        }
+
+        hr.horizontal.dark {
+            margin-top: 1rem;
+            margin-left: 3rem;
+            margin-right: 3rem;
+        }
+
+        .info-date {
+            text-align: left;
+            margin-right: 1.5rem;
+            margin-bottom: 0rem;
+        }
+
+        .info-page {
+            text-align: right;
+            margin-right: 1.5rem;
+            margin-bottom: 0rem;
         }
 
 
-        .pie {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 40px;
-            color: white;
-            font-size: 9pt;
-            color: #333333;
-            border-top: 1px solid #1f1f1f;
+        .text-normal {
+            font-size: 0.9rem;
+        }
+
+        .text-grande {
+            font-size: 1.1rem;
+        }
+
+        .text-sm {
+            font-size: 0.8rem;
+        }
+
+        .text-center {
+            text-align: center;
         }
 
         .pagenum:before {
@@ -43,30 +86,18 @@
             page-break-inside: avoid;
         }
 
-
-        .columnas {
-            column-count: 2;
-            column-gap: 130px;
-
+        .grafic-line {
+            margin-bottom: 1.5rem;
         }
 
-        @font-face {
-            font-family: roboto;
-            src: url('font/Roboto-Regular.ttf') format('truetype');
+        .data-table {
+            margin-bottom: 6.5rem;
+            margin-top: 5rem;
         }
 
-        @font-face {
-            font-family: roboto-bold;
-            src: url('font/Roboto-Bold.ttf') format('truetype');
-        }
-
-        body {
-            font-family: roboto;
-
-        }
-
-        .rob-bol {
-            font-family: roboto-bold;
+        .grafica-circular {
+            margin-bottom: 9.5rem;
+            margin-top: 7rem;
         }
 
         .green {
@@ -84,82 +115,97 @@
 
         }
 
+        .columnas {
+            width: 50%;
+            display: inline-block;
+        }
 
+        .commit-table {
+            margin-left: 3rem;
+        }
+
+        .data-commit-table {
+            width: 95%;
+            margin-bottom: 1.5rem;
+        }
+
+        .pie {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            color: white;
+            font-size: 9pt;
+            color: #333333;
+        }
     </style>
+
 </head>
 
 <body>
-    <!--ENCABEZADO DE LA PAGINA-->
+    <!--ENCABEZADO DE LA PAGINA  PRINCIPAL-->
     <section class="header">
-
-
-        <table cellpadding="0" cellspacing="0" width="100%">
+        <table class="table-info" cellpadding="0" cellspacing="0" width="100%">
             <tr>
                 <td width="30%" style="vertical-align: top; padding-top: 10px; position:relative">
-                    <img src="{{ base_path() }}/public/img/logo7.png" width="200px">
+                    <img src="{{ base_path() }}/public/img/logo7.png" width="170px">
                 </td>
 
-                <td width="40%" style="vertical-aling:top; padding-top:10px">
-                    <center><span class="rob-bol" style="font-size: 25px; "> Reporte de
-                            Concentración</span></center>
+                <td width="40%" style="vertical-aling:top; padding-top:10px ">
+                    <p class="data-info">
+                        <strong class="text-dark">E-mail:</strong> &nbsp;
+                        customerservice@cuttingfluids.com.mx
+                    </p>
+                    <p class="data-info"><strong class="text-dark">Telefono:</strong> &nbsp; (614) 426
+                        2186</p>
+                    <p class="data-info"><strong class="text-dark">Sitio web:</strong> &nbsp;
+                        www.cuttingfluids.com.mx</p>
 
                 </td>
 
                 <td width="30%" class="rob-bol" style=" vertical-aling:top;  padding-top:10px">
-                    <center>
-                        <span style="font-size: 16px">Fecha:</span>
-
-
-                        {{ $date = \Carbon\Carbon::now()->formatLocalized('%d %B del %Y ') }}
-
-                    </center>
+                    <p class="data-info"><strong>Cutting Fluids S.A. de C.V.</strong></p>
+                    <p class="data-info"><strong>Dirección:</strong> &nbsp; Circuito Balvanera
+                        5a Bodega 3, Fracc. Industrial Balvanera. Querétaro, Qro. CP.76900</p>
                 </td>
             </tr>
         </table>
-        <br>
-        <br>
+        <hr class="horizontal dark">
+        <table class="table-detail" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td width="50%" style="vertical-aling:top; padding-top:10px ">
+                    <p class="data-detail text-grande"><strong>Detalles del Cliente:</strong></p>
+                    <p class="data-detail text-normal"><strong class="text-dark">Planta:</strong> &nbsp;
+                        {{ $planta_nombre }}</p>
+                    <p class="data-detail text-normal">{{ $direccion_empresa }}</p>
+                    <p class="data-detail text-normal"><strong class="text-dark">Telefono:</strong> &nbsp;
+                        {{ $telefono_empresa }}</p>
+                    <p class="data-detail text-normal"> <strong class="text-dark">Responsable:</strong> &nbsp;
+                        {{ $contacto_empresa }}</p>
+                </td>
 
-        <table cellpadding="0" cellspacing="0" width="100%">
-            <tbody>
-                <tr>
-                    <td style="text-align:right; border: 1px solid black; ">Cliente: </td>
-                    <td width="30%" class="rob-bol" style="text-align:center; border: 1px solid black;">
-                        {{ $planta_nombre }}</td>
-                    <td style="text-align:right; border: 1px solid black;">Fecha desde:</td>
-                    <td class="rob-bol" style="text-align:center; border: 1px solid black;">
-                        {{ \Carbon\Carbon::parse($dateFrom)->formatLocalized('%d %B') }}
-                    </td>
-                    <td style="text-align:right; border: 1px solid black;">Máquina:</td>
-                    <td class="rob-bol" style="text-align:center; border: 1px solid black;">{{ $machine }}</td>
-                </tr>
-                <tr>
-                    <td style="text-align:right; border: 1px solid black;">Ubicación:</td>
-                    <td class="rob-bol" style="text-align:center; border: 1px solid black; ">{{ $planta_ubicacion }}
-                    </td>
-                    <td style="text-align:right; border: 1px solid black;">Fecha hasta:</td>
-                    <td class="rob-bol" style="text-align:center; border: 1px solid black;">
-                        {{ \Carbon\Carbon::parse($dateTo)->formatLocalized('%d %B') }}
-                    </td>
-                    <td style="text-align:right; border: 1px solid black;">Tipo de máquina:</td>
-                    <td class="rob-bol" style="text-align:center; border: 1px solid black;">{{ $tipo_maquina }}</td>
-                </tr>
-                <tr>
-                    <td style="text-align:right; border: 1px solid black;">Responsable:</td>
-                    <td class="rob-bol" style="text-align:center; border: 1px solid black;">{{ $responsable }}</td>
-                    <td style="text-align:right; border: 1px solid black;">Producto:</td>
-                    <td class="rob-bol" style="text-align:center; border: 1px solid black;">{{ $producto }}</td>
-                    <td style="text-align:right; border: 1px solid black;">Celda:</td>
-                    <td class="rob-bol" style="text-align:center; border: 1px solid black;">1</td>
-                </tr>
-            </tbody>
+                <td width="50%" class="rob-bol" style=" vertical-aling:top;  padding-top:10px">
+                    <p class="data-detail text-grande"><strong>Detalles del Reporte:</strong></p>
+                    <p class="data-detail text-normal"><strong class="text-dark">Reporte:</strong> &nbsp;
+                        #{{ $numero_aleatorio }}</p>
+                    <p class="data-detail text-normal"><strong class="text-dark">Maquina:</strong> &nbsp;
+                        {{ $machine }}</p>
+                    <p class="data-detail text-normal"> <strong class="text-dark">Producto:</strong> &nbsp;
+                        {{ $producto }}</p>
+                    <p class="data-detail text-normal"><strong class="text-dark">Emitido del:</strong> &nbsp;
+                        {{ \Carbon\Carbon::parse($dateFrom)->format('d-m-Y') }} &nbsp;
+                        <strong class="text-dark"> al:</strong> &nbsp;
+                        {{ \Carbon\Carbon::parse($dateTo)->format('d-m-Y') }}
+                    </p>
+                </td>
+            </tr>
         </table>
     </section>
-    <br>
+    <!--END ENCABEZADO DE LA PAGINA PRINCIPAL-->
 
-    <center><span class="rob-bol" style="font-size: 18px; "> Gráfica de Concentración</span></center>
-
-    <!--GRAFICA LINEAL-->
-    <center>
+    <!--GRAFICA LINEAL DE CONCENTRACIONES-->
+    <p class="text-center"><strong>GRAFICA DE CONCENTRACIONES</strong></p>
+    <div class="grafic-line text-center">
         <?php
 
         $qc = new QuickChart();
@@ -169,137 +215,135 @@
         $d_con_final = json_encode($con_final);
         $d_dias = json_encode($dias_d);
         $qc->setConfig("{
-                                                                                         type: 'line',
-                                                                                   data: {
-                                                                                     labels: $d_dias,
-                                                                                     datasets: [
-                                                                                         {
-                                                                                         label: 'Datos:',
-                                                                                         fill: false,
-                                                                                         backgroundColor: 'rgb(255,255 ,255 )',
-                                                                                         borderColor: 'rgb(255,255 ,255 )',
-                                                                                         data: [20],
-                                                                                       },
-                                                                                       {
-                                                                                         label: 'Concentración Inicial',
-                                                                                         backgroundColor: 'rgb(149, 147, 146)',
-                                                                                         borderColor: 'rgb(149, 147, 146)',
-                                                                                         data: $d_con_inicial,
-                                                                                         fill: false,
-                                                                                       },
-                                                                                       {
-                                                                                         label: 'Concentración Final',
-                                                                                         backgroundColor: 'rgb(94, 128, 183)',
-                                                                                         borderColor: 'rgb(94, 128, 183)',
-                                                                                         data: $d_con_final,
-                                                                                         fill: false,
-                                                                                       },
-                                                                                       {
-                                                                                         label: 'Minimo',
-                                                                                         backgroundColor: 'rgb(193, 192, 192 )',
-                                                                                         borderColor: 'rgb(193, 192, 192)',
-                                                                                         data: $d_reco_min,
-                                                                                         fill: false,
-                                                                                       },
-                                                                                       {
-                                                                                         label: 'Maximo',
-                                                                                         backgroundColor: 'rgb(193, 192, 192)',
-                                                                                         borderColor: 'rgb(193, 192, 192)',
-                                                                                         data: $d_reco_max,
-                                                                                         fill: false,
-                                                                                       },
+                                                                                                                                                                                                                 type: 'line',
+                                                                                                                                                                                                           data: {
+                                                                                                                                                                                                             labels: $d_dias,
+                                                                                                                                                                                                             datasets: [
+                                                                                                                                                                                                                 {
+                                                                                                                                                                                                                 label: 'Datos:',
+                                                                                                                                                                                                                 fill: false,
+                                                                                                                                                                                                                 backgroundColor: 'rgb(255,255 ,255 )',
+                                                                                                                                                                                                                 borderColor: 'rgb(255,255 ,255 )',
+                                                                                                                                                                                                                 data: [20],
+                                                                                                                                                                                                               },
+                                                                                                                                                                                                               {
+                                                                                                                                                                                                                 label: 'Concentración Inicial',
+                                                                                                                                                                                                                 backgroundColor: 'rgb(149, 147, 146)',
+                                                                                                                                                                                                                 borderColor: 'rgb(149, 147, 146)',
+                                                                                                                                                                                                                 data: $d_con_inicial,
+                                                                                                                                                                                                                 fill: false,
+                                                                                                                                                                                                               },
+                                                                                                                                                                                                               {
+                                                                                                                                                                                                                 label: 'Concentración Final',
+                                                                                                                                                                                                                 backgroundColor: 'rgb(94, 128, 183)',
+                                                                                                                                                                                                                 borderColor: 'rgb(94, 128, 183)',
+                                                                                                                                                                                                                 data: $d_con_final,
+                                                                                                                                                                                                                 fill: false,
+                                                                                                                                                                                                               },
+                                                                                                                                                                                                               {
+                                                                                                                                                                                                                 label: 'Minimo',
+                                                                                                                                                                                                                 backgroundColor: 'rgb(193, 192, 192 )',
+                                                                                                                                                                                                                 borderColor: 'rgb(193, 192, 192)',
+                                                                                                                                                                                                                 data: $d_reco_min,
+                                                                                                                                                                                                                 fill: false,
+                                                                                                                                                                                                               },
+                                                                                                                                                                                                               {
+                                                                                                                                                                                                                 label: 'Maximo',
+                                                                                                                                                                                                                 backgroundColor: 'rgb(193, 192, 192)',
+                                                                                                                                                                                                                 borderColor: 'rgb(193, 192, 192)',
+                                                                                                                                                                                                                 data: $d_reco_max,
+                                                                                                                                                                                                                 fill: false,
+                                                                                                                                                                                                               },
 
 
-                                                                                     ],
-                                                                                   },
-                                                                                   options: {
-                                                                                     title: {
-                                                                                       display: false,
-                                                                                       text: 'Gráfica de Concentración',
-                                                                                     },
-                                                                                   },
-                                                                                       }");
+                                                                                                                                                                                                             ],
+                                                                                                                                                                                                           },
+                                                                                                                                                                                                           options: {
+                                                                                                                                                                                                             title: {
+                                                                                                                                                                                                               display: false,
+                                                                                                                                                                                                               text: 'Gráfica de Concentración',
+                                                                                                                                                                                                             },
+                                                                                                                                                                                                           },
+                                                                                                                                                                                                               }");
 
         $a = $qc->getUrl();
         $imageData = base64_encode(file_get_contents($a));
-        echo '<img width="800px" height="400px" src="data:image/jpeg;base64,' . $imageData . '">';
+        echo '<img width="900px" height="380px" src="data:image/jpeg;base64,' . $imageData . '">';
 
         ?>
-    </center>
-
+    </div>
+    <!--END GRAFICA LINEAL DE CONCENTRACIONES-->
 
     <!--PIE DE PAGINA-->
     <section class="pie">
-        <table cellpadding="0" cellspacing="0" class="table-items" width="100%">
+        <hr class="horizontal dark">
+        <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td class="rob-bol" style=" padding: 5px 2px;  text-align: left; vertical-align: middle; "
-                    width="30%">
-                    <span>Cutting Fluids S.A de C.V </span>
-                    <br>
-                    <span>Correo:customerservice@cuttingfluids.com.mx</span>
-                    <br>
-                    <span>Tel: (614) 426 2186 </span>
-                    <br>
-                    <span>www.cuttingfluids.com.mx</span>
+                <td width="50%">
+                    <p class="info-date text-sm">
+                        <span>Fecha: </span>
+                        {{ $date = \Carbon\Carbon::now()->format('d-m-Y') }}
+                    </p>
                 </td>
-                <td style="font-weight: bold; padding: 5px 2px; text-align: center; vertical-align: middle; "
-                    width="50%" class="text-center">
 
-                </td>
-                <td class="rob-bol" style=" padding: 5px 2px; text-align: right; vertical-align: middle; "
-                    width="20%" class="text-center">
-                    pagina <span class="pagenum"></span>
+                <td width="50%">
+                    <p class="info-page text-sm">
+                        Página <span class="pagenum"></span>
+                    </p>
                 </td>
             </tr>
         </table>
     </section>
+    <!--END PIE DE PAGINA-->
 
-
-    <!--------------SALTO DE PAGINA------------------>
+    <!--SALTO DE PAGINA-->
     <div class="page-break"></div>
-
 
     <!--ENCABEZADO DE LA PAGINA-->
     <section class="header">
-        <table cellpadding="0" cellspacing="0" width="100%">
+        <table class="table-info" cellpadding="0" cellspacing="0" width="100%">
             <tr>
                 <td width="30%" style="vertical-align: top; padding-top: 10px; position:relative">
-                    <img src="{{ base_path() }}/public/img/logo7.png" width="200px">
+                    <img src="{{ base_path() }}/public/img/logo7.png" width="170px">
                 </td>
 
-                <td width="40%">
+                <td width="40%" style="vertical-aling:top; padding-top:10px ">
+                    <p class="data-info">
+                        <strong class="text-dark">E-mail:</strong> &nbsp;
+                        customerservice@cuttingfluids.com.mx
+                    </p>
+                    <p class="data-info"><strong class="text-dark">Telefono:</strong> &nbsp; (614) 426
+                        2186</p>
+                    <p class="data-info"><strong class="text-dark">Sitio web:</strong> &nbsp;
+                        www.cuttingfluids.com.mx</p>
+
                 </td>
 
-                <td width="30%" class="rob-bol" style="vertical-aling:top;  padding-top:10px">
-                    <center>
-                        <span style="font-size: 16px">Fecha:</span>
-
-
-                        {{ $date = \Carbon\Carbon::now()->formatLocalized('%d %B del %Y ') }}
-
-                    </center>
+                <td width="30%" class="rob-bol" style=" vertical-aling:top;  padding-top:10px">
+                    <p class="data-info"><strong>Cutting Fluids S.A. de C.V.</strong></p>
+                    <p class="data-info"><strong>Dirección:</strong> &nbsp; Circuito Balvanera
+                        5a Bodega 3, Fracc. Industrial Balvanera. Querétaro, Qro. CP.76900</p>
                 </td>
             </tr>
         </table>
-        <br>
-
-
+        <hr class="horizontal dark">
     </section>
-    <center><span class="rob-bol" style="font-size: 18px; "> Tabla General</span></center>
-    <br>
-    <br>
+    <!--END ENCABEZADO DE LA PAGINA-->
 
-    <!--CONTENIDO-->
-    <section>
-        <!--Tabla general-->
+
+    <!--TABLA GENERAL-->
+    <section class="data-table">
+        <p class="text-center"><strong>TABLA DE CONCENTRACIONES</strong></p>
         <table cellpadding="0" cellspacing="0" class="table-items" width="100%">
             <thead>
                 <tr>
                     <td class="rob-bol" width="250px"
-                        style="text-align:center; background: #959392;  border: 1px solid #000000;">Datos Generales
+                        style="text-align:center; background: #959392;  border: 1px solid #000000;">Datos Generales /
+                        Días
                     </td>
                     @foreach ($data as $d)
-                        <td class="rob-bol" style="text-align:center; background: #959392;  border: 1px solid #000000;">
+                        <td class="rob-bol"
+                            style="text-align:center; background: #959392;  border: 1px solid #000000;">
                             {{ \Carbon\Carbon::parse($d->created_at)->format('d') }}
                         </td>
                     @endforeach
@@ -309,7 +353,8 @@
             <tbody>
 
                 <tr>
-                    <td class="rob-bol" style="text-align:center; background: #BFBFBF; border: 1px solid #000000;">Conc.
+                    <td class="rob-bol" style="text-align:center; background: #BFBFBF; border: 1px solid #000000;">
+                        Conc.
                         Inicial
                         °Brix
                     </td>
@@ -538,70 +583,63 @@
         </table>
         <img width="500px" src="" alt="">
     </section>
-
+    <!--END TABLA GENERAL-->
 
     <!--PIE DE PAGINA-->
     <section class="pie">
-        <table cellpadding="0" cellspacing="0" class="table-items" width="100%">
+        <hr class="horizontal dark">
+        <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td class="rob-bol" style=" padding: 5px 2px;  text-align: left; vertical-align: middle; "
-                    width="30%">
-                    <span>Cutting Fluids S.A de C.V </span>
-                    <br>
-                    <span>Correo:customerservice@cuttingfluids.com.mx</span>
-                    <br>
-                    <span>Tel: (614) 426 2186 </span>
-                    <br>
-                    <span>www.cuttingfluids.com.mx</span>
+                <td width="50%">
+                    <p class="info-date text-sm">
+                        <span>Fecha: </span>
+                        {{ $date = \Carbon\Carbon::now()->format('d-m-Y') }}
+                    </p>
                 </td>
-                <td style="font-weight: bold; padding: 5px 2px; text-align: center; vertical-align: middle; "
-                    width="50%" class="text-center">
 
-                </td>
-                <td class="rob-bol" style=" padding: 5px 2px; text-align: right; vertical-align: middle; "
-                    width="20%" class="text-center">
-                    pagina <span class="pagenum"></span>
+                <td width="50%">
+                    <p class="info-page text-sm">
+                        Página <span class="pagenum"></span>
+                    </p>
                 </td>
             </tr>
         </table>
     </section>
+    <!--END PIE DE PAGINA-->
 
-    <!--------------SALTO DE PAGINA------------------>
+    <!--SALTO DE PAGINA-->
     <div class="page-break"></div>
-
 
     <!--ENCABEZADO DE LA PAGINA-->
     <section class="header">
-        <table cellpadding="0" cellspacing="0" width="100%">
+        <table class="table-info" cellpadding="0" cellspacing="0" width="100%">
             <tr>
                 <td width="30%" style="vertical-align: top; padding-top: 10px; position:relative">
-                    <img src="{{ base_path() }}/public/img/logo7.png" width="200px">
+                    <img src="{{ base_path() }}/public/img/logo7.png" width="170px">
                 </td>
 
-                <td width="40%">
+                <td width="40%" style="vertical-aling:top; padding-top:10px ">
+                    <p class="data-info">
+                        <strong class="text-dark">E-mail:</strong> &nbsp;
+                        customerservice@cuttingfluids.com.mx
+                    </p>
+                    <p class="data-info"><strong class="text-dark">Telefono:</strong> &nbsp; (614) 426
+                        2186</p>
+                    <p class="data-info"><strong class="text-dark">Sitio web:</strong> &nbsp;
+                        www.cuttingfluids.com.mx</p>
+
                 </td>
 
-                <td width="30%" class="rob-bol" style="vertical-aling:top;  padding-top:10px">
-                    <center>
-                        <span style="font-size: 16px">Fecha:</span>
-
-
-                        {{ $date = \Carbon\Carbon::now()->formatLocalized('%d %B del %Y ') }}
-
-                    </center>
+                <td width="30%" class="rob-bol" style=" vertical-aling:top;  padding-top:10px">
+                    <p class="data-info"><strong>Cutting Fluids S.A. de C.V.</strong></p>
+                    <p class="data-info"><strong>Dirección:</strong> &nbsp; Circuito Balvanera
+                        5a Bodega 3, Fracc. Industrial Balvanera. Querétaro, Qro. CP.76900</p>
                 </td>
             </tr>
         </table>
-        <br>
-
-
+        <hr class="horizontal dark">
     </section>
-    <center><span class="rob-bol" style="font-size: 18px; "> Estado del soluble</span></center>
-    <br>
-    <br>
-    <br>
-
-    <!--GRAFICAs CIRCULOS-->
+    <!--END ENCABEZADO DE LA PAGINA-->
 
     <?php
     $arr_espuma_aceite = [
@@ -621,7 +659,9 @@
         'bueno' => 'green',
     ];
     ?>
-    <section>
+    <!--GRAFICA DE DONA ESTADO DE SOLUBLE-->
+    <section class="grafica-circular">
+        <p class="text-center"><strong>GRAFICA ESTADO DE SOLUBLE</strong></p>
         <table cellpadding="0" cellspacing="0" width="100%">
             <tbody>
                 <tr>
@@ -630,28 +670,28 @@
 
                         $qc = new QuickChart();
                         $qc->setConfig("{
-                                                                                                                                    type: 'doughnut',
-                                                                                                      data: {
-                                                                                                        datasets: [
-                                                                                                          {
-                                                                                                            data: [$espuma_no,$espuma_si],
-                                                                                                            backgroundColor: [
-                                                                                                              'rgb(155, 187, 89)',
-                                                                                                              'rgb(240, 0, 0)',
+                                                                                                                                                                                                                                                                                                                                                                                    type: 'doughnut',
+                                                                                                                                                                                                                                                                                                                                                      data: {
+                                                                                                                                                                                                                                                                                                                                                        datasets: [
+                                                                                                                                                                                                                                                                                                                                                          {
+                                                                                                                                                                                                                                                                                                                                                            data: [$espuma_no,$espuma_si],
+                                                                                                                                                                                                                                                                                                                                                            backgroundColor: [
+                                                                                                                                                                                                                                                                                                                                                              'rgb(155, 187, 89)',
+                                                                                                                                                                                                                                                                                                                                                              'rgb(240, 0, 0)',
 
-                                                                                                            ],
-                                                                                                            label: 'Dataset 1',
-                                                                                                          },
-                                                                                                        ],
-                                                                                                        labels: ['No', 'Si'],
-                                                                                                      },
-                                                                                                      options: {
-                                                                                                        title: {
-                                                                                                          display: true,
-                                                                                                          text: 'Espuma',
-                                                                                                        },
-                                                                                                      },
-                                                                                                                                                                       }");
+                                                                                                                                                                                                                                                                                                                                                            ],
+                                                                                                                                                                                                                                                                                                                                                            label: 'Dataset 1',
+                                                                                                                                                                                                                                                                                                                                                          },
+                                                                                                                                                                                                                                                                                                                                                        ],
+                                                                                                                                                                                                                                                                                                                                                        labels: ['No', 'Si'],
+                                                                                                                                                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                                                                                                                                                      options: {
+                                                                                                                                                                                                                                                                                                                                                        title: {
+                                                                                                                                                                                                                                                                                                                                                          display: true,
+                                                                                                                                                                                                                                                                                                                                                          text: 'Espuma',
+                                                                                                                                                                                                                                                                                                                                                        },
+                                                                                                                                                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                                                                                                                                                                                                                       }");
 
                         $a = $qc->getUrl();
                         $imageData = base64_encode(file_get_contents($a));
@@ -663,29 +703,29 @@
                         <?php
                         $qc = new QuickChart();
                         $qc->setConfig("{
-                                                                                                                                    type: 'doughnut',
-                                                                                                      data: {
-                                                                                                        datasets: [
-                                                                                                          {
-                                                                                                            data: [$olor_bueno, $olor_regular, $olor_malo],
-                                                                                                            backgroundColor: [
-                                                                                                              'rgb(155, 187, 89)',
-                                                                                                              'rgb(240, 236, 0)',
-                                                                                                              'rgb(240, 0, 0)',
+                                                                                                                                                                                                                                                                                                                                                                                    type: 'doughnut',
+                                                                                                                                                                                                                                                                                                                                                      data: {
+                                                                                                                                                                                                                                                                                                                                                        datasets: [
+                                                                                                                                                                                                                                                                                                                                                          {
+                                                                                                                                                                                                                                                                                                                                                            data: [$olor_bueno, $olor_regular, $olor_malo],
+                                                                                                                                                                                                                                                                                                                                                            backgroundColor: [
+                                                                                                                                                                                                                                                                                                                                                              'rgb(155, 187, 89)',
+                                                                                                                                                                                                                                                                                                                                                              'rgb(240, 236, 0)',
+                                                                                                                                                                                                                                                                                                                                                              'rgb(240, 0, 0)',
 
-                                                                                                            ],
-                                                                                                            label: 'Dataset 1',
-                                                                                                          },
-                                                                                                        ],
-                                                                                                        labels: ['Bueno', 'Regular', 'Malo'],
-                                                                                                      },
-                                                                                                      options: {
-                                                                                                        title: {
-                                                                                                          display: true,
-                                                                                                          text: 'Mal olor',
-                                                                                                        },
-                                                                                                      },
-                                                                                                                                                                       }");
+                                                                                                                                                                                                                                                                                                                                                            ],
+                                                                                                                                                                                                                                                                                                                                                            label: 'Dataset 1',
+                                                                                                                                                                                                                                                                                                                                                          },
+                                                                                                                                                                                                                                                                                                                                                        ],
+                                                                                                                                                                                                                                                                                                                                                        labels: ['Bueno', 'Regular', 'Malo'],
+                                                                                                                                                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                                                                                                                                                      options: {
+                                                                                                                                                                                                                                                                                                                                                        title: {
+                                                                                                                                                                                                                                                                                                                                                          display: true,
+                                                                                                                                                                                                                                                                                                                                                          text: 'Mal olor',
+                                                                                                                                                                                                                                                                                                                                                        },
+                                                                                                                                                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                                                                                                                                                                                                                       }");
 
                         $a = $qc->getUrl();
                         $imageData = base64_encode(file_get_contents($a));
@@ -696,28 +736,28 @@
                         <?php
                         $qc = new QuickChart();
                         $qc->setConfig("{
-                                                                                                                                    type: 'doughnut',
-                                                                                                      data: {
-                                                                                                        datasets: [
-                                                                                                          {
-                                                                                                            data: [$aceite_no, $aceite_si],
-                                                                                                            backgroundColor: [
-                                                                                                              'rgb(155, 187, 89)',
-                                                                                                              'rgb(240, 0, 0)',
+                                                                                                                                                                                                                                                                                                                                                                                    type: 'doughnut',
+                                                                                                                                                                                                                                                                                                                                                      data: {
+                                                                                                                                                                                                                                                                                                                                                        datasets: [
+                                                                                                                                                                                                                                                                                                                                                          {
+                                                                                                                                                                                                                                                                                                                                                            data: [$aceite_no, $aceite_si],
+                                                                                                                                                                                                                                                                                                                                                            backgroundColor: [
+                                                                                                                                                                                                                                                                                                                                                              'rgb(155, 187, 89)',
+                                                                                                                                                                                                                                                                                                                                                              'rgb(240, 0, 0)',
 
-                                                                                                            ],
-                                                                                                            label: 'Dataset 1',
-                                                                                                          },
-                                                                                                        ],
-                                                                                                        labels: ['No', 'Si'],
-                                                                                                      },
-                                                                                                      options: {
-                                                                                                        title: {
-                                                                                                          display: true,
-                                                                                                          text: 'Aceite entrampado',
-                                                                                                        },
-                                                                                                      },
-                                                                                                                                                                       }");
+                                                                                                                                                                                                                                                                                                                                                            ],
+                                                                                                                                                                                                                                                                                                                                                            label: 'Dataset 1',
+                                                                                                                                                                                                                                                                                                                                                          },
+                                                                                                                                                                                                                                                                                                                                                        ],
+                                                                                                                                                                                                                                                                                                                                                        labels: ['No', 'Si'],
+                                                                                                                                                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                                                                                                                                                      options: {
+                                                                                                                                                                                                                                                                                                                                                        title: {
+                                                                                                                                                                                                                                                                                                                                                          display: true,
+                                                                                                                                                                                                                                                                                                                                                          text: 'Aceite entrampado',
+                                                                                                                                                                                                                                                                                                                                                        },
+                                                                                                                                                                                                                                                                                                                                                      },
+                                                                                                                                                                                                                                                                                                                                                                                                                       }");
 
                         $a = $qc->getUrl();
                         $imageData = base64_encode(file_get_contents($a));
@@ -745,8 +785,8 @@
                                 <tr>
                                     <td style="text-align:center;  border: 1px solid black;" width="50%">Ultimo
                                         registro:</td>
-                                    <td style="text-align:center; border: 1px solid black;" class="<?php echo $arr_aroma[$ultimo_registro_olor]; ?>"
-                                        width="50%">{{ $ultimo_registro_olor }}</td>
+                                    <td style="text-align:center; border: 1px solid black;"
+                                        class="<?php echo $arr_aroma[$ultimo_registro_olor]; ?>" width="50%">{{ $ultimo_registro_olor }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -757,8 +797,9 @@
                                 <tr>
                                     <td style="text-align:center;  border: 1px solid black;" width="50%">Ultimo
                                         registro:</td>
-                                    <td style="text-align:center;   border: 1px solid black;" class="<?php echo $arr_espuma_aceite[$ultimo_registro_aceites]; ?>"
-                                        width="50%">{{ $ultimo_registro_aceites}}</td>
+                                    <td style="text-align:center;   border: 1px solid black;"
+                                        class="<?php echo $arr_espuma_aceite[$ultimo_registro_aceites]; ?>" width="50%">{{ $ultimo_registro_aceites }}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -768,151 +809,128 @@
         </table>
 
     </section>
-
+    <!--END GRAFICA DE DONA ESTADO DE SOLUBLE-->
 
     <!--PIE DE PAGINA-->
     <section class="pie">
-        <table cellpadding="0" cellspacing="0" class="table-items" width="100%">
+        <hr class="horizontal dark">
+        <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td class="rob-bol" style=" padding: 5px 2px;  text-align: left; vertical-align: middle; "
-                    width="30%">
-                    <span>Cutting Fluids S.A de C.V </span>
-                    <br>
-                    <span>Correo:customerservice@cuttingfluids.com.mx</span>
-                    <br>
-                    <span>Tel: (614) 426 2186 </span>
-                    <br>
-                    <span>www.cuttingfluids.com.mx</span>
+                <td width="50%">
+                    <p class="info-date text-sm">
+                        <span>Fecha: </span>
+                        {{ $date = \Carbon\Carbon::now()->format('d-m-Y') }}
+                    </p>
                 </td>
-                <td style="font-weight: bold; padding: 5px 2px; text-align: center; vertical-align: middle; "
-                    width="50%" class="text-center">
 
-                </td>
-                <td class="rob-bol" style=" padding: 5px 2px; text-align: right; vertical-align: middle; "
-                    width="20%" class="text-center">
-                    pagina <span class="pagenum"></span>
+                <td width="50%">
+                    <p class="info-page text-sm">
+                        Página <span class="pagenum"></span>
+                    </p>
                 </td>
             </tr>
         </table>
     </section>
+    <!--END PIE DE PAGINA-->
 
-    <!--------------SALTO DE PAGINA------------------>
+    <!--SALTO DE PAGINA-->
     <div class="page-break"></div>
-
 
     <!--ENCABEZADO DE LA PAGINA-->
     <section class="header">
-        <table cellpadding="0" cellspacing="0" width="100%">
+        <table class="table-info" cellpadding="0" cellspacing="0" width="100%">
             <tr>
                 <td width="30%" style="vertical-align: top; padding-top: 10px; position:relative">
-                    <img src="{{ base_path() }}/public/img/logo7.png" width="200px">
+                    <img src="{{ base_path() }}/public/img/logo7.png" width="170px">
                 </td>
 
-                <td width="40%">
+                <td width="40%" style="vertical-aling:top; padding-top:10px ">
+                    <p class="data-info">
+                        <strong class="text-dark">E-mail:</strong> &nbsp;
+                        customerservice@cuttingfluids.com.mx
+                    </p>
+                    <p class="data-info"><strong class="text-dark">Telefono:</strong> &nbsp; (614) 426
+                        2186</p>
+                    <p class="data-info"><strong class="text-dark">Sitio web:</strong> &nbsp;
+                        www.cuttingfluids.com.mx</p>
+
                 </td>
 
-                <td width="30%" class="rob-bol" style="vertical-aling:top;  padding-top:10px">
-                    <center>
-                        <span style="font-size: 16px">Fecha:</span>
-
-
-                        {{ $date = \Carbon\Carbon::now()->formatLocalized('%d %B del %Y ') }}
-
-                    </center>
+                <td width="30%" class="rob-bol" style=" vertical-aling:top;  padding-top:10px">
+                    <p class="data-info"><strong>Cutting Fluids S.A. de C.V.</strong></p>
+                    <p class="data-info"><strong>Dirección:</strong> &nbsp; Circuito Balvanera
+                        5a Bodega 3, Fracc. Industrial Balvanera. Querétaro, Qro. CP.76900</p>
                 </td>
             </tr>
         </table>
-        <br>
-
-
+        <hr class="horizontal dark">
     </section>
+    <!--END ENCABEZADO DE LA PAGINA-->
 
-    <!--CONTENIDO COMEMTARIOS-->
-    <section class="columnas">
-
-        <!-- Tabla comentarios -->
-        <div>
-            <center><span class="rob-bol" style="font-size: 18px; "> Observaciones</span></center>
-        </div>
-        <br>
-        <div class="columnas" style="text-align: center; ">
-
-            @foreach ($data as $da)
-                <table cellpadding="0" cellspacing="0" width="100%">
-                    <tbody>
-                        <tr>
-                            <td width="100px" style="border: 1px solid black; "><strong>Dia:</strong>
-                                {{ \Carbon\Carbon::parse($da->created_at)->format('d') }}
-                            </td>
-                            <td style="border: 1px solid black; " colspan="6" rowspan="2">
-                                <strong>{{ $da->comentarios }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black; ">
-                                <strong>Mes:</strong>{{ \Carbon\Carbon::parse($da->created_at)->format('m') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black; " rowspan="2"><strong>Año:</strong>
-                                {{ \Carbon\Carbon::parse($da->created_at)->format('Y') }}</td>
-                            <td style="border: 1px solid black; ">Espuma</td>
-                            <td style="border: 1px solid black; text-align:center;" class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">{{ $da->exceso_espuma }}
-                            </td>
-                            <td style="border: 1px solid black; ">Mal olor</td>
-                            <td style="border: 1px solid black; text-align:center; " class="<?php echo $arr_aroma[$da->aroma]; ?>">{{ $da->aroma }}</td>
-                            <td style="border: 1px solid black; ">A.Entrampado</td>
-                            <td style="border: 1px solid black; text-align:center; " class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">
-                                {{ $da->aceites_entrampados }}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black; " colspan="6"><strong>Tecnico:</strong>
-                                {{ $da->usuarios->name ?? 'No existe' }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-            @endforeach
-
-        </div>
-
-
-
-
-
-
-    </section>
-
+    <!--TABLA DE OBSERVACIONES-->
+    <p class="text-center" style="margin-bottom: 1rem; margin-top: 2rem;"><strong>TABLA DE OBSERVACIONES</strong></p>
+    <div class="commit-table">
+        @foreach ($data as $da)
+            <table class="data-commit-table" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                    <tr>
+                        <td width="100px" style="border: 1px solid black; "><strong>Dia:</strong>
+                            {{ \Carbon\Carbon::parse($da->created_at)->format('d') }}
+                        </td>
+                        <td class="text-center" style="border: 1px solid black; " colspan="6" rowspan="2">
+                            <strong>{{ $da->comentarios }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; ">
+                            <strong>Mes:</strong>{{ \Carbon\Carbon::parse($da->created_at)->format('m') }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; " rowspan="2"><strong>Año:</strong>
+                            {{ \Carbon\Carbon::parse($da->created_at)->format('Y') }}</td>
+                        <td class="text-center" style="border: 1px solid black; ">Espuma</td>
+                        <td style="border: 1px solid black; text-align:center;" class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">
+                            {{ $da->exceso_espuma }}
+                        </td>
+                        <td class="text-center" style="border: 1px solid black; ">Mal olor</td>
+                        <td style="border: 1px solid black; text-align:center; " class="<?php echo $arr_aroma[$da->aroma]; ?>">
+                            {{ $da->aroma }}</td>
+                        <td class="text-center" style="border: 1px solid black; ">A.Entrampado</td>
+                        <td style="border: 1px solid black; text-align:center; " class="<?php echo $arr_espuma_aceite[$da->exceso_espuma]; ?>">
+                            {{ $da->aceites_entrampados }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; " colspan="6"><strong>Tecnico:</strong>
+                            {{ $da->usuarios->name ?? 'No existe' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        @endforeach
+    </div>
+    <!--END TABLA DE OBSERVACIONES-->
 
     <!--PIE DE PAGINA-->
     <section class="pie">
-        <table cellpadding="0" cellspacing="0" class="table-items" width="100%">
+        <hr class="horizontal dark">
+        <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td class="rob-bol" style=" padding: 5px 2px;  text-align: left; vertical-align: middle; "
-                    width="30%">
-                    <span>Cutting Fluids S.A de C.V </span>
-                    <br>
-                    <span>Correo:customerservice@cuttingfluids.com.mx</span>
-                    <br>
-                    <span>Tel: (614) 426 2186 </span>
-                    <br>
-                    <span>www.cuttingfluids.com.mx</span>
+                <td width="50%">
+                    <p class="info-date text-sm">
+                        <span>Fecha: </span>
+                        {{ $date = \Carbon\Carbon::now()->format('d-m-Y') }}
+                    </p>
                 </td>
-                <td style="font-weight: bold; padding: 5px 2px; text-align: center; vertical-align: middle; "
-                    width="50%" class="text-center">
 
-                </td>
-                <td class="rob-bol" style=" padding: 5px 2px; text-align: right; vertical-align: middle; "
-                    width="20%" class="text-center">
-                    pagina <span class="pagenum"></span>
+                <td width="50%">
+                    <p class="info-page text-sm">
+                        Página <span class="pagenum"></span>
+                    </p>
                 </td>
             </tr>
         </table>
     </section>
-
-
-
-
+    <!--END PIE DE PAGINA-->
 
 </body>
 

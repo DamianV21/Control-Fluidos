@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Plant extends Model
 {
     use HasFactory;
+
     public function clientes()
     {
         return $this->belongsTo(Client::class, 'contacto_id');
@@ -15,6 +16,10 @@ class Plant extends Model
 
     public function empresas(){
         return $this->belongsTo(Company::class,'empresa_id');
+    }
+
+    public function usuarios(){
+        return $this->belongsTo(User::class,'usuario_id');
     }
 
      public function scopeCurrentUser($query)

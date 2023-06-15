@@ -33,9 +33,12 @@
             </div>
 
             <div class="flex" >
-                <x-jet-button class="form-btn" >
+                <!--<x-jet-button class="form-btn" >
                     {{ __('Iniciar Sesión') }}
-                </x-jet-button>
+                </x-jet-button>-->
+                <button class="form-btn">
+                    {{ __('Iniciar Sesión') }}
+                </button>
             </div>
             <div class="flex">
                 @if (Route::has('password.request'))

@@ -1,387 +1,284 @@
 <div>
 
-
-    <!-- Ordenar-->
-
-    <div class="container">
+    <div class="container-fluid py-4">
         <div class="row">
-            <div class="col-md-auto text-sm">
-                Filtrar por:
-            </div>
-            <div class="col-md-auto">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Acerca de todas las Áreas</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Área</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Planta</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Responsable</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            IVA</th>
 
-                <div class="btn-group-sm btn-group-toggle" wire:model="sort" data-toggle="buttons">
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" value="za" autocomplete="off"> <i
-                            class="fas fa-sort-alpha-down-alt"></i>
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" value="az" autocomplete="off"> <i
-                            class="fas fa-sort-alpha-down"></i>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Registros</th>
 
-    <br>
+                                        <th class="text-secondary opacity-7"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($areas as $area)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <i class="fas fa-project-diagram me-3"></i>
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{ $area->nombre }}</h6>
 
-    <!-- End Orden -->
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">
+                                                    {{ $area->empresas->nombre ?? 'No existe' }}</p>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    {{ $area->plantas->nombre ?? 'No existe' }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">
+                                                    {{ $area->usuarios->name ?? 'No existe' }}</p>
 
-    <div class="card shadow mb-4">
-        <div class="card-body">
-
-            @if (session()->has('message'))
-                <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
-                    {{ session('message') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-
-            <div class="row">
-                @foreach ($areas as $area)
-                    <div class="col-md-3">
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">
+                                                    {{ $area->ivas->name ?? 'No existe' }}</p>
+                                            </td>
 
 
-                        <br>
-                        <div class="card card-custom bg-white border-white border-0">
-                            <div class="card-custom-img" style="background-image: url({{ asset('img/fondo.png') }});">
-                            </div>
-                            <div class="card-custom-avatar">
-                                <img class="img-fluid" src="{{ asset('img/area_default.png') }}" alt="Avatar" />
-                            </div>
-                            <div class="card-body text-sm" style="overflow-y: auto">
+                                            <td class="align-middle text-center text-sm">
 
-                                <h4 class="card-title"><strong>Información del Área:</strong> </h4>
-                                <p class="card-text"> <strong>Área:</strong> {{ $area->nombre }}</p>
-                                <p class="card-text"><strong>Planta:</strong> {{ $area->plantas->nombre }}</p>
-                            </div>
-                            <div class="card-footer text-sm" style="background: inherit; border-color: inherit;">
+                                                <button type="button" wire:click="OpenViewArea({{ $area->id }})"
+                                                    class="btn btn-tumblr btn-icon-only"
+                                                    data-bs-toggle="modal" data-bs-target="#Registros">
+                                                    <i class="fas fa-folder-open"></i>
+                                                </button>
 
-                                <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
-                                    data-toggle="modal" wire:click="OpenViewModal({{ $area->id }})">Ver más
-                                    información </a>
-
-                                <a class="btn text-white btn-sm btn-block" style="background-color: #5e80b7"
-                                    data-toggle="modal" wire:click="OpenViewArea({{ $area->id }})">Registros</a>
-
-                            </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                @endforeach
+                </div>
             </div>
-
         </div>
     </div>
 
 
-
-    <!-- Modal Calidad Agua -->
-    <div wire:ignore.self class="modal fade" data-backdrop="static" id="AddCalidadAgua" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <!-- Modal  Registros Calidad Agua-->
+    <div wire:ignore.self class="modal fade" id="Registros" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
-                        <span class="span-bold"> Calidad de Agua</span>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> <i class="fas fa-folder-open"></i>
+                        Registros de Calidad de Agua "{{ $view_name_area }}"</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body">
-
-
-                    <div class="form-group row">
-                        <label for="origen_agua" class="col-3">Origen de Agua</label>
-                        <div class="col-9">
-                            <select class="form-control" id="origen_agua" wire:model="origen_agua">
-                                <option selected>Seleccione un elemento</option>
-                                <option value="Bien">Bien</option>
-                                <option value="Ciudad">Ciudad</option>
-                                <option value="Desionizada">Desionizada</option>
-                                <option value="Osmosis inversa">Osmosis inversa</option>
-                                <option value="Suavizada">Suavizada</option>
-                                <option value="pipa">Pipa</option>
-                                <option value="Pozo">Pozo</option>
-                            </select>
-                            @error('origen_agua')
-                                <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="dureza" class="col-3">Dureza</label>
-                        <div class="col-9">
-                            <input type="number" step="0.01" id="dureza" class="form-control"
-                                wire:model="dureza">
-                            @error('dureza')
-                                <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="ph" class="col-3">pH</label>
-                        <div class="col-9">
-                            <input type="number" step="0.01" id="ph" class="form-control"
-                                wire:model="ph">
-                            @error('ph')
-                                <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="conductividad" class="col-3">Conductividad</label>
-                        <div class="col-9">
-                            <input type="number" step="0.01" id="conductividad" class="form-control"
-                                wire:model="conductividad">
-                            @error('conductividad')
-                                <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="cloruros" class="col-3">Cloruros</label>
-                        <div class="col-9">
-                            <input type="number" step="0.01" id="cloruros" class="form-control"
-                                wire:model="cloruros">
-                            @error('cloruros')
-                                <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="sulfatos" class="col-3">Sulfatos</label>
-                        <div class="col-9">
-                            <input type="number" step="0.01" id="sulfatos" class="form-control"
-                                wire:model="sulfatos">
-                            @error('sulfatos')
-                                <span class="text-danger" style="font-size 12px;">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-
+                    <div class="row">
                         <div class="col-12">
-                            <button wire:click="storeAreaData"
-                                class="btn btn-success btn-lg btn-block">Registar</button>
-                        </div>
-                    </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Modal -->
-
-
-
-    <!-- Modal Informacion -->
-    <div wire_ignore.self class="modal fade" id="InfoAreaData" tabindex="-1" role="dialog"
-        aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
-                        <span class="span-bold"> Datos de la Área</span>
-                    </h5>
-                    <button type="button" class="close" wire:click="CloseViewModal" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="right">
-                        <div class="right-container">
-                            <section class="right-footer">
-                                <div class="right-footer-container">
-                                    <span class="span-label">Nombre:</span>
-
-                                    <div class="inp">
-                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
-                                            placeholder="{{ $view_area_nom }}" />
-                                    </div>
-
-                                    <i class="fas fa-spell-check"></i>
-                                </div>
-                            </section>
-
-
-                            <section class="right-footer">
-                                <div class="right-footer-container">
-                                    <span class="span-label">Empresa:</span>
-                                    <div class="inp">
-                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
-                                            placeholder="{{ $view_area_empresa }}" />
-                                    </div>
-                                    <i class="fas fa-building"></i>
-                                </div>
-                            </section>
-
-                            <section class="right-footer">
-                                <div class="right-footer-container">
-                                    <span class="span-label">Planta:</span>
-                                    <div class="inp">
-                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
-                                            placeholder="{{ $view_area_planta }}" />
-                                    </div>
-                                    <i class="fas fa-industry"></i>
-                                </div>
-                            </section>
-
-                            <section class="right-footer">
-                                <div class="right-footer-container">
-                                    <span class="span-label">Técnico:</span>
-                                    <div class="inp">
-                                        <input style="border-radius: 10px; width:auto;" disabled type="text"
-                                            placeholder="{{ $view_area_user }}" />
-                                    </div>
-                                    <i class="fas fa-user-cog"></i>
-                                </div>
-                            </section>
-
-
-
-                        </div>
-                    </div>
-                    <!-- right-end -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <!-- Modal Registros-->
-    <div class="modal fade" id="Registros" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><label style="color: #5e80b7"> <i class="fas fa-database"></i></label>
-                        <span class="span-bold"> Datos de Calidad del Agua</span>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @foreach ($calidades as $coll)
-
-                        <div class="card shadow mb-4 border-left-primary">
-                            <!-- Card Header - Accordion -->
-                            <a href="#num{{ $coll->id }}" class="d-block card-header py-3" data-toggle="collapse"
-                                role="button" aria-expanded="true" aria-controls="num{{ $coll->id }}">
-                                <h6 style="font-size: 14px;" class="m-0 font-weight-bold text-primary">
-                                    <label style="color: #5e80b7"><i class="fas fa-clipboard-list"></i></label> Fecha
-                                    de Registro:
-                                    <span class="span-bold2"> {{ \Carbon\Carbon::parse($coll->created_at)->formatLocalized('%d %B %Y %I:%M %p')  }}</span>
-                                </h6>
-                            </a>
-                            <!-- Card Content - Collapse -->
-                            <div class="collapse" id="num{{ $coll->id }}">
-                                <div class="card-body">
-                                    <div class="right">
-                                        <div class="right-container">
-                                            <section class="right-footer">
-                                                <div class="right-footer-container">
-                                                    <span class="span-label">Origen de Agua:</span>
-
-                                                    <div class="inp">
-                                                        <input style="border-radius: 10px; width:auto;" disabled
-                                                            type="text" placeholder="{{ $coll->origen_agua }}" />
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <section class="right-footer">
-                                                <div class="right-footer-container">
-                                                    <span class="span-label">Dureza:</span>
-                                                    <div class="inp">
-                                                        <input style="border-radius: 10px; width:auto;" disabled
-                                                            type="text" placeholder="{{ $coll->dureza }}" />
-                                                    </div>
-
-                                                </div>
-                                            </section>
-                                            <section class="right-footer">
-                                                <div class="right-footer-container">
-                                                    <span class="span-label">pH:</span>
-                                                    <div class="inp">
-                                                        <input style="border-radius: 10px; width:auto;" disabled
-                                                            type="text" placeholder="{{ $coll->ph }}" />
-                                                    </div>
-
-                                                </div>
-                                            </section>
-                                            <section class="right-footer">
-                                                <div class="right-footer-container">
-                                                    <span class="span-label">Conductividad:</span>
-                                                    <div class="inp">
-                                                        <input style="border-radius: 10px; width:auto;" disabled
-                                                            type="text"
-                                                            placeholder="{{ $coll->conductividad }}" />
-                                                    </div>
-
-                                                </div>
-                                            </section>
-                                            <section class="right-footer">
-                                                <div class="right-footer-container">
-                                                    <span class="span-label">Cloruros:</span>
-                                                    <div class="inp">
-                                                        <input style="border-radius: 10px; width:auto;" disabled
-                                                            type="text" placeholder="{{ $coll->cloruros }}" />
-                                                    </div>
-
-                                                </div>
-                                            </section>
-                                            <section class="right-footer">
-                                                <div class="right-footer-container">
-                                                    <span class="span-label">Sulfatos:</span>
-                                                    <div class="inp">
-                                                        <input style="border-radius: 10px; width:auto;" disabled
-                                                            type="text" placeholder="{{ $coll->sulfatos }}" />
-                                                    </div>
-
-                                                </div>
-                                            </section>
+                            <div class="card mb-4">
+                                <div class="card-body px-0 pt-0 pb-2">
+                                    <div class="row search-models mx-3 my-4">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <h6>Información acerca de la Calidad del Agua</h6>
+                                        </div>
+                                        <div class="col-6 d-flex align-items-center text-end">
+                                            <div class="input-group mx-5 w-60">
+                                                <span class="input-group-text text-body"><i class="fas fa-search"
+                                                        aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Type here...">
+                                            </div>
+                                            <a class="btn bg-gradient-danger mb-0 "><i class="far fa-file-pdf"></i>
+                                                PDF</a>
                                         </div>
                                     </div>
-                                    <!-- right-end -->
+                                    <div class="search-models2">
+                                        <h6>Información acerca de la Calidad del Agua</h6>
+                                        <div class="container">
+                                            <div class="row">
+                                              <div class="col-8">
+                                                <div class="input-group mx-0">
+                                                    <span class="input-group-text text-body"><i class="fas fa-search"
+                                                            aria-hidden="true"></i></span>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Type here...">
+                                                </div>
+                                              </div>
+                                              <div class="col-4">
+                                                <a class="btn bg-gradient-danger mb-0 "><i class="far fa-file-pdf"></i>
+                                                    PDF</a>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="table-responsive p-0">
+                                        <table class="table align-items-center justify-content-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                        Origen de Agua</th>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                                        Dureza</th>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                                        pH</th>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                                        Conductividad</th>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                                        Cloruros</th>
+                                                    <th
+                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                                        Sulfatos</th>
+                                                    <th
+                                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                        Fecha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($calidades as $calidad)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex px-0">
+                                                                <div>
+                                                                    <i class="fas fa-prescription-bottle me-2"></i>
+
+                                                                </div>
+                                                                <div class="my-auto">
+                                                                    <h6 class="mb-0 text-sm">{{ $calidad->origen_agua }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-center">
+                                                                <span
+                                                                    class="me-2 text-xs font-weight-bold">{{ $calidad->dureza }}</span>
+                                                                <div>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-gradient-success"
+                                                                            role="progressbar"
+                                                                            aria-valuenow="{{ $calidad->dureza }}"
+                                                                            aria-valuemin="0" aria-valuemax="100"
+                                                                            style="width: {{ $calidad->dureza }}%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-center">
+                                                                <span
+                                                                    class="me-2 text-xs font-weight-bold">{{ $calidad->ph }}</span>
+                                                                <div>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-gradient-secondary"
+                                                                            role="progressbar"
+                                                                            aria-valuenow="{{ $calidad->ph }}"
+                                                                            aria-valuemin="0" aria-valuemax="100"
+                                                                            style="width: {{ $calidad->ph }}%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-center">
+                                                                <span
+                                                                    class="me-2 text-xs font-weight-bold">{{ $calidad->conductividad }}</span>
+                                                                <div>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-gradient-warning"
+                                                                            role="progressbar"
+                                                                            aria-valuenow="{{ $calidad->conductividad }}"
+                                                                            aria-valuemin="0" aria-valuemax="100"
+                                                                            style="width: {{ $calidad->conductividad }}%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-center">
+                                                                <span
+                                                                    class="me-2 text-xs font-weight-bold">{{ $calidad->cloruros }}</span>
+                                                                <div>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-gradient-info"
+                                                                            role="progressbar"
+                                                                            aria-valuenow="{{ $calidad->cloruros }}"
+                                                                            aria-valuemin="0" aria-valuemax="100"
+                                                                            style="width: {{ $calidad->cloruros }}%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-center">
+                                                                <span
+                                                                    class="me-2 text-xs font-weight-bold">{{ $calidad->sulfatos }}</span>
+                                                                <div>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-gradient-danger"
+                                                                            role="progressbar"
+                                                                            aria-valuenow="{{ $calidad->sulfatos }}"
+                                                                            aria-valuemin="0" aria-valuemax="100"
+                                                                            style="width: {{ $calidad->sulfatos }}%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <span class="text-secondary text-xs font-weight-bold">
+                                                                {{ \Carbon\Carbon::parse($calidad->created_at)->formatLocalized('%d/%m/%Y') }}</span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark mx-6" data-bs-dismiss="modal"><i class="fas fa-sign-in-alt"></i></button>
+                </div>
             </div>
         </div>
     </div>
-
+    <!--End Modal Registros Calidad Agua -->
 
 </div>
-
-
-<link rel="stylesheet" href="{{ asset('css/registros.css') }}">
-
-
-<script>
-    window.addEventListener('close-modal', event => {
-        $('#AddCalidadAgua').modal('hide');
-    });
-</script>
-
-<script>
-    window.addEventListener('show-modal', event => {
-        $('#InfoAreaData').modal('show');
-    });
-
-    window.addEventListener('show-registros', event => {
-        $('#Registros').modal('show');
-    });
-</script>
