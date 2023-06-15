@@ -26,13 +26,13 @@ class IndexMaquinas extends Component
             $this->sort = 'ids';
         }
 
-        $refrigerantes = Refrigerante::where('maquina_id',$this->view_id_machine)->orderBy('created_at', 'asc')->get();
+        $refrigerantes = Refrigerante::where('maquina_id',$this->view_id_machine)->orderBy('created_at', 'desc')->get();
 
-        $aceites = Aceite::where('maquina_id',$this->view_id_machine)->orderBy('created_at', 'asc')->get();
+        $aceites = Aceite::where('maquina_id',$this->view_id_machine)->orderBy('created_at', 'desc')->get();
 
-        $grasas = Grasa::where('maquina_id',$this->view_id_machine)->orderBy('created_at', 'asc')->get();
+        $grasas = Grasa::where('maquina_id',$this->view_id_machine)->orderBy('created_at', 'desc')->get();
 
-        $mantenimientos = Mantenimiento::where('maquina_id',$this->view_id_machine)->orderBy('created_at', 'asc')->get();
+        $mantenimientos = Mantenimiento::where('maquina_id',$this->view_id_machine)->orderBy('created_at', 'desc')->get();
 
         $maquinas = Machine::where('usuario_id',auth()->id())
         ->orWhere('created_by',auth()->id())

@@ -933,7 +933,7 @@
                                                             </td>
                                                             <td class="text-center ">
                                                                 <span class="text-secondary text-xs  font-weight-bold">
-                                                                    {{ \Carbon\Carbon::parse($grasa->created_at)->formatLocalized('%Y/%m/%d') }}
+                                                                    {{ \Carbon\Carbon::parse($mantenimiento->created_at)->formatLocalized('%Y/%m/%d') }}
                                                                 </span>
                                                             </td>
                                                         </tr>
