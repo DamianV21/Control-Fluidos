@@ -3,7 +3,7 @@
         <div class="col-lg-8">
             <div class="row">
                 @foreach ($listMaquinas as $item)
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-2">
                         <div class="card">
                             <div class="card-header mx-0 p-2 text-center">
                                 <div class="progressbar mb-1">
