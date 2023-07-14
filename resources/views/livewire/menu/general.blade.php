@@ -1,42 +1,51 @@
 <div class="container-fluid py-4">
+
     <div class="row">
         <div class="col-lg-8">
             <div class="row">
                 @foreach ($listMaquinas as $item)
-                    <div class="col-md-3 mb-2">
+                    <div class="col-md-3 mb-3">
                         <div class="card">
                             <div class="card-header mx-0 p-2 text-center">
-                                <div class="progressbar mb-1">
-                                    <div class="circle"
-                                        data-percent="{{ (($item->volumen_inicial + $item->litros_recarga) * 100) / $item->maquinas->capacidad_tanque }}">
-                                        <strong></strong>
-                                        <span>{{ $item->concentracion_final }} brix</span>
-                                        <p class="text-xs font-weight-bolder
-                                        <?php if ($days = ($item->created_at->diffInDays($dateNow)) >= 1) {
-                                            echo "text-danger";
-                                        }
-                                        else {
-                                            echo "text-success";
-                                        }
-                                        ?>">+ {{ $days = ($item->created_at->diffInDays($dateNow))}} <i
+                                <div class="progress-days">
+                                    <p
+                                        class="text-xs font-weight-bolder
+                                    <?php if ($days = $item->created_at->diffInDays($dateNow) >= 1) {
+                                        echo 'text-danger';
+                                    } else {
+                                        echo 'text-success';
+                                    }
+                                    ?>">
+                                        + {{ $days = $item->created_at->diffInDays($dateNow) }} <i
                                             class="fas fa-history"></i></p>
+                                </div>
+                                <img class="progress-img mt-3 mb-1" src="img/machine.png" alt="machine">
+                                <div class="progress-outer mt-1">
+                                    <div class="progress">
+                                        <div class="progress-bar  progress-bar-striped progress-bar-primary"
+                                            style="width:{{ (($item->volumen_inicial + $item->litros_recarga) * 100) / $item->maquinas->capacidad_tanque }}%;">
+                                        </div>
+                                        <div class="progress-value">
+                                            <span>{{ (($item->volumen_inicial + $item->litros_recarga) * 100) / $item->maquinas->capacidad_tanque }}</span>%
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
-                            <div class="card-body pt-0 p-3 text-center">
+                            <div class="card-body  pt-0 p-3 text-center">
                                 <h6 class="text-center mb-0 text-sm">{{ $item->maquinas->ids }}</h6>
-                                <span class="text-xs">{{ $item->maquinas->reco_min }} brix -
-                                    {{ $item->maquinas->reco_max }} brix</span>
-                                <hr class="horizontal dark my-3">
-                                <h6 class="mb-0 text-xs">Con. {{ ($item->litros_recarga * $item->concentracion_recarga * $item->maquinas->fac_refractor) / 100 }}
-                                    | pH {{ $item->ph }}</h6>
+                                <span class="text-xs">{{ $item->concentracion_final }} brix</span>
+                                <hr class="horizontal dark my-2">
+                                <h6 class="mb-0 text-xs"><i class="fas fa-prescription-bottle"></i> {{ ($item->litros_recarga * $item->concentracion_recarga * $item->maquinas->fac_refractor) / 100 }}
+                                    <small>ltrs</small>
+                                    | <i class="fas fa-swatchbook"></i> {{ $item->ph }} <small>pH</small>
+                                </h6>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-
         <div class="col-lg-4">
             <div class="card h-100">
                 <div class="card-header pb-0 p-3">
@@ -74,34 +83,20 @@
         </div>
     </div>
 </div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://rawgit.com/kottenator/jquery-circle-progress/1.2.2/dist/circle-progress.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script>
-    $(document).ready(function($) {
-        function animateElements() {
-            $('.progressbar').each(function() {
-                var elementPos = $(this).offset().top;
-                var topOfWindow = $(window).scrollTop();
-                var percent = $(this).find('.circle').attr('data-percent');
-                var animate = $(this).data('animate');
-                if (elementPos < topOfWindow + $(window).height() - 30 && !animate) {
-                    $(this).data('animate', true);
-                    $(this).find('.circle').circleProgress({
-                        // startAngle: -Math.PI / 2,
-                        value: percent / 100,
-                        size: 400,
-                        thickness: 30,
-                        fill: {
-                            color: '#2E5592'
-                        }
-                    }).on('circle-animation-progress', function(event, progress, stepValue) {
-                        $(this).find('strong').text((stepValue * 100).toFixed(0) + "%");
-                    }).stop();
+    $(document).ready(function() {
+        $('.progress-value > span').each(function() {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 1500,
+                easing: 'swing',
+                step: function(now) {
+                    $(this).text(Math.ceil(now));
                 }
             });
-        }
-
-        animateElements();
-        $(window).scroll(animateElements);
+        });
     });
 </script>

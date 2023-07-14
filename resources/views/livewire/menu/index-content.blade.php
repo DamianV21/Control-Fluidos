@@ -2695,6 +2695,8 @@
                                         <select class="form-control text-center" id="color"
                                             wire:model="color">
                                             <option selected>Elige un valor</option>
+                                            <option value="Verde oscuro">Gris</option>
+                                            <option value="Verde oscuro">Gris claro</option>
                                             <option value="Beige">Beige</option>
                                             <option value="Marrón">Marrón</option>
                                             <option value="Blanco">Blanco</option>
